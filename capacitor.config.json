@@ -1,0 +1,8 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "cri",
+	"webDir": "www",
+	"server": {
+		"androidScheme": "https"
+	}
+}
