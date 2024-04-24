@@ -25,3 +25,24 @@
 #container a {
   text-decoration: none;
 }
+
+.footer-style {
+  font-size: 12px;
+  text-align: center;
+}
+
+.header-style {
+  font-size: 20px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.header_logo {
+  font-size: 25px;
+  text-align: left;
+  align-content: left;
+  //--background: #EFF6FD url('../../../assets/images/logo_dgsr.png') no-repeat 100% 100%;
+  width: 35px;
+  height: 35px;
+}

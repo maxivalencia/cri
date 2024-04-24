@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      <p class="header-style"><img class="header_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-left>&nbsp;&nbsp;&nbsp;Controle inopiné</p>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,56 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Formulaire de controle inopiné</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-list>
+    <ion-item>
+      <ion-input label="Immatriculation" labelPlacement="floating" placeholder="Entrer Immatriculation ici ..."></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Nom Chauffeur" labelPlacement="floating" placeholder="Entrer Nom Chauffeur ici ..."></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Contact Chauffeur" labelPlacement="floating" placeholder="Entrer Contact Chauffeur ici ..."></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Numero Feuille de Controle" labelPlacement="floating" placeholder="Entrer Numero Feuille de Controle ici ..."></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Nom Propriétaire" labelPlacement="floating" placeholder="Entrer Nom Propriétaire ici ..."></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Contact Propriétaire" labelPlacement="floating" placeholder="Entrer Contact Propriétaire ici ..."></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Lieu de Controle" labelPlacement="floating" placeholder="Entrer Lieu de Controle ici ..."></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-select label="Anomalies constaté" labelPlacement="floating" placeholder="Selectionner Anomalies constater ici ..." [multiple]="true">
+        <ion-select-option *ngFor="let c of anomalies" value="{{ c.id }}">{{ c.code }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-select label="Papiers retiré" labelPlacement="floating" placeholder="Selectionner Papiers retiré ici ..." [multiple]="true">
+        <ion-select-option *ngFor="let c of papiers" value="{{ c.id }}">{{ c.papier }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Date de récupération" labelPlacement="floating" placeholder="Entrer Date de récupération ici ..."></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Date limite récupération" labelPlacement="floating" placeholder="Entrer Date limite récupération ici ..."></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox justify="start">Mise en Fourrière</ion-checkbox>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+<ion-footer [translucent]="true">
+  <ion-toolbar>
+    <ion-title><p class="footer-style">Copyright © 2024 Direction Générale de la Sécurité Routière</p></ion-title>
+  </ion-toolbar>
+</ion-footer>

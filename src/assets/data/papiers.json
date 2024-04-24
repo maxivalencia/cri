@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "name": "PC"
+  },
+  {
+    "id": 2,
+    "name": "CG"
+  },
+  {
+    "id": 3,
+    "name": "CE"
+  },
+  {
+    "id": 4,
+    "name": "CB"
+  },
+  {
+    "id": 5,
+    "name": "CIM 32 BIS"
+  },
+  {
+    "id": 6,
+    "name": "CJ"
+  },
+  {
+    "id": 7,
+    "name": "CJBR"
+  },
+  {
+    "id": 8,
+    "name": "CR"
+  },
+  {
+    "id": 9,
+    "name": "CAE"
+  },
+  {
+    "id": 10,
+    "name": "CIM 31"
+  },
+  {
+    "id": 11,
+    "name": "CIM 31 BIS"
+  },
+  {
+    "id": 12,
+    "name": "CIM 32"
+  },
+  {
+    "id": 13,
+    "name": "PV"
+  }
+]
