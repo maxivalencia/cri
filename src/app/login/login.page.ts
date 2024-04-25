@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable, Directive } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -9,7 +9,8 @@ import{ GlobalData } from '../global_data';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+@Injectable()
+export class LoginPage {
 
   username : string = "";
   password : string = "";
@@ -19,11 +20,11 @@ export class LoginPage implements OnInit {
   code : any;
   id_user : any;
 
-  constructor(public http: HttpClient, private router: Router) { }
+  constructor(public http: HttpClient, private router: Router, public globalData: GlobalData) { }
 
-  ngOnInit() {
+  /* ngOnInit() {
     console.log('Initiation page login');
-  }
+  } */
 
   signIn() {
     console.log("En attente du service d'authentification ...!")
@@ -36,8 +37,9 @@ export class LoginPage implements OnInit {
         this.message_connection = auth["message"];
         if(auth["code"] == 200){
           this.id_user = auth["id_user"];
+          this.globalData.setIdUser(this.id_user);
+          this.globalData.setIpAddress(this.adresse);
           this.router.navigate(['/home']);
-          GlobalData.id_user = this.id_user;
         }
         this.password = "";
       });

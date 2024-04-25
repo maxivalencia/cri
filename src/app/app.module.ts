@@ -9,10 +9,12 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
 
+import { GlobalData } from './global_data';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [HttpClientModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, GlobalData],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

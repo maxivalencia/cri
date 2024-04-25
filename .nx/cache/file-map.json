@@ -106,7 +106,7 @@
       },
       {
         "file": "src/app/app-routing.module.ts",
-        "hash": "7092203362848417435"
+        "hash": "11717326439980384745"
       },
       {
         "file": "src/app/app.component.html",
@@ -129,6 +129,10 @@
         "hash": "15745083878328540675"
       },
       {
+        "file": "src/app/global_data.ts",
+        "hash": "14818997628947275122"
+      },
+      {
         "file": "src/app/home/home-routing.module.ts",
         "hash": "15640276891962985461"
       },
@@ -142,7 +146,7 @@
       },
       {
         "file": "src/app/home/home.page.scss",
-        "hash": "17234310510313852865"
+        "hash": "15244377769041669615"
       },
       {
         "file": "src/app/home/home.page.spec.ts",
@@ -150,15 +154,39 @@
       },
       {
         "file": "src/app/home/home.page.ts",
-        "hash": "12632756930299188559"
+        "hash": "13594558813422768404"
       },
       {
         "file": "src/app/json-typings.d.ts",
         "hash": "13491524812256438839"
       },
       {
+        "file": "src/app/login/login-routing.module.ts",
+        "hash": "4076265732005432498"
+      },
+      {
+        "file": "src/app/login/login.module.ts",
+        "hash": "10097498393584657688"
+      },
+      {
+        "file": "src/app/login/login.page.html",
+        "hash": "824585940670568244"
+      },
+      {
+        "file": "src/app/login/login.page.scss",
+        "hash": "13411416410678386350"
+      },
+      {
+        "file": "src/app/login/login.page.spec.ts",
+        "hash": "13595130770492360569"
+      },
+      {
+        "file": "src/app/login/login.page.ts",
+        "hash": "17976015040066028452"
+      },
+      {
         "file": "src/assets/data/adresse.txt",
-        "hash": "3468582855085884248"
+        "hash": "15228200745560044980"
       },
       {
         "file": "src/assets/data/anomalies.json",
