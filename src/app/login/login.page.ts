@@ -27,7 +27,7 @@ export class LoginPage {
   } */
 
   signIn() {
-    console.log("En attente du service d'authentification ...!")
+    //console.log("En attente du service d'authentification ...!")
     //var _this = this;
     this.getAddress().subscribe((adresse : any) => {
       this.adresse = adresse.trim();

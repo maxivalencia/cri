@@ -8,6 +8,9 @@ export class GlobalData {
   private id_controle: number = 0;
   private ip_address: string = "";
 
+  private nombre_photo: number = 0;
+  private liste_photo: any;
+
   setIdUser(id_user:number) {
     this.id_user = id_user;
   }
@@ -33,5 +36,23 @@ export class GlobalData {
   getIpAddress():string{
 
       return this.ip_address;
+  }
+
+  setNombrePhoto(nombre_photo:number) {
+    this.nombre_photo = nombre_photo;
+  }
+
+  getNombrePhoto():number{
+
+      return this.nombre_photo;
+  }
+
+  setListePhoto(liste_photo:any) {
+    this.liste_photo = liste_photo;
+  }
+
+  getListePhoto():any{
+
+      return this.liste_photo;
   }
 }

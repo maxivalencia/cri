@@ -37,29 +37,30 @@ export class HomePage {
   mise_en_fourriere: boolean = false;
 
   controle_data : string = "";
+  ctrl : any;
 
   constructor(public http: HttpClient, public globalData: GlobalData, private router: Router) {
-    console.log('Début chargement des constructeur');
+    //console.log('Début chargement des constructeur');
     //var _this = this;
     this.getAddress().subscribe((adresse : any) => {
       this.adresse = adresse.trim() + "/cri/";
       this.globalData.setIpAddress(this.adresse);
-      var adr : string = adresse.trim() + "/cri/";
-      this.changeAdresse(adr);
+      /* var adr : string = adresse.trim() + "/cri/";
+      this.changeAdresse(adr) */;
       this.getAnomaliesJSON().subscribe(anomalies => {
-        console.log(anomalies);
+        //console.log(anomalies);
         this.anomalies = anomalies;
       });
       this.getPapiersJSON().subscribe(papiers => {
-        console.log(papiers);
+        //console.log(papiers);
         this.papiers = papiers;
       });
     })
     /* if(this.globalData.getIdUser() == 0){
       this.router.navigate(['/login']);
     } */
-    console.log('Fin chargement des constructeur');
-    console.log(this.globalData.getIpAddress());
+    //console.log('Fin chargement des constructeur');
+    //console.log(this.globalData.getIpAddress());
   }
 
 
@@ -82,10 +83,10 @@ export class HomePage {
     return this.http.get("assets/data/adresse.txt", {responseType: 'text'});
   }
 
-  public changeAdresse(adresse : string) {
-    console.log(adresse);
+  /* public changeAdresse(adresse : string) {
+    //console.log(adresse);
     this.adresse = adresse;
-  }
+  } */
 
   public sleep(ms: number): Promise<void> {
     return new Promise(
@@ -107,13 +108,17 @@ export class HomePage {
     this.controle_data += "&date_recuperation=" + this.date_recuperation;
     this.controle_data += "&date_fin_recuperation=" + this.date_fin_recuperation;
     this.controle_data += "&mise_en_fourriere=" + this.mise_en_fourriere;
-    console.log(this.controle_data);
+    //console.log(this.controle_data);
     return this.http.get(this.adresse + "validation/service" + this.controle_data);
   }
 
   public sendControleClick() {
     this.sendControle().subscribe(controle => {
-      console.log(controle);
+      this.ctrl = controle;
+      this.globalData.setIdControle(this.ctrl["id_controle"]);
+      this.globalData.setNombrePhoto(this.ctrl["nombre_photo"] + 1);
+      this.globalData.setListePhoto(this.ctrl["liste_photo"].split(","));
+      //console.log(this.ctrl["liste_photo"]);
       this.router.navigate(['/photo']);
     });
   }
