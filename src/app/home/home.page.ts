@@ -114,6 +114,7 @@ export class HomePage {
   public sendControleClick() {
     this.sendControle().subscribe(controle => {
       console.log(controle);
+      this.router.navigate(['/photo']);
     });
   }
 }

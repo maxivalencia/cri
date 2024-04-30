@@ -1,0 +1,11 @@
+{
+  "appId": "com.cri.app",
+  "appName": "cri",
+  "bundledWebRuntime": false,
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}

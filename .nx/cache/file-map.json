@@ -1,6 +1,6 @@
 {
   "version": "6.0",
-  "nxVersion": "18.2.4",
+  "nxVersion": "18.3.4",
   "deps": {
     "@angular/animations": "^17.0.2",
     "@angular/common": "^17.0.2",
@@ -11,18 +11,26 @@
     "@angular/platform-browser-dynamic": "^17.0.2",
     "@angular/router": "^17.0.2",
     "@capacitor-community/barcode-scanner": "^4.0.1",
-    "@capacitor/app": "5.0.7",
-    "@capacitor/core": "5.7.4",
-    "@capacitor/haptics": "5.0.7",
-    "@capacitor/keyboard": "5.0.8",
-    "@capacitor/status-bar": "5.0.7",
+    "@capacitor/android": "^5.7.5",
+    "@capacitor/app": "^5.0.7",
+    "@capacitor/camera": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/filesystem": "^6.0.0",
+    "@capacitor/haptics": "^5.0.7",
+    "@capacitor/keyboard": "^5.0.8",
+    "@capacitor/preferences": "^6.0.0",
+    "@capacitor/status-bar": "^5.0.7",
     "@ionic-native/downloader": "^5.36.0",
     "@ionic/angular": "^7.0.0",
+    "@ionic/pwa-elements": "^3.2.2",
+    "cordova-plugin-camera": "^7.0.0",
     "cordova-plugin-inappbrowser": "^6.0.0",
     "integrator-cordova-plugin-downloader": "^1.1.0",
     "ionicons": "^7.0.0",
+    "jetifier": "^2.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "vue": "^3.4.26",
     "zone.js": "~0.14.2",
     "@angular-devkit/build-angular": "^17.0.0",
     "@angular-eslint/builder": "^17.0.0",
@@ -33,7 +41,7 @@
     "@angular/cli": "^17.0.0",
     "@angular/compiler-cli": "^17.0.2",
     "@angular/language-service": "^17.0.2",
-    "@capacitor/cli": "5.7.4",
+    "@capacitor/cli": "^5.7.4",
     "@ionic/angular-toolkit": "^11.0.1",
     "@types/jasmine": "~5.1.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
@@ -86,7 +94,51 @@
       },
       {
         "file": "capacitor.config.json",
-        "hash": "5149432431002481927"
+        "hash": "10828089363305510445"
+      },
+      {
+        "file": "cri/.gitignore",
+        "hash": "15374520826582717243"
+      },
+      {
+        "file": "cri/README.md",
+        "hash": "18314925043230376989"
+      },
+      {
+        "file": "cri/capacitor.config.json",
+        "hash": "7291766261673141489"
+      },
+      {
+        "file": "cri/package.json",
+        "hash": "13282392177902402283"
+      },
+      {
+        "file": "cri/src/assets/icon/favicon.ico",
+        "hash": "13538836351539002388"
+      },
+      {
+        "file": "cri/src/assets/imgs/logo.png",
+        "hash": "2752731259980999817"
+      },
+      {
+        "file": "cri/src/css/style.css",
+        "hash": "14170818226055888175"
+      },
+      {
+        "file": "cri/src/index.html",
+        "hash": "8455308211604688029"
+      },
+      {
+        "file": "cri/src/js/capacitor-welcome.js",
+        "hash": "13170845273632403403"
+      },
+      {
+        "file": "cri/src/manifest.json",
+        "hash": "1013310281615085329"
+      },
+      {
+        "file": "cri/vite.config.ts",
+        "hash": "8663009463120153622"
       },
       {
         "file": "ionic.config.json",
@@ -98,11 +150,11 @@
       },
       {
         "file": "package-lock.json",
-        "hash": "16287990567497675410"
+        "hash": "17805277392304065070"
       },
       {
         "file": "package.json",
-        "hash": "5319552350308870032"
+        "hash": "11734618376271655580"
       },
       {
         "file": "src/app/app-routing.module.ts",
@@ -126,11 +178,11 @@
       },
       {
         "file": "src/app/app.module.ts",
-        "hash": "15745083878328540675"
+        "hash": "8174442495055659908"
       },
       {
         "file": "src/app/global_data.ts",
-        "hash": "14818997628947275122"
+        "hash": "8619758920200743970"
       },
       {
         "file": "src/app/home/home-routing.module.ts",
@@ -142,7 +194,7 @@
       },
       {
         "file": "src/app/home/home.page.html",
-        "hash": "4757616362959190677"
+        "hash": "16704457688411755622"
       },
       {
         "file": "src/app/home/home.page.scss",
@@ -154,7 +206,7 @@
       },
       {
         "file": "src/app/home/home.page.ts",
-        "hash": "13594558813422768404"
+        "hash": "15875262726175813128"
       },
       {
         "file": "src/app/json-typings.d.ts",
@@ -182,7 +234,15 @@
       },
       {
         "file": "src/app/login/login.page.ts",
-        "hash": "17976015040066028452"
+        "hash": "15196867219500784009"
+      },
+      {
+        "file": "src/app/services/photo.service.spec.ts",
+        "hash": "16802840011392128893"
+      },
+      {
+        "file": "src/app/services/photo.service.ts",
+        "hash": "6022888749021880048"
       },
       {
         "file": "src/assets/data/adresse.txt",
