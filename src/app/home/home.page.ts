@@ -1,6 +1,6 @@
 import { Component, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { count, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 //import { Http } from '@angular/http';
@@ -30,8 +30,8 @@ export class HomePage {
   proprietaire: string = "";
   contact_proprietaire: string = "";
   lieu_de_controle: string = "";
-  anomalies_constater: string = "";
-  papiers_retirer: any = "";
+  anomalies_constater: any = 0;
+  papiers_retirer: any = 0;
   date_recuperation: string = new Date().toISOString();
   date_fin_recuperation: string = new Date().toISOString();
   mise_en_fourriere: boolean = false;
@@ -94,6 +94,8 @@ export class HomePage {
   }
 
   public sendControle() {
+    let anomalie = count(this.anomalies_constater);
+    let papier = count(this.anomalies_constater);
     this.controle_data = "?user_id=1";
     //this.controle_data = "?user_id=" + this.immatriculation;
     this.controle_data += "&immatriculation=" + this.immatriculation;

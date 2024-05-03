@@ -10,6 +10,21 @@
       <ion-title size="large">photo</ion-title>
     </ion-toolbar>
   </ion-header>
-  <img src="{{ imageSource }}" alt="photo" />
-  <ion-button (click)="takePicture()">Camera</ion-button>
+  <!-- <img src="{{ imageSource }}" alt="photo" /> -->
+
+  <br />
+
+  <div class="titre_photo">Photo à prendre sur le véhicule :<br />{{ photo_titre }}</div>
+
+  <br />
+
+  <div text-center margin-top>
+    <ion-button expand="block" color="secondary" (click)="takePicture()" size="large">Prendre photo</ion-button>
+  </div>
 </ion-content>
+
+<ion-footer [translucent]="true">
+  <ion-toolbar>
+    <ion-title><p class="footer-style">Copyright © 2024 Direction Générale de la Sécurité Routière</p></ion-title>
+  </ion-toolbar>
+</ion-footer>

@@ -150,15 +150,15 @@
       },
       {
         "file": "package-lock.json",
-        "hash": "17805277392304065070"
+        "hash": "3728565337070362320"
       },
       {
         "file": "package.json",
-        "hash": "11734618376271655580"
+        "hash": "11598179682790729647"
       },
       {
         "file": "src/app/app-routing.module.ts",
-        "hash": "11717326439980384745"
+        "hash": "12254455670592348235"
       },
       {
         "file": "src/app/app.component.html",
@@ -182,7 +182,7 @@
       },
       {
         "file": "src/app/global_data.ts",
-        "hash": "8619758920200743970"
+        "hash": "12512989250378872428"
       },
       {
         "file": "src/app/home/home-routing.module.ts",
@@ -194,7 +194,7 @@
       },
       {
         "file": "src/app/home/home.page.html",
-        "hash": "16704457688411755622"
+        "hash": "11745294030556871247"
       },
       {
         "file": "src/app/home/home.page.scss",
@@ -206,7 +206,7 @@
       },
       {
         "file": "src/app/home/home.page.ts",
-        "hash": "15875262726175813128"
+        "hash": "7055897306752760688"
       },
       {
         "file": "src/app/json-typings.d.ts",
@@ -234,7 +234,31 @@
       },
       {
         "file": "src/app/login/login.page.ts",
-        "hash": "15196867219500784009"
+        "hash": "8441134843025758704"
+      },
+      {
+        "file": "src/app/photo/photo-routing.module.ts",
+        "hash": "14807377923032986798"
+      },
+      {
+        "file": "src/app/photo/photo.module.ts",
+        "hash": "10590200122407163805"
+      },
+      {
+        "file": "src/app/photo/photo.page.html",
+        "hash": "13464811814107050518"
+      },
+      {
+        "file": "src/app/photo/photo.page.scss",
+        "hash": "6834794676355171736"
+      },
+      {
+        "file": "src/app/photo/photo.page.spec.ts",
+        "hash": "6666656845010872047"
+      },
+      {
+        "file": "src/app/photo/photo.page.ts",
+        "hash": "7694400421932131383"
       },
       {
         "file": "src/app/services/photo.service.spec.ts",
@@ -242,7 +266,7 @@
       },
       {
         "file": "src/app/services/photo.service.ts",
-        "hash": "6022888749021880048"
+        "hash": "7935475820483978831"
       },
       {
         "file": "src/assets/data/adresse.txt",
@@ -286,7 +310,7 @@
       },
       {
         "file": "src/main.ts",
-        "hash": "3447864527603543144"
+        "hash": "11142404874660266834"
       },
       {
         "file": "src/polyfills.ts",
