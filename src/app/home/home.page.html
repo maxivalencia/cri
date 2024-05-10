@@ -1,7 +1,21 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      <p class="header-style"><img class="header_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-left>&nbsp;&nbsp;&nbsp;Controle inopiné</p>
+      <p class="header-style">
+        <ion-row>
+          <ion-col text-left>
+            <img class="header_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-left>
+          </ion-col>
+          <ion-col text-center>
+            CONTROLE<br>INOPINE
+          </ion-col>
+          <ion-col text-right>
+            <ion-button class="header_button" color="primary" (click)="deconnecterClick()" icon-only float-right>
+              <ion-icon name="exit-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </p>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,7 +29,7 @@
 
   <ion-list>
     <ion-item>
-      <ion-input label="Immatriculation" labelPlacement="floating" placeholder="Entrer Immatriculation ici ..." [(ngModel)]="immatriculation"></ion-input>
+      <ion-input label="Immatriculation" labelPlacement="floating" placeholder="Entrer Immatriculation ici ..." [(ngModel)]="immatriculation" (ngModelChange)="changeImmatriculation()"></ion-input>
     </ion-item>
     <ion-item>
       <ion-input label="Nom Chauffeur" labelPlacement="floating" placeholder="Entrer Nom Chauffeur ici ..." [(ngModel)]="nom_chauffeur"></ion-input>
@@ -42,17 +56,17 @@
     </ion-item>
     <ion-item>
       <ion-select label="Papiers retiré" labelPlacement="floating" placeholder="Selectionner Papiers retiré ici ..." [multiple]="true" [(ngModel)]="papiers_retirer">
-        <ion-select-option *ngFor="let c of papiers" value="{{ c.id }}">{{ c.papier }}</ion-select-option>
+        <ion-select-option *ngFor="let c of papiers" value="{{ c.id }}" selected="true">{{ c.papier }}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-datetime presentation="date" label="Date de récupération" labelPlacement="floating" placeholder="Entrer Date de récupération ici ..." [(ngModel)]="date_recuperation">
+      <ion-datetime presentation="date" [preferWheel]="true" label="Date de récupération" labelPlacement="floating" placeholder="Entrer Date de récupération ici ..." [(ngModel)]="date_recuperation">
         <span slot="title">Date de récupération</span>
       </ion-datetime>
     </ion-item>
     <ion-item>
-      <ion-datetime presentation="date" label="Date limite récupération" labelPlacement="floating" placeholder="Entrer Date limite récupération ici ..." [(ngModel)]="date_fin_recuperation">
-        <span slot="title">Date limite récupératione</span>
+      <ion-datetime presentation="date" [preferWheel]="true" label="Date limite récupération" labelPlacement="floating" placeholder="Entrer Date limite récupération ici ..." [(ngModel)]="date_fin_recuperation">
+        <span slot="title">Date limite récupération</span>
       </ion-datetime>
     </ion-item>
     <ion-item>

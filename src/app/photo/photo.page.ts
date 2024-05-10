@@ -59,15 +59,20 @@ export class PhotoPage implements OnInit {
     this.nombre_photo = 1;
     this.liste_photo = ["face"]; */
     this.id_controle = this.globalData.getIdControle();
-    this.nombre_photo = this.globalData.getNombrePhoto();
+    this.nombre_photo = this.globalData.getNombrePhoto()==1?0:this.globalData.getNombrePhoto();
     this.liste_photo = this.globalData.getListePhoto();
     this.adresse = this.globalData.getIpAddress();
     this.photo_titre = this.liste_photo[0];
+    this.loadFiles();
+    for(let i = 0; i < this.images.length - 1; i++){
+      this.deleteImage(this.images[i]); // Supprimer l'image après l'upload
+      delay(1000);
+    }
   }
 
   ngOnInit() {
     this.loadFiles();
-    for(let i = 0; i < this.images.length; i++){
+    for(let i = 0; i < this.images.length - 1; i++){
       this.deleteImage(this.images[i]); // Supprimer l'image après l'upload
       delay(1000);
     }
@@ -218,8 +223,8 @@ export class PhotoPage implements OnInit {
     await loading.present();
 
     try {
-      //const url = `${this.adresse}upload_photo`;
-      const url = 'http://192.168.12.251:2057/cri/upload_photo'
+      const url = `${this.adresse}upload_photo`;
+      //const url = 'http://192.168.12.251:2057/cri/upload_photo'
       await this.http.post(url, formData).pipe(
         finalize(() => {
           loading.dismiss();
@@ -233,18 +238,31 @@ export class PhotoPage implements OnInit {
   }
 
   async prendrePhoto(): Promise<void> {
+    /* if(this.nombre_photo == 1){
+      this.nombre_photo = 0
+    } */
     try {
+      if(this.nombre_photo <= 0){
+        this.router.navigate(['/home']);
+      }
       await this.selectImage();
       await delay(1000);
       await this.loadFiles();
       await delay(1000); // Charger les fichiers avant de continuer
       if (this.images.length > 0) {
-        await this.startUpload(this.images[0]);
+        //await this.startUpload(this.images[0]);
+        await this.startUpload(this.images[this.images.length - 1]);
         await delay(1000);
-        await this.deleteImage(this.images[0]); // Supprimer l'image après l'upload
+        //await this.deleteImage(this.images[0]); // Supprimer l'image après l'upload
+        await this.deleteImage(this.images[this.images.length - 1]); // Supprimer l'image après l'upload
         await delay(1000);
-      }/*
+      }
+      this.loadFiles();
       for(let i = 0; i < this.images.length; i++){
+        this.deleteImage(this.images[i]); // Supprimer l'image après l'upload
+        delay(1000);
+      }
+      /* for(let i = 0; i < this.images.length; i++){
         await this.deleteImage(this.images[i]); // Supprimer l'image après l'upload
         await delay(1000);
       } */
@@ -253,6 +271,9 @@ export class PhotoPage implements OnInit {
           //this.takePicture;
           this.photo_titre = this.liste_photo[this.globalData.getNombrePhoto() - this.nombre_photo];
           this.photo_name = this.liste_photo[this.nombre_photo - 1];
+          if(this.photo_name == ""){
+            this.router.navigate(['/home']);
+          }
           //this.sendPhoto(this.photo_name);
           /* this.photo_data = "?photo=" + this.imageSource;
           this.photo_data += "&controle_id=" + this.id_controle;
@@ -260,9 +281,6 @@ export class PhotoPage implements OnInit {
           this.http.get(this.adresse + "upload_photo" + this.photo_data); */
           this.nombre_photo--;
         //}
-        if(this.nombre_photo <= 0){
-          this.router.navigate(['/home']);
-        }
       }
       if(this.nombre_photo <= 0){
         this.router.navigate(['/home']);

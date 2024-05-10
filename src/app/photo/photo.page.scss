@@ -13,3 +13,26 @@ img{
   font-size: 12px;
   text-align: center;
 }
+
+.header_logo {
+  font-size: 50px;
+  text-align: left;
+  align-content: left;
+  display: block;
+  //--background: #EFF6FD url('../../../assets/images/logo_dgsr.png') no-repeat 100% 100%;
+  width: 35px;
+  height: 35px;
+}
+
+.header_button {
+  //font-size: 20px;
+  text-align: right;
+  align-content: right;
+  align-items: right;
+  margin: 0px;
+  padding: 0px;
+  //display: block;
+  //--background: #EFF6FD url('../../../assets/images/logo_dgsr.png') no-repeat 100% 100%;
+  width: 50px;
+  height: 50px;
+}

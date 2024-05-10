@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { count, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -9,14 +9,18 @@ import { HttpClient } from '@angular/common/http';
 import{ GlobalData } from '../global_data';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms'; // Pour ngModel
+import { IonicModule, Platform } from '@ionic/angular';
+import { App } from '@capacitor/app';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-@Injectable()
-export class HomePage {
+/* @Injectable() */
+export class HomePage implements OnInit {
 
   anomalies: any;
   papiers: any;
@@ -39,23 +43,33 @@ export class HomePage {
   controle_data : string = "";
   ctrl : any;
 
-  constructor(public http: HttpClient, public globalData: GlobalData, private router: Router) {
-    //console.log('Début chargement des constructeur');
-    //var _this = this;
-    this.getAddress().subscribe((adresse : any) => {
+  constructor(
+    public http: HttpClient,
+    public globalData: GlobalData,
+    private router: Router,
+    public platform: Platform
+  ) {
+    /* this.getAddress().subscribe((adresse : any) => {
       this.adresse = adresse.trim() + "/cri/";
       this.globalData.setIpAddress(this.adresse);
-      /* var adr : string = adresse.trim() + "/cri/";
-      this.changeAdresse(adr) */;
       this.getAnomaliesJSON().subscribe(anomalies => {
-        //console.log(anomalies);
         this.anomalies = anomalies;
+        var aucun_anomalie = {
+          "id": this.anomalies.length + 1,
+          "code": "AUCUN"
+        };
+        this.anomalies.push(aucun_anomalie);
       });
       this.getPapiersJSON().subscribe(papiers => {
-        //console.log(papiers);
         this.papiers = papiers;
+        var aucun_papier = {
+          "id": this.papiers.length + 1,
+          "papier": "AUCUN"
+        };
+        this.papiers.push(aucun_papier);
+        this.papiers_retirer = [this.papiers.length + 1];
       });
-    })
+    }) */
     /* if(this.globalData.getIdUser() == 0){
       this.router.navigate(['/login']);
     } */
@@ -64,10 +78,31 @@ export class HomePage {
   }
 
 
-  /* ngOnIt() {
+  ngOnInit() {
     console.log('Début initialisation page home');
-    console.log('Fin initialisation page home');
-  } */
+    this.getAddress().subscribe((adresse : any) => {
+      this.adresse = adresse.trim() + "/cri/";
+      this.globalData.setIpAddress(this.adresse);
+      this.getAnomaliesJSON().subscribe(anomalies => {
+        this.anomalies = anomalies;
+        var aucun_anomalie = {
+          "id": this.anomalies.length + 1,
+          "code": "AUCUN"
+        };
+        this.anomalies.push(aucun_anomalie);
+        //this.anomalies_constater = [this.anomalies.length];
+      });
+      this.getPapiersJSON().subscribe(papiers => {
+        this.papiers = papiers;
+        var aucun_papier = {
+          "id": this.papiers.length + 1,
+          "papier": "AUCUN"
+        };
+        this.papiers.push(aucun_papier);
+        //this.papiers_retirer = [this.papiers.length];
+      });
+    });
+  }
 
   public getAnomaliesJSON(): Observable<any> {
     // return this.http.get("./assets/data/anomalies.json");
@@ -123,5 +158,31 @@ export class HomePage {
       //console.log(this.ctrl["liste_photo"]);
       this.router.navigate(['/photo']);
     });
+  }
+
+  public deconnecterClick(){
+    this.globalData.setIdUser(0);
+    this.globalData.setIdControle(0);
+    this.globalData.setIpAddress("");
+    this.globalData.setNombrePhoto(0);
+    this.globalData.setListePhoto([]);
+    this.router.navigate(['/login']);
+    //this.platform.exitApp();
+    App.exitApp();
+  }
+
+  public changeImmatriculation(){
+    this.getInformation().subscribe(information => {
+      this.nom_chauffeur = information["nom_chauffeur"];
+      this.contact_chauffeur = information["contact_chauffeur"];
+      this.proprietaire = information["nom_proprietaire"];
+      this.contact_proprietaire = information["contact_proprietaire"];
+      //this.papiers_retirer = [this.papiers.length];
+    });
+  }
+
+  public getInformation(): Observable<any> {
+    // return this.http.get("./assets/data/papiers.json");
+    return this.http.get(this.adresse + "recuperation_info?immatriculation=" + this.immatriculation);
   }
 }

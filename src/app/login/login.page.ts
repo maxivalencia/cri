@@ -3,28 +3,38 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import{ GlobalData } from '../global_data';
+import { Filesystem, Directory } from '@capacitor/filesystem';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-@Injectable()
-export class LoginPage {
+/* @Injectable() */
+export class LoginPage implements OnInit {
 
   username : string = "";
   password : string = "";
   message_connection : string = "";
   adresse : string = "";
+  login : string = "";
   auth : any;
   code : any;
   id_user : any;
 
-  constructor(public http: HttpClient, private router: Router, public globalData: GlobalData) { }
+  constructor(public http: HttpClient,
+    private router: Router,
+    public globalData: GlobalData,
+    private storage: Storage
+  ) { }
 
-  /* ngOnInit() {
+  ngOnInit() {
     console.log('Initiation page login');
-  } */
+    //this.getLoginToFile();
+    this.storage.create();
+    this.retrieveData();
+  }
 
   signIn() {
     //console.log("En attente du service d'authentification ...!")
@@ -41,10 +51,19 @@ export class LoginPage {
           this.globalData.setIpAddress(this.adresse);
           this.router.navigate(['/home']);
         }
+        //this.setLogin();
+        this.deleteData();
+        this.storeData();
         this.password = "";
       });
     })
   }
+
+  /* public getLoginToFile() {
+    this.getLogin().subscribe((login : any) => {
+      this.login = login.trim();
+    })
+  } */
 
   public getAddress(): Observable<any> {
     return this.http.get("assets/data/adresse.txt", {responseType: 'text'});
@@ -53,5 +72,32 @@ export class LoginPage {
   public getAuthentification(): Observable<any> {
     // return this.http.get("./assets/data/anomalies.json");
     return this.http.get(this.adresse + "/cri/login/service?username=" + this.username + "&password=" + this.password);
+  }
+
+  /* public getLogin(): Observable<any> {
+    return this.http.get("assets/data/user.txt", {responseType: 'text'});
+  }
+
+  public setLogin() {
+    //this.http.post("assets/data/user.txt", this.login);
+    //return this.http.get("assets/data/user.txt", {responseType: 'text'});
+    Filesystem.writeFile({
+      path: 'assets/data/user.txt',
+      data: this.login,
+      //directory: Directory.Documents,
+      //encoding: Encoding.UTF8,
+    });
+  } */
+
+  async storeData() {
+    await this.storage.set('login', this.login); // Stocker des données
+  }
+
+  async retrieveData() {
+    this.login = await this.storage.get('login'); // Récupérer des données
+  }
+
+  async deleteData() {
+    await this.storage.remove('login'); // Supprimer des données
   }
 }

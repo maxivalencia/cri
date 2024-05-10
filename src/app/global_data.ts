@@ -16,7 +16,6 @@ export class GlobalData {
   }
 
   getIdUser():number{
-
       return this.id_user;
   }
 
@@ -25,7 +24,6 @@ export class GlobalData {
   }
 
   getIdControle():number{
-
       return this.id_controle;
   }
 
@@ -34,7 +32,6 @@ export class GlobalData {
   }
 
   getIpAddress():string{
-
       return this.ip_address;
   }
 
@@ -43,7 +40,6 @@ export class GlobalData {
   }
 
   getNombrePhoto():number{
-
       return this.nombre_photo;
   }
 
@@ -52,7 +48,6 @@ export class GlobalData {
   }
 
   getListePhoto():any{
-
       return this.liste_photo;
   }
 }

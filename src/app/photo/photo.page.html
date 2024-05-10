@@ -1,6 +1,21 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>photo</ion-title>
+    <ion-title>
+      <p class="header-style">
+        <ion-row>
+          <ion-col text-left>
+            <img class="header_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-left>
+          </ion-col>
+          <ion-col text-center>
+            PRISE DES PHOTOS<br>
+            DES ANOMALIES<br>
+            CONSTATER<br>
+          </ion-col>
+          <ion-col text-right>
+          </ion-col>
+        </ion-row>
+      </p>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -20,7 +35,7 @@
 
   <div text-center margin-top>
     <!-- <ion-button expand="block" color="secondary" (click)="takePicture()" size="large">Prendre photo</ion-button> -->
-    <ion-button expand="block" color="secondary" (click)="prendrePhoto()" size="large">Prendre photo</ion-button>
+    <ion-button expand="block" color="secondary" (click)="prendrePhoto()" size="large"><ion-icon name="reverse-camera"></ion-icon> Prendre photo</ion-button>
   </div>
 </ion-content>
 
