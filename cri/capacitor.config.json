@@ -1,6 +1,6 @@
 {
-  "appId": "com.cri.app",
-  "appName": "cri",
+  "appId": "controleinopine.app",
+  "appName": "i-nopiné",
   "bundledWebRuntime": false,
   "webDir": "dist",
   "plugins": {

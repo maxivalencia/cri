@@ -52,9 +52,9 @@ export class PhotoPage implements OnInit {
     private platform: Platform,
     private loadingCtrl: LoadingController
   ) {
-    /* if(this.globalData.getIdUser() == 0){
+    if(this.globalData.getIdUser() == 0){
       this.router.navigate(['/login']);
-    } */
+    }
     /* this.id_controle = 1;
     this.nombre_photo = 1;
     this.liste_photo = ["face"]; */

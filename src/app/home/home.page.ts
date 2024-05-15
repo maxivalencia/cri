@@ -70,9 +70,9 @@ export class HomePage implements OnInit {
         this.papiers_retirer = [this.papiers.length + 1];
       });
     }) */
-    /* if(this.globalData.getIdUser() == 0){
+    if(this.globalData.getIdUser() == 0){
       this.router.navigate(['/login']);
-    } */
+    }
     //console.log('Fin chargement des constructeur');
     //console.log(this.globalData.getIpAddress());
   }

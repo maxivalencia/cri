@@ -1,6 +1,6 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "cri",
+	"appId": "controleinopine.app",
+	"appName": "i-nopiné",
 	"webDir": "www",
 	"server": {
 		"androidScheme": "https"
