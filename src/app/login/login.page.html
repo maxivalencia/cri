@@ -1,55 +1,60 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      <p class="header-style">
-        <ion-row>
-          <ion-col text-left>
-            <img class="header_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-left>
-          </ion-col>
-          <ion-col text-center>
-            LOGIN
-          </ion-col>
-          <ion-col text-right>
-          </ion-col>
-        </ion-row>
-      </p>
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Contrôle inopiné login</ion-title>
+<ion-app>
+  <ion-header [translucent]="true" class="ion-no-border" no-border color="dark">
+    <ion-toolbar class="ion-no-border" no-border>
+      <ion-title class="ion-no-border" no-border>
+        <p class="header-style" class="ion-no-border" no-border>
+          <ion-row class="ion-no-border" no-border>
+            <ion-col text-left class="ion-no-border" no-border>
+              <img class="header_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-left>
+            </ion-col>
+            <ion-col text-center class="ion-no-border" no-border>
+              LOGIN
+            </ion-col>
+            <ion-col text-right class="ion-no-border" no-border>
+              <ion-button class="header_button" color="primary" (click)="deconnecterClick()" icon-only float-right>
+                <ion-icon name="exit-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </p>
+      </ion-title>
     </ion-toolbar>
   </ion-header>
-  <br>
-  <img class="login_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr">
-  <h4 text-center margin-top class="login-style">Insérer votre identification ici</h4>
-  <br>
 
-  <ion-item>
-    <ion-input label="Nom d'utilisateur : " labelPlacement="floating" placeholder="Entrer nom d'utilisateur ici ..." [(ngModel)]="username"></ion-input>
-  </ion-item>
+  <ion-content [fullscreen]="true">
+    <!-- <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Contrôle inopiné login</ion-title>
+      </ion-toolbar>
+    </ion-header> -->
+    <br>
+    <img class="login_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr">
+    <h4 text-center margin-top class="login-style">Insérer votre identification ici</h4>
+    <br>
 
-  <ion-item>
-    <ion-input type="password" label="Mot de pass : " labelPlacement="floating" placeholder="Entrer mot de pass ici ..." [(ngModel)]="password"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-input label="Nom d'utilisateur : " labelPlacement="floating" placeholder="Entrer nom d'utilisateur ici ..." [(ngModel)]="username"></ion-input>
+    </ion-item>
 
-  <br>
+    <ion-item>
+      <ion-input type="password" label="Mot de pass : " labelPlacement="floating" placeholder="Entrer mot de pass ici ..." [(ngModel)]="password"></ion-input>
+    </ion-item>
 
-  <div text-center margin-top>
-    <ion-button expand="block" color="secondary" (click)="signIn()"  size="large">
-      Connexion
-    </ion-button>
-  </div>
+    <br>
 
-  <br>
-  <div class="message">{{ message_connection }}</div>
-</ion-content>
+    <div text-center margin-top>
+      <ion-button expand="block" color="secondary" (click)="signIn()"  size="large">
+        Connexion
+      </ion-button>
+    </div>
 
-<ion-footer [translucent]="true">
-  <ion-toolbar>
-    <ion-title><p class="footer-style">Copyright © 2024 Direction Générale de la Sécurité Routière</p></ion-title>
-  </ion-toolbar>
-</ion-footer>
+    <br>
+    <div class="message">{{ message_connection }}</div>
+  </ion-content>
+
+  <ion-footer [translucent]="true" class="ion-no-border" no-border>
+    <ion-toolbar class="ion-no-border" no-border>
+      <ion-title class="ion-no-border" no-border><p class="footer-style">Copyright © 2024 ANDRIANTSOA Husayn Mozart<br />Direction Générale de la Sécurité Routière</p></ion-title>
+    </ion-toolbar>
+  </ion-footer>
+</ion-app>

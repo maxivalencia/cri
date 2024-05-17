@@ -1,46 +1,48 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      <p class="header-style">
-        <ion-row>
-          <ion-col text-left>
-            <img class="header_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-left>
-          </ion-col>
-          <ion-col text-center>
-            PRISE DES PHOTOS<br>
-            DES ANOMALIES<br>
-            CONSTATER<br>
-          </ion-col>
-          <ion-col text-right>
-          </ion-col>
-        </ion-row>
-      </p>
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">photo</ion-title>
+<ion-app>
+  <ion-header [translucent]="true" class="ion-no-border" no-border>
+    <ion-toolbar class="ion-no-border" no-border>
+      <ion-title class="ion-no-border" no-border>
+        <p class="header-style" class="ion-no-border" no-border>
+          <ion-row class="ion-no-border" no-border>
+            <ion-col text-left class="ion-no-border" no-border>
+              <img class="header_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-left>
+            </ion-col>
+            <ion-col text-center class="ion-no-border" no-border>
+              PRISE DES PHOTOS<br>
+              DES ANOMALIES<br>
+              CONSTATER<br>
+            </ion-col>
+            <ion-col text-right class="ion-no-border" no-border>
+            </ion-col>
+          </ion-row>
+        </p>
+      </ion-title>
     </ion-toolbar>
   </ion-header>
-  <!-- <img src="{{ imageSource }}" alt="photo" /> -->
 
-  <br />
+  <ion-content [fullscreen]="true">
+    <!-- <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">photo</ion-title>
+      </ion-toolbar>
+    </ion-header> -->
+    <!-- <img src="{{ imageSource }}" alt="photo" /> -->
 
-  <div class="titre_photo">Photo à prendre sur le véhicule :<br />{{ photo_titre }}</div>
+    <br />
 
-  <br />
+    <div class="titre_photo">Photo à prendre sur le véhicule :<br />{{ photo_titre }}</div>
 
-  <div text-center margin-top>
-    <!-- <ion-button expand="block" color="secondary" (click)="takePicture()" size="large">Prendre photo</ion-button> -->
-    <ion-button expand="block" color="secondary" (click)="prendrePhoto()" size="large"><ion-icon name="reverse-camera"></ion-icon> Prendre photo</ion-button>
-  </div>
-</ion-content>
+    <br />
 
-<ion-footer [translucent]="true">
-  <ion-toolbar>
-    <ion-title><p class="footer-style">Copyright © 2024 Direction Générale de la Sécurité Routière</p></ion-title>
-  </ion-toolbar>
-</ion-footer>
+    <div text-center margin-top>
+      <!-- <ion-button expand="block" color="secondary" (click)="takePicture()" size="large">Prendre photo</ion-button> -->
+      <ion-button expand="block" color="secondary" (click)="prendrePhoto()" size="large"><ion-icon name="reverse-camera"></ion-icon> Prendre photo</ion-button>
+    </div>
+  </ion-content>
+
+  <ion-footer [translucent]="true" class="ion-no-border" no-border>
+    <ion-toolbar class="ion-no-border" no-border>
+      <ion-title class="ion-no-border" no-border><p class="footer-style">Copyright © 2024 ANDRIANTSOA Husayn Mozart<br />Direction Générale de la Sécurité Routière</p></ion-title>
+    </ion-toolbar>
+  </ion-footer>
+</ion-app>

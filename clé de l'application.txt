@@ -11,7 +11,9 @@ zipalign -v 4 F:\ionic\cri\android\app\build\intermediates\apk\debug\app-debug.a
 jarsigner --verbose --sigalg SHA1withRSA --digestalg SHA1 --keystore dgsrmada.jks F:\ionic\cri\android\app\build\outputs\apk\debug\app-debug.apk dgsr-alias
 zipalign -v 4 F:\ionic\cri\android\app\build\outputs\apk\debug\app-debug.apk F:\ionic\cri\android\app\build\outputs\apk\debug\i-nopine.apk
 
-ionic capacitor build android --no-open --prod -- release
+cordova-res android --skip-config --copy
+ionic cap build android --no-open --prod --release
+ionic cap run android
 zipalign -p -f -v 4 "F:\ionic\cri\android\app\build\outputs\apk\debug\app-debug.apk" "F:\ionic\cri\android\app\build\outputs\apk\debug\app-debug_zipaligned.apk"
 apksigner sign --ks "dgsrmada.jks" --ks-key-alias dgsr-alias --in "F:\ionic\cri\android\app\build\outputs\apk\debug\app-debug_zipaligned.apk" --out "F:\ionic\cri\android\app\build\outputs\apk\debug\i-nopine.apk"
 apksigner verify -verbose "F:\ionic\cri\android\app\build\outputs\apk\debug\i-nopine.apk"

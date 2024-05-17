@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import{ GlobalData } from '../global_data';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Storage } from '@ionic/storage-angular';
+import { App } from '@capacitor/app';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,11 @@ export class LoginPage implements OnInit {
     private router: Router,
     public globalData: GlobalData,
     private storage: Storage
-  ) { }
+  ) {
+    if(this.globalData.getIdUser() > 0){
+      this.router.navigate(['/home']);
+    }
+  }
 
   ngOnInit() {
     console.log('Initiation page login');
@@ -99,5 +104,16 @@ export class LoginPage implements OnInit {
 
   async deleteData() {
     await this.storage.remove('login'); // Supprimer des données
+  }
+
+  public deconnecterClick(){
+    this.globalData.setIdUser(0);
+    this.globalData.setIdControle(0);
+    this.globalData.setIpAddress("");
+    this.globalData.setNombrePhoto(0);
+    this.globalData.setListePhoto([]);
+    this.router.navigate(['/login']);
+    //this.platform.exitApp();
+    App.exitApp();
   }
 }

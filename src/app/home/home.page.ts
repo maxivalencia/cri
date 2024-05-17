@@ -43,6 +43,9 @@ export class HomePage implements OnInit {
   controle_data : string = "";
   ctrl : any;
 
+  showCalendar = false;
+  showCalendarFin = false;
+
   constructor(
     public http: HttpClient,
     public globalData: GlobalData,
@@ -184,5 +187,17 @@ export class HomePage implements OnInit {
   public getInformation(): Observable<any> {
     // return this.http.get("./assets/data/papiers.json");
     return this.http.get(this.adresse + "recuperation_info?immatriculation=" + this.immatriculation);
+  }
+  openCalendar() {
+    this.showCalendar = true;
+  }
+  cancelCalendar() {
+    this.showCalendar = false;
+  }
+  openCalendarFin() {
+    this.showCalendarFin = true;
+  }
+  cancelCalendarFin() {
+    this.showCalendarFin = false;
   }
 }

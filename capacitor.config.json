@@ -1,5 +1,5 @@
 {
-	"appId": "controleinopine.app",
+	"appId": "com.inopine.app",
 	"appName": "i-nopiné",
 	"webDir": "www",
 	"server": {
@@ -7,7 +7,7 @@
 	},
   "cordova": {
     "preferences": {
-      "CameraUsesGeolocation": "false"
+      "CameraUsesGeolocation": "true"
     }
   }
 }

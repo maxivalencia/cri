@@ -1,5 +1,7 @@
 img{
   width: 400px;
+  color: azure;
+  background-color: #1f1e1e;
 }
 
 .titre_photo {
@@ -7,11 +9,15 @@ img{
   font-weight: bold;
   text-align: center;
   align-content: center;
+  color: azure;
+  background-color: #1f1e1e;
 }
 
 .footer-style {
   font-size: 12px;
   text-align: center;
+  color: azure;
+  background-color: #1f1e1e;
 }
 
 .header_logo {
@@ -22,6 +28,8 @@ img{
   //--background: #EFF6FD url('../../../assets/images/logo_dgsr.png') no-repeat 100% 100%;
   width: 35px;
   height: 35px;
+  color: azure;
+  background-color: #1f1e1e;
 }
 
 .header_button {
@@ -35,4 +43,77 @@ img{
   //--background: #EFF6FD url('../../../assets/images/logo_dgsr.png') no-repeat 100% 100%;
   width: 50px;
   height: 50px;
+  color: azure;
+  background-color: #1f1e1e;
+}
+
+/* Définir la couleur d'arrière-plan uniforme */
+ion-content {
+  --ion-background-color: #1f1e1e; /* Couleur d'arrière-plan uniforme */
+  background-color: #1f1e1e;
+  color: azure;
+}
+
+/* Définir la couleur de premier plan uniforme */
+ion-item {
+  --ion-color: #faf7f7; /* Couleur de premier plan uniforme */
+  background-color: #1f1e1e;
+  color: azure;
+}
+
+ion-header {
+  //--ion-color: #faf7f7; /* Couleur de premier plan uniforme */
+  background-color: #1f1e1e;
+  color: azure;
+  --background:var(--ion-background-color)
+  padding : 0px;
+  margin : 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  border: 0px;
+  border-color: transparent;
+  overflow: hidden;
+}
+
+ion-footer {
+  //--ion-color: #faf7f7; /* Couleur de premier plan uniforme */
+  background-color: #1f1e1e;
+  --background:var(--ion-background-color)
+  padding : 0px;
+  margin : 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  border: 0px;
+  border-color: transparent;
+  overflow: hidden;
+}
+
+:root{
+  --ion-background-color: #1f1e1e; /* Couleur d'arrière-plan uniforme */
+  background-color: #1f1e1e;
+  color: azure;
+}
+
+@media only screen and (min-width: 0px) {
+  :root {
+    --ion-background-color: #1f1e1e; /* Couleur de fond de l'application pour Android */
+  }
+}
+
+body, ion-app {
+  --ion-color: #faf7f7; /* Couleur de premier plan uniforme */
+  background-color: #1f1e1e;
+  --background:var(--ion-background-color)
 }

@@ -1,0 +1,68 @@
+/* Définir la couleur d'arrière-plan uniforme */
+ion-content {
+  --ion-background-color: #1f1e1e; /* Couleur d'arrière-plan uniforme */
+  background-color: #1f1e1e;
+  color: azure;
+}
+
+/* Définir la couleur de premier plan uniforme */
+ion-item {
+  --ion-color: #faf7f7; /* Couleur de premier plan uniforme */
+  background-color: #1f1e1e;
+  color: azure;
+}
+
+:root{
+  --ion-background-color: #1f1e1e; /* Couleur d'arrière-plan uniforme */
+  background-color: #1f1e1e;
+  color: azure;
+}
+
+@media only screen and (min-width: 0px) {
+  :root {
+    --ion-background-color: #1f1e1e; /* Couleur de fond de l'application pour Android */
+  }
+}
+
+ion-header {
+  //--ion-color: #faf7f7; /* Couleur de premier plan uniforme */
+  background-color: #1f1e1e;
+  color: azure;
+  --background:var(--ion-background-color)
+  padding : 0px;
+  margin : 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  border: 0px;
+  border-color: transparent;
+}
+
+ion-footer {
+  //--ion-color: #faf7f7; /* Couleur de premier plan uniforme */
+  background-color: #1f1e1e;
+  --background:var(--ion-background-color)
+  padding : 0px;
+  margin : 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  border: 0px;
+  border-color: transparent;
+}
+
+body, ion-app {
+  --ion-color: #faf7f7; /* Couleur de premier plan uniforme */
+  background-color: #1f1e1e;
+  --background:var(--ion-background-color)
+}
