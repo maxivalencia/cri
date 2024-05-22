@@ -1,22 +1,66 @@
-.header-style {
+#container {
+  text-align: center;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: azure;
+}
+
+#container strong {
   font-size: 20px;
+  line-height: 26px;
+  color: azure;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #8c8c8c;
+
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+  color: azure;
+}
+
+.footer-style {
+  font-size: 12px;
+  text-align: center;
+  color: azure;
+  //background-color: #1f1e1e;
+}
+
+.header-style {
+  font-size: 25px;
   text-align: center;
   align-items: center;
   justify-content: center;
   color: azure;
-  background-color: dark;
+  //background-color: #1f1e1e;
+}
+
+.text-centre{
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .header_logo {
-  font-size: 50px;
+  font-size: 25px;
   text-align: left;
   align-content: left;
   display: block;
   //--background: #EFF6FD url('../../../assets/images/logo_dgsr.png') no-repeat 100% 100%;
   width: 50px;
   height: 50px;
-  //color: azure;
-  background-color: dark;
+  color: azure;
+  background-color: #1f1e1e;
 }
 
 .header_button {
@@ -31,7 +75,13 @@
   width: 50px;
   height: 50px;
   color: azure;
-  background-color: dark;
+  //background-color: #1f1e1e;
+}
+
+#fake-click {
+  display: none;
+  color: azure;
+  background-color: #1f1e1e;
 }
 
 .text-color{
@@ -48,49 +98,6 @@
   font-size: 24px;
 }
 
-.login-style {
-  //font-size: 12px;
-  text-align: center;
-  color: azure;
-  //background-color: #1f1e1e;
-}
-
-.text-centre{
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-}
-
-.login_logo {
-  font-size: 25px;
-  text-align: center;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  padding: auto;
-  display: block;
-  //--background: #EFF6FD url('../../../assets/images/logo_dgsr.png') no-repeat 100% 100%;
-  width: 200px;
-  height: 200px;
-  color: azure;
-  background-color: dark;
-}
-
-.footer-style {
-  font-size: 12px;
-  text-align: center;
-  //color: azure;
-  background-color: dark;
-}
-
-.message {
-  font-size: 12px;
-  text-align: center;
-  color: azure;
-  background-color: dark;
-}
-
 /* Définir la couleur d'arrière-plan uniforme */
 ion-content {
   --ion-background-color: #1f1e1e; /* Couleur d'arrière-plan uniforme */
@@ -100,15 +107,16 @@ ion-content {
 
 /* Définir la couleur de premier plan uniforme */
 ion-item {
-  //--ion-color: #faf7f7; /* Couleur de premier plan uniforme */
-  background-color: dark;
-  //color: azure;
+  --ion-color: #faf7f7; /* Couleur de premier plan uniforme */
+  //background-color: #1f1e1e;
+  color: azure;
 }
 
 ion-header {
   //--ion-color: #faf7f7; /* Couleur de premier plan uniforme */
-  background-color: dark;
-  //color: azure;
+  //background-color: #1f1e1e;
+  color: azure;
+  --background:var(--ion-background-color)
   padding : 0px;
   margin : 0px;
   padding-top: 0px;
@@ -119,7 +127,7 @@ ion-header {
   margin-bottom: 0px;
   margin-left: 0px;
   margin-right: 0px;
-  border: none;
+  border: 0px;
   border-color: transparent;
   overflow: hidden;
   font-size: 16px;
@@ -128,7 +136,8 @@ ion-header {
 
 ion-footer {
   //--ion-color: #faf7f7; /* Couleur de premier plan uniforme */
-  background-color: dark;
+  //background-color: #1f1e1e;
+  --background:var(--ion-background-color)
   padding : 0px;
   margin : 0px;
   padding-top: 0px;
@@ -139,48 +148,27 @@ ion-footer {
   margin-bottom: 0px;
   margin-left: 0px;
   margin-right: 0px;
-  border: none;
+  border: 0px;
   border-color: transparent;
   overflow: hidden;
   font-size: 8px;
   --font-size: 8px;
 }
 
-/* :root{
-  --ion-background-color: #1f1e1e;
-  background-color: #1f1e1e;
+:root{
+  --ion-background-color: #1f1e1e; /* Couleur d'arrière-plan uniforme */
+  //background-color: #1f1e1e;
   color: azure;
 }
 
 @media only screen and (min-width: 0px) {
   :root {
-    --ion-background-color: #1f1e1e;
+    --ion-background-color: #1f1e1e; /* Couleur de fond de l'application pour Android */
   }
-} */
+}
 
-/* body, ion-app {
-  --ion-color: #faf7f7;
+body, ion-app {
+  --ion-color: #faf7f7; /* Couleur de premier plan uniforme */
   background-color: #1f1e1e;
   --background:var(--ion-background-color)
-} */
-
-ion-header::after {
-  border: none !important;
-}
-
-.menu_logo {
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
-}
-
-.titre-menu{
-  font-size: 24px;
-  text-align: center;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
 }

@@ -13,14 +13,13 @@ import { FormsModule } from '@angular/forms'; // Pour ngModel
 import { IonicModule, Platform } from '@ionic/angular';
 import { App } from '@capacitor/app';
 
-
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-inopine',
+  templateUrl: './inopine.page.html',
+  styleUrls: ['./inopine.page.scss'],
 })
-/* @Injectable() */
-export class HomePage implements OnInit {
+export class InopinePage implements OnInit {
+
 
   anomalies: any;
   papiers: any;
@@ -177,4 +176,5 @@ export class HomePage implements OnInit {
   cancelCalendarFin() {
     this.showCalendarFin = false;
   }
+
 }

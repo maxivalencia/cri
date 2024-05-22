@@ -115,7 +115,7 @@ ion-item {
 ion-header {
   //--ion-color: #faf7f7; /* Couleur de premier plan uniforme */
   //background-color: #1f1e1e;
-  color: azure;
+  //color: azure;
   --background:var(--ion-background-color)
   padding : 0px;
   margin : 0px;
@@ -137,7 +137,7 @@ ion-header {
 ion-footer {
   //--ion-color: #faf7f7; /* Couleur de premier plan uniforme */
   //background-color: #1f1e1e;
-  --background:var(--ion-background-color)
+  /* --background:var(--ion-background-color) */
   padding : 0px;
   margin : 0px;
   padding-top: 0px;
@@ -155,20 +155,20 @@ ion-footer {
   --font-size: 8px;
 }
 
-:root{
-  --ion-background-color: #1f1e1e; /* Couleur d'arrière-plan uniforme */
+/* :root{
+  --ion-background-color: #1f1e1e;
   //background-color: #1f1e1e;
   color: azure;
 }
 
 @media only screen and (min-width: 0px) {
   :root {
-    --ion-background-color: #1f1e1e; /* Couleur de fond de l'application pour Android */
+    --ion-background-color: #1f1e1e;
   }
 }
 
 body, ion-app {
-  --ion-color: #faf7f7; /* Couleur de premier plan uniforme */
+  --ion-color: #faf7f7;
   background-color: #1f1e1e;
   --background:var(--ion-background-color)
-}
+} */
