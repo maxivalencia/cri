@@ -1,16 +1,16 @@
-<ion-app>
+<ion-app color="dark">
   <ion-header [translucent]="true" class="ion-no-border" no-border color="dark">
-    <ion-toolbar class="ion-no-border" no-border>
-      <ion-title class="ion-no-border" no-border>
+    <ion-toolbar class="ion-no-border" no-border color="dark">
+      <ion-title class="ion-no-border" no-border color="dark">
         <p class="header-style" class="ion-no-border" no-border>
           <ion-row class="ion-no-border" no-border>
             <ion-col text-left class="ion-no-border" no-border>
               <img class="header_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-left>
             </ion-col>
-            <ion-col text-center class="ion-no-border" no-border>
-              LOGIN
+            <ion-col text-center class="ion-no-border text-centre" no-border>
+              <p color="azure" class="text-color ">LOGIN</p>
             </ion-col>
-            <ion-col text-right class="ion-no-border" no-border>
+            <ion-col text-right class="ion-no-border header_button" no-border>
               <ion-button class="header_button" color="primary" (click)="deconnecterClick()" icon-only float-right>
                 <ion-icon name="exit-outline"></ion-icon>
               </ion-button>
@@ -21,7 +21,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content [fullscreen]="true">
+  <ion-content [fullscreen]="true" color="dark">
     <!-- <ion-header collapse="condense">
       <ion-toolbar>
         <ion-title size="large">Contrôle inopiné login</ion-title>
@@ -33,11 +33,11 @@
     <br>
 
     <ion-item>
-      <ion-input label="Nom d'utilisateur : " labelPlacement="floating" placeholder="Entrer nom d'utilisateur ici ..." [(ngModel)]="username"></ion-input>
+      <ion-input label="Nom d'utilisateur : " labelPlacement="floating" placeholder="Entrer votre nom d'utilisateur ici ..." [(ngModel)]="username"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input type="password" label="Mot de pass : " labelPlacement="floating" placeholder="Entrer mot de pass ici ..." [(ngModel)]="password"></ion-input>
+      <ion-input type="password" label="Mot de passe : " labelPlacement="floating" placeholder="Entrer votre mot de passe ici ..." [(ngModel)]="password"></ion-input>
     </ion-item>
 
     <br>
@@ -52,9 +52,9 @@
     <div class="message">{{ message_connection }}</div>
   </ion-content>
 
-  <ion-footer [translucent]="true" class="ion-no-border" no-border>
-    <ion-toolbar class="ion-no-border" no-border>
-      <ion-title class="ion-no-border" no-border><p class="footer-style">Copyright © 2024 ANDRIANTSOA Husayn Mozart<br />Direction Générale de la Sécurité Routière</p></ion-title>
+  <ion-footer [translucent]="true" class="ion-no-border text-centre" no-border color="dark">
+    <ion-toolbar class="ion-no-border text-centre" no-border color="dark">
+      <ion-title class="ion-no-border text-centre" no-border color="dark"><p class="footer-style" color="azure" class="text-color text-footer">Copyright © 2024 ANDRIANTSOA Husayn Mozart<br />Direction Générale de la Sécurité Routière</p></ion-title>
     </ion-toolbar>
   </ion-footer>
 </ion-app>
