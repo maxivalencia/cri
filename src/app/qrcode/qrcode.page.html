@@ -85,11 +85,16 @@
     </ion-header>
 
     <ion-content [fullscreen]="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">qrcode</ion-title>
-        </ion-toolbar>
-      </ion-header>
+      <ion-button
+        expand="block"
+        class="ion-margin"
+        (click)="startScan()">
+        Scan QR Code
+      </ion-button>
+
+      <ion-item *ngIf="scannedResult">
+        <ion-label class="ion-text-wrap">Scanned Result: {{ scannedResult }}</ion-label>
+      </ion-item>
     </ion-content>
 
     <ion-footer [translucent]="true" class="ion-no-border text-centre" no-border color="dark">
