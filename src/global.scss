@@ -36,3 +36,11 @@ body.scanner-active {
   --ion-background-color: transparent;
   visibility: hidden;
 }
+
+body.qr-code {
+  transform: scaleX(-1);
+}
+
+.qr-code {
+  transform: scaleX(-1);
+}

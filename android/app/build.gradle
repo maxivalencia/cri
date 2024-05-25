@@ -1,16 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "com.inopine.app"
-    //compileSdk 34
-    compileSdkVersion 34
-    // compileSdk rootProject.ext.compileSdkVersion
-    defaultConfig {
-        applicationId "com.inopine.app"
-        minSdkVersion 22
-        // minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion 34
-        // targetSdkVersion rootProject.ext.targetSdkVersion
+    namespace "dgsr.itsirika.mg"
+  compileSdk 34
+  defaultConfig {
+        applicationId "dgsr.itsirika.mg"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -44,8 +40,6 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
     implementation project(':capacitor-cordova-android-plugins')
-    //implementation 'com.google.android.material:material:1.10.0-alpha04'
-    implementation 'com.google.android.material:material:1.9.0'
 }
 
 apply from: 'capacitor.build.gradle'

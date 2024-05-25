@@ -16,6 +16,7 @@ import { BarcodeScanner, SupportedFormat } from '@capacitor-community/barcode-sc
 export class QrcodePage implements OnDestroy {
   scannedResult : any;
   bodyElement : HTMLElement | null;
+  content_visibility = "";
 
   constructor(
     public http: HttpClient,
@@ -58,12 +59,16 @@ export class QrcodePage implements OnDestroy {
       this.prepare();
       await BarcodeScanner.hideBackground();
       this.bodyElement?.classList.add('scanner-active');
+      this.bodyElement?.classList.add('qr-code');
+      this.content_visibility = "hidden";
       const result = await BarcodeScanner.startScan();
       console.log(result);
+      BarcodeScanner.showBackground();
+      this.bodyElement?.classList.remove('scanner-active');
+      this.bodyElement?.classList.remove('qr-code');
+      this.content_visibility = "";
       if(result?.hasContent) {
         this.scannedResult = result.content;
-        BarcodeScanner.showBackground();
-        this.bodyElement?.classList.remove('scanner-active');
         console.log(this.scannedResult);
       }
       else {
@@ -79,6 +84,8 @@ export class QrcodePage implements OnDestroy {
     BarcodeScanner.showBackground();
     BarcodeScanner.stopScan();
     this.bodyElement?.classList.remove('scanner-active');
+    this.bodyElement?.classList.remove('qr-code');
+    this.content_visibility = "";
   }
 
   ngOnDestroy(): void {

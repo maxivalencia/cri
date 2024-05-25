@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 
 import { GlobalData } from './global_data';
+import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+//import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 
 @NgModule({
   declarations: [AppComponent],
