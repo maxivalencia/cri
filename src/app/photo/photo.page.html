@@ -1,5 +1,5 @@
-<ion-app color="dark">
-  <ion-menu contentId="main-content" color="dark">
+<ion-app>
+  <ion-menu contentId="main-content">
     <ion-header class="ion-text-center ion-align-items-center">
       <ion-toolbar class="ion-text-center ion-align-items-center">
         <ion-title>
@@ -59,12 +59,12 @@
     </ion-content>
   </ion-menu>
   <div class="ion-page" id="main-content">
-    <ion-header [translucent]="true" class="ion-no-border" no-border color="dark">
-      <ion-toolbar class="ion-no-border" no-border color="dark">
-        <ion-buttons slot="start" class="text-color" color="dark">
+    <ion-header [translucent]="true" class="ion-no-border" no-border>
+      <ion-toolbar class="ion-no-border" no-border>
+        <ion-buttons slot="start" class="text-color">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title class="ion-no-border" no-border color="dark">
+        <ion-title class="ion-no-border" no-border>
           <p class="header-style" class="ion-no-border" no-border>
             <ion-row class="ion-no-border" no-border>
               <ion-col text-left class="ion-no-border" no-border>
@@ -86,7 +86,7 @@
       </ion-toolbar>
     </ion-header>
 
-    <ion-content [fullscreen]="true" color="dark">
+    <ion-content [fullscreen]="true">
       <br />
 
       <div class="titre_photo">Photo à prendre sur le véhicule :<br />{{ photo_titre }}</div>
@@ -99,9 +99,9 @@
       </div>
     </ion-content>
 
-    <ion-footer [translucent]="true" class="ion-no-border text-centre" no-border color="dark">
-      <ion-toolbar class="ion-no-border text-centre" no-border color="dark">
-        <ion-title class="ion-no-border text-centre" no-border color="dark"><p class="footer-style" color="azure" class="text-color text-footer">Copyright © 2024 ANDRIANTSOA Husayn Mozart<br />Direction Générale de la Sécurité Routière</p></ion-title>
+    <ion-footer [translucent]="true" class="ion-no-border text-centre" no-border>
+      <ion-toolbar class="ion-no-border text-centre" no-border>
+        <ion-title class="ion-no-border text-centre" no-border><p class="footer-style" color="azure" class="text-color text-footer">Copyright © 2024 ANDRIANTSOA Husayn Mozart<br />Direction Générale de la Sécurité Routière</p></ion-title>
       </ion-toolbar>
     </ion-footer>
   </div>
