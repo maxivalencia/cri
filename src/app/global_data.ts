@@ -11,6 +11,11 @@ export class GlobalData {
   private nombre_photo: number = 0;
   private liste_photo: any;
 
+  private type_operation : string = "";
+  private visite: any;
+  private reception: any;
+  private constatation: any;
+
   setIdUser(id_user:number) {
     this.id_user = id_user;
   }
@@ -49,5 +54,37 @@ export class GlobalData {
 
   getListePhoto():any{
       return this.liste_photo;
+  }
+
+  setVisite(visite:any) {
+    this.visite = visite;
+  }
+
+  getVisite():any{
+      return this.visite;
+  }
+
+  setReception(reception:any) {
+    this.reception = reception;
+  }
+
+  getReception():any{
+      return this.reception;
+  }
+
+  setConstatation(constatation:any) {
+    this.constatation = constatation;
+  }
+
+  getConstatation():any{
+      return this.constatation;
+  }
+
+  setTypeOperation(type_operation:string) {
+    this.type_operation = type_operation;
+  }
+
+  getTypeOperation():string{
+      return this.type_operation;
   }
 }

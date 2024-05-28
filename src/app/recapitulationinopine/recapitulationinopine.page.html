@@ -1,101 +1,34 @@
-<ion-app>
-  <ion-menu contentId="main-content">
-    <ion-header class="ion-text-center ion-align-items-center">
-      <ion-toolbar class="ion-text-center ion-align-items-center">
-        <ion-title>
-          <p class="titre-menu"><img class="menu_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr"> Menu i-Tsirika</p>
-        </ion-title>
+<div class="ion-page" id="main-content">
+  <ion-header [translucent]="true" class="ion-no-border" no-border>
+    <ion-toolbar class="ion-no-border" no-border>
+      <ion-buttons slot="start" class="text-color">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title class="ion-no-border" no-border>
+        <p class="header-style" class="ion-no-border" no-border>
+          <ion-row class="ion-no-border text-centre" no-border>
+            <ion-col text-left class="ion-no-border" no-border>
+              <img class="header_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-left>
+            </ion-col>
+            <ion-col text-center class="ion-no-border text-centre" no-border>
+              <p color="azure" class="text-color text-header">RECAPITULATION<br>INOPINE</p>
+            </ion-col>
+            <ion-col text-right class="ion-no-border header_button" no-border>
+              <ion-button class="header_button" color="primary" (click)="deconnecterClick()" icon-only float-right>
+                <ion-icon name="exit-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </p>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">recapitulationinopine</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="ion-padding">
-      <ion-menu-toggle>
-        <ion-item detail="false" button routerLink="/home">
-          <ion-icon slot="end" name="home"></ion-icon>
-          <ion-label>Acceuil</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-item detail="false" button routerLink="/consultation">
-          <ion-icon slot="end" name="construct-outline"></ion-icon>
-          <ion-label>Consultation véhicule</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-item detail="false" button routerLink="/inopine">
-          <ion-icon slot="end" name="hand-left-outline"></ion-icon>
-          <ion-label>Controle inopiné</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-item detail="false" button routerLink="/contre">
-          <ion-icon slot="end" name="medkit-outline"></ion-icon>
-          <ion-label>Contre inopiné</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-item detail="false" button routerLink="/qrcode">
-          <ion-icon slot="end" name="qr-code-outline"></ion-icon>
-          <ion-label>Scan QR-Code</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-item detail="false" button routerLink="/apropos">
-          <ion-icon slot="end" name="accessibility-outline"></ion-icon>
-          <ion-label>A propos</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-item detail="false" button routerLink="">
-          <ion-icon slot="end" name="warning-outline"></ion-icon>
-          <ion-label>Fermer le menu</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-item detail="false" button  (click)="deconnecterClick()">
-          <ion-icon slot="end" name="exit-outline"></ion-icon>
-          <ion-label>Quitter l'application</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
-    </ion-content>
-  </ion-menu>
-  <div class="ion-page" id="main-content">
-    <ion-header [translucent]="true" class="ion-no-border" no-border>
-      <ion-toolbar class="ion-no-border" no-border>
-        <ion-buttons slot="start" class="text-color">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title class="ion-no-border" no-border>
-          <p class="header-style" class="ion-no-border" no-border>
-            <ion-row class="ion-no-border text-centre" no-border>
-              <ion-col text-left class="ion-no-border" no-border>
-                <img class="header_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-left>
-              </ion-col>
-              <ion-col text-center class="ion-no-border text-centre" no-border>
-                <p color="azure" class="text-color text-header">RECAPITULATION<br>INOPINE</p>
-              </ion-col>
-              <ion-col text-right class="ion-no-border header_button" no-border>
-                <ion-button class="header_button" color="primary" (click)="deconnecterClick()" icon-only float-right>
-                  <ion-icon name="exit-outline"></ion-icon>
-                </ion-button>
-              </ion-col>
-            </ion-row>
-          </p>
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content [fullscreen]="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">recapitulationinopine</ion-title>
-        </ion-toolbar>
-      </ion-header>
-    </ion-content>
-
-    <ion-footer [translucent]="true" class="ion-no-border text-centre" no-border>
-      <ion-toolbar class="ion-no-border text-centre" no-border>
-        <ion-title class="ion-no-border text-centre" no-border><p class="footer-style" color="azure" class="text-color text-footer">Copyright © 2024 ANDRIANTSOA Husayn Mozart<br />Direction Générale de la Sécurité Routière</p></ion-title>
-      </ion-toolbar>
-    </ion-footer>
-  </div>
-</ion-app>
+  </ion-content>
+</div>

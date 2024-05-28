@@ -47,6 +47,14 @@ const routes: Routes = [
     path: 'recapitulationcontre',
     loadChildren: () => import('./recapitulationcontre/recapitulationcontre.module').then( m => m.RecapitulationcontrePageModule)
   },
+  {
+    path: 'menu',
+    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
+  },
+  {
+    path: 'footer',
+    loadChildren: () => import('./footer/footer.module').then( m => m.FooterPageModule)
+  },
 ];
 
 @NgModule({

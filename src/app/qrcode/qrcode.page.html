@@ -1,106 +1,250 @@
-<ion-app>
-  <ion-menu contentId="main-content">
-    <ion-header class="ion-text-center ion-align-items-center">
-      <ion-toolbar class="ion-text-center ion-align-items-center">
-        <ion-title>
-          <p class="titre-menu"><img class="menu_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr"> Menu i-Tsirika</p>
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <ion-menu-toggle>
-        <ion-item detail="false" button routerLink="/home">
-          <ion-icon slot="end" name="home"></ion-icon>
-          <ion-label>Acceuil</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-item detail="false" button routerLink="/consultation">
-          <ion-icon slot="end" name="construct-outline"></ion-icon>
-          <ion-label>Consultation véhicule</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-item detail="false" button routerLink="/inopine">
-          <ion-icon slot="end" name="hand-left-outline"></ion-icon>
-          <ion-label>Controle inopiné</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-item detail="false" button routerLink="/contre">
-          <ion-icon slot="end" name="medkit-outline"></ion-icon>
-          <ion-label>Contre inopiné</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-item detail="false" button routerLink="/qrcode">
-          <ion-icon slot="end" name="qr-code-outline"></ion-icon>
-          <ion-label>Scan QR-Code</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-item detail="false" button routerLink="/apropos">
-          <ion-icon slot="end" name="accessibility-outline"></ion-icon>
-          <ion-label>A propos</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-item detail="false" button routerLink="">
-          <ion-icon slot="end" name="warning-outline"></ion-icon>
-          <ion-label>Fermer le menu</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-item detail="false" button  (click)="deconnecterClick()">
-          <ion-icon slot="end" name="exit-outline"></ion-icon>
-          <ion-label>Quitter l'application</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
-    </ion-content>
-  </ion-menu>
-  <div class="ion-page" id="main-content">
-    <ion-header [translucent]="true" class="ion-no-border" no-border>
-      <ion-toolbar class="ion-no-border" no-border>
-        <ion-buttons slot="start" class="text-color">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title class="ion-no-border" no-border>
-          <p class="header-style" class="ion-no-border" no-border>
-            <ion-row class="ion-no-border text-centre" no-border>
-              <ion-col text-left class="ion-no-border" no-border>
-                <img class="header_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-left>
-              </ion-col>
-              <ion-col text-center class="ion-no-border text-centre" no-border>
-                <p color="azure" class="text-color text-header">QR_CODE<br>SCANNER</p>
-              </ion-col>
-              <ion-col text-right class="ion-no-border header_button" no-border>
-                <ion-button class="header_button" color="primary" (click)="deconnecterClick()" icon-only float-right>
-                  <ion-icon name="exit-outline"></ion-icon>
-                </ion-button>
-              </ion-col>
-            </ion-row>
-          </p>
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
+<div class="ion-page" id="main-content">
+  <ion-header [translucent]="true" class="ion-no-border" no-border>
+    <ion-toolbar class="ion-no-border" no-border>
+      <ion-buttons slot="start" class="text-color">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title class="ion-no-border" no-border>
+        <p class="header-style" class="ion-no-border" no-border>
+          <ion-row class="ion-no-border text-centre" no-border>
+            <ion-col text-left class="ion-no-border" no-border>
+              <img class="header_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-left>
+            </ion-col>
+            <ion-col text-center class="ion-no-border text-centre" no-border>
+              <p color="azure" class="text-color text-header">QR_CODE<br>SCANNER</p>
+            </ion-col>
+            <ion-col text-right class="ion-no-border header_button" no-border>
+              <ion-button class="header_button" color="primary" (click)="deconnecterClick()" icon-only float-right>
+                <ion-icon name="exit-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </p>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-    <ion-content [fullscreen]="true" [style.visibility]="content_visibility">
-      <ion-button
-        expand="block"
-        class="ion-margin"
-        (click)="startScan()">
-        Scan QR Code
-      </ion-button>
+  <ion-content [fullscreen]="true" [style.visibility]="content_visibility">
+    <ion-button
+      expand="block"
+      class="ion-margin"
+      (click)="startScan()">
+      Scan QR Code
+    </ion-button>
 
-      <ion-item *ngIf="scannedResult">
-        <ion-label class="ion-text-wrap">Scanned Result: {{ scannedResult }}</ion-label>
-      </ion-item>
-    </ion-content>
+    <!-- <ion-button
+      expand="block"
+      class="ion-margin"
+      (click)="testClick()">
+      Scan QR Code teste
+    </ion-button> -->
 
-    <ion-footer [translucent]="true" class="ion-no-border text-centre" no-border>
-      <ion-toolbar class="ion-no-border text-centre" no-borderark>
-        <ion-title class="ion-no-border text-centre" no-border><p class="footer-style" color="azure" class="text-color text-footer">Copyright © 2024 ANDRIANTSOA Husayn Mozart<br />Direction Générale de la Sécurité Routière</p></ion-title>
-      </ion-toolbar>
-    </ion-footer>
-  </div>
-</ion-app>
+    <div *ngIf="content_visite_visibility">
+      <ion-segment (ionChange)="visiteTabChanged($event)" value="visite">
+        <ion-segment-button value="visite">
+          <ion-label>
+            Visite
+          </ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="vehicule">
+          <ion-label>
+            Véhicule
+          </ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="proprietaire">
+          <ion-label>
+            Propriétaire
+          </ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      <!-- affichage information visite -->
+      <ion-list *ngIf="segment_visite === 'visite'">
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Numéro d'immatriculation' : </ion-text><br>
+            {{ immatriculation }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Numéro de controle : </ion-text><br>
+            {{ numero_controle }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Centre : </ion-text><br>
+            {{ centre }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Type de visite : </ion-text><br>
+            {{ type_visite }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Usage : </ion-text><br>
+            {{ usage }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Vérificateur : </ion-text><br>
+            {{ verificateur }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Sécretaire : </ion-text><br>
+            {{ secretaire }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Date de visite : </ion-text><br>
+            {{ date_visite }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Date d'expiration : </ion-text><br>
+            {{ date_expiration }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Utilisation : </ion-text><br>
+            {{ utilisation }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Aptitude : </ion-text><br>
+            {{ aptitude }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Anomalie : </ion-text><br>
+            {{ anomalie }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <!-- affichage information véhicule -->
+      <ion-list *ngIf="segment_visite === 'vehicule'">
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Numéro dans la série du type : </ion-text><br>
+            {{ numero_de_serie }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Numéro moteur : </ion-text><br>
+            {{ numero_moteur }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Puissance : </ion-text><br>
+            {{ puissance }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Source d'énergie : </ion-text><br>
+            {{ energie }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Genre : </ion-text><br>
+            {{ genre }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Marque : </ion-text><br>
+            {{ marque }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Carrossérie : </ion-text><br>
+            {{ carrosserie }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Nombre de place assise : </ion-text><br>
+            {{ nombre_place_assises }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">nombre de place debout : </ion-text><br>
+            {{ nombre_place_debout }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Poids à vide : </ion-text><br>
+            {{ pav }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Charge utile : </ion-text><br>
+            {{ cu }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Poids total à charge : </ion-text><br>
+            {{ ptac }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success"></ion-text><br>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <!-- affichage information propriétaire -->
+      <ion-list *ngIf="segment_visite === 'proprietaire'">
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Nom : </ion-text><br>
+            {{ proprietaire }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Adresse : </ion-text><br>
+            {{ adresse_proprietaire }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Téléphone : </ion-text><br>
+            {{ telephone }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Profession : </ion-text><br>
+            {{ profession }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="success">Commune : </ion-text><br>
+            {{ commune }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+</div>

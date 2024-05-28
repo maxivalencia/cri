@@ -11,11 +11,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 
 import { GlobalData } from './global_data';
+import { MenuPage } from './menu/menu.page';
+import { FooterPage } from './footer/footer.page';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 //import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MenuPage, FooterPage],
   imports: [HttpClientModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot(),],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, GlobalData],
   bootstrap: [AppComponent],
