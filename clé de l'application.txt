@@ -12,8 +12,23 @@ jarsigner --verbose --sigalg SHA1withRSA --digestalg SHA1 --keystore dgsrmada.jk
 zipalign -v 4 F:\ionic\cri\android\app\build\outputs\apk\debug\app-debug.apk F:\ionic\cri\android\app\build\outputs\apk\debug\i-nopine.apk
 
 cordova-res android --skip-config --copy
+ionic build --prod
+ionic cap sync android
 ionic cap build android --no-open --prod --release
 ionic cap run android
+npx cap sync android
+npx cap open android
 zipalign -p -f -v 4 "F:\ionic\cri\android\app\build\outputs\apk\debug\app-debug.apk" "F:\ionic\cri\android\app\build\outputs\apk\debug\app-debug_zipaligned.apk"
-apksigner sign --ks "dgsrmada.jks" --ks-key-alias dgsr-alias --in "F:\ionic\cri\android\app\build\outputs\apk\debug\app-debug_zipaligned.apk" --out "F:\ionic\cri\android\app\build\outputs\apk\debug\i-nopine.apk"
-apksigner verify -verbose "F:\ionic\cri\android\app\build\outputs\apk\debug\i-nopine.apk"
+apksigner sign --ks "dgsrmada.jks" --ks-key-alias dgsr-alias --in "F:\ionic\cri\android\app\build\outputs\apk\debug\app-debug_zipaligned.apk" --out "F:\ionic\cri\android\app\build\outputs\apk\debug\i-Tsirika.apk"
+apksigner verify -verbose "F:\ionic\cri\android\app\build\outputs\apk\debug\i-Tsirika.apk"
+
+
+
+réinstallation android
+rm -rf android
+npx cap uninstall android
+npx cap add android
+npx cap sync
+npx cap open android
+npm install @capacitor/camera
+npx cap sync

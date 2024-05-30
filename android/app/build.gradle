@@ -1,12 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "dgsr.itsirika.mg"
-  compileSdk 34
-  defaultConfig {
-        applicationId "dgsr.itsirika.mg"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+    namespace "com.iTsirika.app"
+    //compileSdk rootProject.ext.compileSdkVersion
+    compileSdk 34
+    defaultConfig {
+        applicationId "com.iTsirika.app"
+        //minSdkVersion rootProject.ext.minSdkVersion
+        minSdkVersion 34
+        //targetSdkVersion rootProject.ext.targetSdkVersion
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
