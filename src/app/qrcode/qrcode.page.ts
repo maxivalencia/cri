@@ -18,6 +18,7 @@ export class QrcodePage implements OnInit, OnDestroy {
   qrResult : any;
   bodyElement : HTMLElement | null;
   content_visibility = "";
+  content_message_visibility = "";
   content_visite_visibility = "";
   content_reception_visibility = "";
   content_constatation_visibility = "";
@@ -26,6 +27,8 @@ export class QrcodePage implements OnInit, OnDestroy {
   qrResultReception : any;
   qrResultConstatation : any;
   public segment_visite: string = "visite";
+  public segment_reception: string = "reception";
+  public segment_constatation: string = "constatation";
 
   // information visite
   numero_controle = "";
@@ -40,6 +43,8 @@ export class QrcodePage implements OnInit, OnDestroy {
   aptitude = "";
   commune = "";
   anomalie = "";
+  imprimer = "";
+  isVisiteApte: boolean = false;
   // information véhicule
   immatriculation = "";
   proprietaire = "";
@@ -58,6 +63,91 @@ export class QrcodePage implements OnInit, OnDestroy {
   ptac = "";
   cu = "";
   pav = "";
+  //reception
+  type_operation = "";
+  id_reception = "";
+  motif = "";
+  type_reception = "";
+  date_mise_en_service = "";
+  source_energie = "";
+  date_reception = "";
+  id_vehicule = "";
+  cylindre = "";
+  poids_a_vide = "";
+  charge_utile = "";
+  numero_serie = "";
+  type = "";
+  poids_total_a_charge = "";
+  //constatation
+  provenance = "";
+  divers = "";
+  etat = "";
+  sec_pers = "";
+  sec_march = "";
+  protec_env = "";
+  numero_ctrl = "";
+  date_embarquement = "";
+  lieu_embarquement = "";
+  date_constatation = "";
+  conformite = "";
+  observation = "";
+  //constatation carte grise
+  carrosserie_carte_grise = "";
+  type_carte_grise = "";
+  genre_carte_grise = "";
+  marque_carte_grise = "";
+  source_energie_carte_grise = "";
+  cylindre_carte_grise = "";
+  puissance_carte_grise = "";
+  poids_a_vide_carte_grise = "";
+  charge_utile_carte_grise = "";
+  hauteur_carte_grise = "";
+  largeur_carte_grise = "";
+  longueur_carte_grise = "";
+  numero_serie_carte_grise = "";
+  numero_moteur_carte_grise = "";
+  typ_car_carte_grise = "";
+  ptac_carte_grise = "";
+  date_premiere_circulation_carte_grise = "";
+  nombre_place_assis_carte_grise = "";
+  //constatation corps de véhicule
+  carrosserie_corps_vehicule = "";
+  type_corps_vehicule = "";
+  genre_corps_vehicule = "";
+  marque_corps_vehicule = "";
+  source_energie_corps_vehicule = "";
+  cylindre_corps_vehicule = "";
+  puissance_corps_vehicule = "";
+  poids_a_vide_corps_vehicule = "";
+  charge_utile_corps_vehicule = "";
+  hauteur_corps_vehicule = "";
+  largeur_corps_vehicule = "";
+  longueur_corps_vehicule = "";
+  numero_serie_corps_vehicule = "";
+  numero_moteur_corps_vehicule = "";
+  typ_car_corps_vehicule = "";
+  ptac_corps_vehicule = "";
+  date_premiere_circulation_corps_vehicule = "";
+  nombre_place_assis_corps_vehicule = "";
+  //constatation note descriptive
+  carrosserie_note_descriptive = "";
+  type_note_descriptive = "";
+  genre_note_descriptive = "";
+  marque_note_descriptive = "";
+  source_energie_note_descriptive = "";
+  cylindre_note_descriptive = "";
+  puissance_note_descriptive = "";
+  poids_a_vide_note_descriptive = "";
+  charge_utile_note_descriptive = "";
+  hauteur_note_descriptive = "";
+  largeur_note_descriptive = "";
+  longueur_note_descriptive = "";
+  numero_serie_note_descriptive = "";
+  numero_moteur_note_descriptive = "";
+  typ_car_note_descriptive = "";
+  ptac_note_descriptive = "";
+  date_premiere_circulation_note_descriptive = "";
+  nombre_place_assis_note_descriptive = "";
 
   constructor(
     public http: HttpClient,
@@ -96,6 +186,10 @@ export class QrcodePage implements OnInit, OnDestroy {
   }
 
   async startScan() {
+    this.content_message_visibility = "";
+    this.content_visite_visibility = "";
+    this.content_reception_visibility = "";
+    this.content_constatation_visibility = "";
     try {
       const permission = await this.checkPermission();
       if(!permission) {
@@ -175,7 +269,7 @@ export class QrcodePage implements OnInit, OnDestroy {
   }
 
   testClick(){
-    this.scannedResult = "d01scVZHYjRWZw==";
+    this.scannedResult = "MHZYbHFHR2ct";
     this.getResultQrScanned();
   }
 
@@ -208,6 +302,7 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.immatriculation = this.qrResultVisite["immatriculation"];
           this.carrosserie = this.qrResultVisite["carrosserie"];
           this.marque = this.qrResultVisite["marque"];
+          this.cylindre = this.qrResultVisite["cylindre"];
           this.nombre_place_assises = this.qrResultVisite["nombre_place_assis"];
           this.nombre_place_debout = this.qrResultVisite["nombre_place_debout"];
           this.genre = this.qrResultVisite["genre"];
@@ -224,6 +319,11 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.adresse_proprietaire = this.qrResultVisite["adresse"];
           this.telephone = this.qrResultVisite["telephone"];
           this.profession = this.qrResultVisite["profession"];
+          this.imprimer = this.qrResultVisite["imprimer"];
+
+          this.isVisiteApte = this.aptitude=='Apte'?true:false;
+
+          this.content_message_visibility = "";
           this.content_visite_visibility = this.qrResult["operation"];
           this.content_reception_visibility = "";
           this.content_constatation_visibility = "";
@@ -231,8 +331,39 @@ export class QrcodePage implements OnInit, OnDestroy {
         }
         case "RT": {
           const qrResultReception: any = await this.getResultQrReception().toPromise();
-          console.log(qrResultReception);
-          this.qrResultReception = qrResultReception;
+          this.globalData.setReception(qrResultReception);
+          this.qrResultReception = this.globalData.getReception()[0];
+          // information réception
+          this.id_reception = this.qrResultReception["id_reception"];
+          this.centre = this.qrResultReception["centre"];
+          this.motif = this.qrResultReception["motif"];
+          this.type_reception = this.qrResultReception["type_reception"];
+          this.secretaire = this.qrResultReception["secretaire"];
+          this.utilisation = this.qrResultReception["utilisation"];
+          this.date_mise_en_service = this.qrResultReception["date_mise_en_service"];
+          this.immatriculation = this.qrResultReception["immatriculation"];
+          this.proprietaire = this.qrResultReception["proprietaire"];
+          this.profession = this.qrResultReception["profession"];
+          this.adresse_proprietaire = this.qrResultReception["adresse"];
+          this.nombre_place_assises = this.qrResultReception["nombre_place_assis"];
+          this.nombre_place_debout = this.qrResultReception["nombre_place_debout"];
+          this.numero_controle = this.qrResultReception["numero_controle"];
+          this.energie = this.qrResultReception["source_energie"];
+          this.carrosserie = this.qrResultReception["carrosserie"];
+          this.date_reception = this.qrResultReception["date"];
+          this.genre = this.qrResultReception["genre"];
+          this.marque = this.qrResultReception["marque"];
+          this.cylindre = this.qrResultReception["cylindre"];
+          this.puissance = this.qrResultReception["puissance"];
+          this.poids_a_vide = this.qrResultReception["poids_a_vide"];
+          this.charge_utile = this.qrResultReception["charge_utile"];
+          this.numero_serie = this.qrResultReception["numero_serie"];
+          this.numero_moteur = this.qrResultReception["numero_moteur"];
+          this.type = this.qrResultReception["type"];
+          this.poids_total_a_charge = this.qrResultReception["poids_total_a_charge"];
+          this.imprimer = this.qrResultReception["imprimer"];
+
+          this.content_message_visibility = "";
           this.content_visite_visibility = "";
           this.content_reception_visibility = this.qrResult["operation"];
           this.content_constatation_visibility = "";
@@ -240,14 +371,93 @@ export class QrcodePage implements OnInit, OnDestroy {
         }
         case "CAD": {
           const qrResultConstatation: any = await this.getResultQrConstatation().toPromise();
-          console.log(qrResultConstatation);
-          this.qrResultConstatation = qrResultConstatation;
+          this.globalData.setConstatation(qrResultConstatation);
+          this.qrResultConstatation = this.globalData.getConstatation()[0];
+          //constatation
+          this.centre = this.qrResultConstatation["centre"];
+          this.verificateur = this.qrResultConstatation["verificateur"];
+          this.provenance = this.qrResultConstatation["provenance"];
+          this.divers = this.qrResultConstatation["divers"];
+          this.proprietaire = this.qrResultConstatation["nom_proprietaire"];
+          this.adresse_proprietaire = this.qrResultConstatation["adresse_proprietaire"];
+          this.etat = this.qrResultConstatation["etat"];
+          this.sec_pers = this.qrResultConstatation["sec_pers"];
+          this.sec_march = this.qrResultConstatation["sec_march"];
+          this.protec_env = this.qrResultConstatation["protec_env"];
+          this.numero_ctrl = this.qrResultConstatation["numero_ctrl"];
+          this.immatriculation = this.qrResultConstatation["immatriculation"];
+          this.date_embarquement = this.qrResultConstatation["date_embarquement"];
+          this.lieu_embarquement = this.qrResultConstatation["lieu_embarquement"];
+          this.date_constatation = this.qrResultConstatation["date"];
+          this.conformite = this.qrResultConstatation["conformite"];
+          this.observation = this.qrResultConstatation["observation"];
+          this.imprimer = this.qrResultConstatation["imprimer"];
+          //constatation carte grise
+          this.carrosserie_carte_grise = this.qrResultConstatation["carrosserie_carte_grise"];
+          this.type_carte_grise = this.qrResultConstatation["type_carte_grise"];
+          this.genre_carte_grise = this.qrResultConstatation["genre_carte_grise"];
+          this.marque_carte_grise = this.qrResultConstatation["marque_carte_grise"];
+          this.source_energie_carte_grise = this.qrResultConstatation["source_energie_carte_grise"];
+          this.cylindre_carte_grise = this.qrResultConstatation["cylindre_carte_grise"];
+          this.puissance_carte_grise = this.qrResultConstatation["puissance_carte_grise"];
+          this.poids_a_vide_carte_grise = this.qrResultConstatation["poids_a_vide_carte_grise"];
+          this.charge_utile_carte_grise = this.qrResultConstatation["charge_utile_carte_grise"];
+          this.hauteur_carte_grise = this.qrResultConstatation["hauteur_carte_grise"];
+          this.largeur_carte_grise = this.qrResultConstatation["largeur_carte_grise"];
+          this.longueur_carte_grise = this.qrResultConstatation["longueur_carte_grise"];
+          this.numero_serie_carte_grise = this.qrResultConstatation["numero_serie_carte_grise"];
+          this.numero_moteur_carte_grise = this.qrResultConstatation["numero_moteur_carte_grise"];
+          this.typ_car_carte_grise = this.qrResultConstatation["typ_car_carte_grise"];
+          this.ptac_carte_grise = this.qrResultConstatation["ptac_carte_grise"];
+          this.date_premiere_circulation_carte_grise = this.qrResultConstatation["date_premiere_circulation_carte_grise"];
+          this.nombre_place_assis_carte_grise = this.qrResultConstatation["nombre_place_assis_carte_grise"];
+          //constatation corps de véhicule
+          this.carrosserie_corps_vehicule = this.qrResultConstatation["carrosserie_corps_vehicule"];
+          this.type_corps_vehicule = this.qrResultConstatation["type_corps_vehicule"];
+          this.genre_corps_vehicule = this.qrResultConstatation["genre_corps_vehicule"];
+          this.marque_corps_vehicule = this.qrResultConstatation["marque_corps_vehicule"];
+          this.source_energie_corps_vehicule = this.qrResultConstatation["source_energie_corps_vehicule"];
+          this.cylindre_corps_vehicule = this.qrResultConstatation["cylindre_corps_vehicule"];
+          this.puissance_corps_vehicule = this.qrResultConstatation["puissance_corps_vehicule"];
+          this.poids_a_vide_corps_vehicule = this.qrResultConstatation["poids_a_vide_corps_vehicule"];
+          this.charge_utile_corps_vehicule = this.qrResultConstatation["charge_utile_corps_vehicule"];
+          this.hauteur_corps_vehicule = this.qrResultConstatation["hauteur_corps_vehicule"];
+          this.largeur_corps_vehicule = this.qrResultConstatation["largeur_corps_vehicule"];
+          this.longueur_corps_vehicule = this.qrResultConstatation["longueur_corps_vehicule"];
+          this.numero_serie_corps_vehicule = this.qrResultConstatation["numero_serie_corps_vehicule"];
+          this.numero_moteur_corps_vehicule = this.qrResultConstatation["numero_moteur_corps_vehicule"];
+          this.typ_car_corps_vehicule = this.qrResultConstatation["typ_car_corps_vehicule"];
+          this.ptac_corps_vehicule = this.qrResultConstatation["ptac_corps_vehicule"];
+          this.date_premiere_circulation_corps_vehicule = this.qrResultConstatation["date_premiere_circulation_corps_vehicule"];
+          this.nombre_place_assis_corps_vehicule = this.qrResultConstatation["nombre_place_assis_corps_vehicule"];
+          //constatation note descriptive
+          this.carrosserie_note_descriptive = this.qrResultConstatation["carrosserie_note_descriptive"];
+          this.type_note_descriptive = this.qrResultConstatation["type_note_descriptive"];
+          this.genre_note_descriptive = this.qrResultConstatation["genre_note_descriptive"];
+          this.marque_note_descriptive = this.qrResultConstatation["marque_note_descriptive"];
+          this.source_energie_note_descriptive = this.qrResultConstatation["source_energie_note_descriptive"];
+          this.cylindre_note_descriptive = this.qrResultConstatation["cylindre_note_descriptive"];
+          this.puissance_note_descriptive = this.qrResultConstatation["puissance_note_descriptive"];
+          this.poids_a_vide_note_descriptive = this.qrResultConstatation["poids_a_vide_note_descriptive"];
+          this.charge_utile_note_descriptive = this.qrResultConstatation["charge_utile_note_descriptive"];
+          this.hauteur_note_descriptive = this.qrResultConstatation["hauteur_note_descriptive"];
+          this.largeur_note_descriptive = this.qrResultConstatation["largeur_note_descriptive"];
+          this.longueur_note_descriptive = this.qrResultConstatation["longueur_note_descriptive"];
+          this.numero_serie_note_descriptive = this.qrResultConstatation["numero_serie_note_descriptive"];
+          this.numero_moteur_note_descriptive = this.qrResultConstatation["numero_moteur_note_descriptive"];
+          this.typ_car_note_descriptive = this.qrResultConstatation["typ_car_note_descriptive"];
+          this.ptac_note_descriptive = this.qrResultConstatation["ptac_note_descriptive"];
+          this.date_premiere_circulation_note_descriptive = this.qrResultConstatation["date_premiere_circulation_note_descriptive"];
+          this.nombre_place_assis_note_descriptive = this.qrResultConstatation["nombre_place_assis_note_descriptive"];
+          
+          this.content_message_visibility = "";
           this.content_visite_visibility = "";
           this.content_reception_visibility = "";
           this.content_constatation_visibility = this.qrResult["operation"];
           break;
         }
         default: {
+          this.content_message_visibility = "QR-Code invalide pour l'application";
           this.content_visite_visibility = "";
           this.content_reception_visibility = "";
           this.content_constatation_visibility = "";
@@ -261,6 +471,14 @@ export class QrcodePage implements OnInit, OnDestroy {
 
   visiteTabChanged(ev: any) {
     this.segment_visite = ev.detail.value;
+  }
+
+  receptionTabChanged(ev: any) {
+    this.segment_reception = ev.detail.value;
+  }
+
+  constatationTabChanged(ev: any) {
+    this.segment_constatation = ev.detail.value;
   }
 
   sleep(ms: number) {

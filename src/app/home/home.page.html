@@ -28,29 +28,31 @@
 
     <ion-list>
       <ion-item detail="false" button routerLink="/consultation">
-        <ion-icon slot="end" name="construct-outline"></ion-icon>
+        <ion-icon slot="end" name="construct-outline" class="icon_button"></ion-icon>
         <ion-label>Consultation véhicule</ion-label>
       </ion-item>
       <ion-item detail="false" button routerLink="/inopine">
-        <ion-icon slot="end" name="hand-left-outline"></ion-icon>
+        <ion-icon slot="end" name="hand-left-outline" class="icon_button"></ion-icon>
         <ion-label>Controle inopiné</ion-label>
       </ion-item>
       <ion-item detail="false" button routerLink="/contre">
-        <ion-icon slot="end" name="medkit-outline"></ion-icon>
+        <ion-icon slot="end" name="medkit-outline" class="icon_button"></ion-icon>
         <ion-label>Contre inopiné</ion-label>
       </ion-item>
       <ion-item detail="false" button routerLink="/qrcode">
-        <ion-icon slot="end" name="qr-code-outline"></ion-icon>
+        <ion-icon slot="end" name="qr-code-outline" class="icon_button"></ion-icon>
         <ion-label>Scan QR-Code</ion-label>
       </ion-item>
       <ion-item detail="false" button routerLink="/apropos">
-        <ion-icon slot="end" name="accessibility-outline"></ion-icon>
+        <ion-icon slot="end" name="accessibility-outline" class="icon_button"></ion-icon>
         <ion-label>A propos</ion-label>
       </ion-item>
       <ion-item detail="false" button  (click)="deconnecterClick()">
-        <ion-icon slot="end" name="exit-outline"></ion-icon>
+        <ion-icon slot="end" name="exit-outline" class="icon_button"></ion-icon>
         <ion-label>Quitter l'application</ion-label>
       </ion-item>
     </ion-list>
+    <ion-item></ion-item>
+    <ion-item></ion-item>
   </ion-content>
 </div>

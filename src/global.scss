@@ -346,6 +346,15 @@ ion-label {
   --background: var(--ion-background-color);
 }
 
+.icon_button {
+  background-color: var(--ion-background-color);
+  --background-color: var(--ion-background-color);
+  color: var(--ion-text-color);
+  --color: var(--ion-text-color);
+  background: var(--ion-background-color);
+  --background: var(--ion-background-color);
+}
+
 ion-title{
   background-color: var(--ion-background-color);
   --background-color: var(--ion-background-color);
@@ -389,4 +398,14 @@ ion-menu{
   --color: var(--ion-text-color);
   background: var(--ion-background-color);
   --background: var(--ion-background-color);
+}
+
+.visite-background-inapte {
+  --background: red; /* Changer la couleur de fond personnalisée ici */
+  --colot: black;
+}
+
+.visite-background-apte {
+  --background: green; /* Changer la couleur de fond personnalisée ici */
+  --colot: black;
 }

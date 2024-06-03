@@ -2,12 +2,25 @@
 	"appId": "com.iTsirika.app",
 	"appName": "i-Tsirika",
 	"webDir": "www",
+	"bundledWebRuntime": false,
+	"android": {
+	  "allowMixedContent": true
+	},
 	"server": {
 		"androidScheme": "https"
 	},
-  "cordova": {
-    "preferences": {
-      "CameraUsesGeolocation": "true"
-    }
-  }
+	"cordova": {
+		"preferences": {
+		"CameraUsesGeolocation": "true"
+		}
+	},
+	"plugins": {
+	  "SplashScreen": {
+		"launchShowDuration": 3000,
+		"autoHide": true,
+		"backgroundColor": "#ffffffff",
+		"androidSplashResourceName": "splash",
+		"androidScaleType": "CENTER_CROP"
+	  }
+	}
 }

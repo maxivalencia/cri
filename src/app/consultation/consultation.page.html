@@ -11,7 +11,7 @@
               <img class="header_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-left>
             </ion-col>
             <ion-col text-center class="ion-no-border text-centre" no-border>
-              <p color="azure" class="text-color text-header">CONSULTATION<br>VISITE</p>
+              <p color="azure" class="text-color text-header">CONSULTER<br>VISITE</p>
             </ion-col>
             <ion-col text-right class="ion-no-border header_button" no-border>
               <ion-button class="header_button" color="primary" (click)="deconnecterClick()" icon-only float-right>
@@ -25,10 +25,230 @@
   </ion-header>
 
   <ion-content [fullscreen]="true">
-    <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title size="large">consultation</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <ion-item>
+      <ion-input label="Imm. ou n° de série véhicule" labelPlacement="floating" placeholder="Entrer Imm. ou n° de série véhicule ici ..." [(ngModel)]="immatriculation"></ion-input>
+      <ion-button class="header_button" color="primary" (click)="rechercherClick()" icon-only float-right>
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+      
+    <div *ngIf="content_visite_visibility">
+      <div *ngFor="let result of resultat">
+        <ion-segment (ionChange)="visiteTabChanged($event)" value="visite">
+          <ion-segment-button value="visite">
+            <ion-label>
+              Visite
+            </ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="vehicule">
+            <ion-label>
+              Véhicule
+            </ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="proprietaire">
+            <ion-label>
+              Propriétaire
+            </ion-label>
+          </ion-segment-button>
+        </ion-segment>
+        <ion-list *ngIf="segment_visite === 'visite'">
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Immatriculation : </ion-text><br>
+              {{ result.cg_immatriculation }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Centre : </ion-text><br>
+              {{ result.ctr_nom }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Procès-verbal : </ion-text><br>
+              {{ result.vst_num_pv }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Imprimer technique : </ion-text><br>
+              {{ result.imprime }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Date de visite : </ion-text><br>
+              {{ result.vst_created | date:'dd/MM/yyyy' }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Date d'expiration : </ion-text><br>
+              {{ result.vst_date_expiration | date:'dd/MM/yyyy' }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Type de visite : </ion-text><br>
+              {{ result.vst_is_contre_visite ? "Première" : "Contre" }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Aptitude : </ion-text><br>
+              {{ result.vst_is_apte ? "Apte" : "Inapte" }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Vérificateur : </ion-text><br>
+              {{ result.nom_verificateur }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Secrétaire : </ion-text><br>
+              {{ result.usr_name }}
+            </ion-label>
+          </ion-item>
+        </ion-list>
+
+        <ion-list *ngIf="segment_visite === 'vehicule'">
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Date de mise en service : </ion-text><br>
+              {{ result.cg_mise_en_service | date:'dd/MM/yyyy' }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Nombre de place assise : </ion-text><br>
+              {{ result.cg_nbr_assis }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Nombre de place debout : </ion-text><br>
+              {{ result.cg_nbr_debout }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Marque : </ion-text><br>
+              {{ result.mrq_libelle }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Type : </ion-text><br>
+              {{ result.vhc_type }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Numéro de série : </ion-text><br>
+              {{ result.vhc_num_serie }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Numéro moteur : </ion-text><br>
+              {{ result.vhc_num_moteur }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Carrosserie : </ion-text><br>
+              {{ result.crs_libelle }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Genre : </ion-text><br>
+              {{ result.gr_libelle }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Source d'énergie : </ion-text><br>
+              {{ result.sre_libelle }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Puissance : </ion-text><br>
+              {{ result.cg_puissance_admin }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Poids à vide : </ion-text><br>
+              {{ result.vhc_poids_vide }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Charge utile : </ion-text><br>
+              {{ result.vhc_charge_utile }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Poids total à charge : </ion-text><br>
+              {{ result.vhc_poids_total_charge }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Usage effectif : </ion-text><br>
+              {{ result.usg_libelle }}
+            </ion-label>
+          </ion-item>
+        </ion-list>
+
+        <ion-list *ngIf="segment_visite === 'proprietaire'">
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Utilisation : </ion-text><br>
+              {{ result.ut_libelle }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Propriétaire : </ion-text><br>
+              {{ result.cg_nom }} {{ result.cg_prenom}}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Profession : </ion-text><br>
+              {{ result.cg_profession }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Adresse : </ion-text><br>
+              {{ result.cg_adresse }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Téléphone : </ion-text><br>
+              {{ result.cg_phone }}
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <ion-text color="success">Commune : </ion-text><br>
+              {{ result.cg_commune }}
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+    
+    <ion-item></ion-item>
+    <ion-item></ion-item>
   </ion-content>
 </div>

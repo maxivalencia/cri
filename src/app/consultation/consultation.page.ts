@@ -14,6 +14,12 @@ import { App } from '@capacitor/app';
 })
 export class ConsultationPage implements OnInit {
 
+  immatriculation: string = "";
+  adresse = "";
+  resultat : any;
+  content_visite_visibility = "";
+  public segment_visite: string = "visite";
+
   constructor(
     public http: HttpClient,
     private router: Router,
@@ -38,6 +44,36 @@ export class ConsultationPage implements OnInit {
     this.router.navigate(['/login']);
     //this.platform.exitApp();
     App.exitApp();
+  }
+  
+  public getAddressQr(): Observable<any> {
+    return this.http.get("assets/data/adresseqr.txt", {responseType: 'text'});
+  }
+
+  async getResultRechercheVisite() {
+    // return this.http.get("./assets/data/anomalies.json");    
+    try {
+      const adresse : any = await this.getAddressQr().toPromise();
+      this.adresse = adresse.trim();
+      this.resultat = await this.http.get(this.adresse + "/ct/service/mobile/recherche?IMM=" + this.immatriculation).toPromise();
+      //console.log(this.resultat[0]);
+      //return this.http.get(this.adresse + "/ct/service/mobile/recherche?IMM=" + this.immatriculation);
+      //return this.http.get(this.adresse + "/ct/identification/visite?numero=" + this.qrResult["identification"]);
+      this.content_visite_visibility = this.resultat ? "show" : "";
+      return this.resultat;
+    } catch (error){
+      console.error('Erreur rencontrer : ', error);
+      return null;
+    }
+  }
+
+  public rechercherClick(){
+    const resultat = this.getResultRechercheVisite();
+    console.log(resultat);
+  }
+
+  visiteTabChanged(ev: any) {
+    this.segment_visite = ev.detail.value;
   }
 
 }

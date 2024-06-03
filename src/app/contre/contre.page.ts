@@ -13,7 +13,28 @@ import { App } from '@capacitor/app';
   styleUrls: ['./contre.page.scss'],
 })
 export class ContrePage implements OnInit {
+  
+  anomalies: any;
+  papiers: any;
+  // adresse: string = "http://192.168.12.251:2057/liste/";
+  adresse: string = "";
 
+  immatriculation: string = "";
+  nom_chauffeur: string = "";
+  contact_chauffeur: string = "";
+  feuille_de_controle: string = "";
+  proprietaire: string = "";
+  contact_proprietaire: string = "";
+  lieu_de_controle: string = "";
+  anomalies_constater: any = 0;
+  papiers_retirer: any = 0;
+  date_recuperation: string = new Date().toISOString();
+  date_fin_recuperation: string = new Date().toISOString();
+  mise_en_fourriere: boolean = false;
+
+  showCalendar = false;
+  showCalendarFin = false;
+  
   constructor(
     public http: HttpClient,
     private router: Router,
@@ -39,5 +60,18 @@ export class ContrePage implements OnInit {
     //this.platform.exitApp();
     App.exitApp();
   }
+  openCalendar() {
+    this.showCalendar = true;
+  }
+  cancelCalendar() {
+    this.showCalendar = false;
+  }
+  openCalendarFin() {
+    this.showCalendarFin = true;
+  }
+  cancelCalendarFin() {
+    this.showCalendarFin = false;
+  }
 
+  sendRegulatisationClick(){}
 }

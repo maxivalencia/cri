@@ -25,10 +25,92 @@
   </ion-header>
 
   <ion-content [fullscreen]="true">
-    <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title size="large">contre</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <ion-list>
+      <ion-item>
+        <ion-input label="Immatriculation" labelPlacement="floating" placeholder="Entrer Immatriculation ici ..." [(ngModel)]="immatriculation"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Nom Chauffeur" labelPlacement="floating" placeholder="Entrer Nom Chauffeur ici ..." [(ngModel)]="nom_chauffeur"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Contact Chauffeur" labelPlacement="floating" placeholder="Entrer Contact Chauffeur ici ..." [(ngModel)]="contact_chauffeur"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Numero Feuille de Contrôle" labelPlacement="floating" placeholder="Entrer Numero Feuille de Controle ici ..." [(ngModel)]="feuille_de_controle"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Nom Propriétaire" labelPlacement="floating" placeholder="Entrer Nom Propriétaire ici ..." [(ngModel)]="proprietaire"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Contact Propriétaire" labelPlacement="floating" placeholder="Entrer Contact Propriétaire ici ..." [(ngModel)]="contact_proprietaire"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Lieu de Contrôle" labelPlacement="floating" placeholder="Entrer Lieu de Controle ici ..." [(ngModel)]="lieu_de_controle"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-select label="Anomalies constaté" labelPlacement="floating" placeholder="Selectionner Anomalies constater ici ..." [multiple]="true" [(ngModel)]="anomalies_constater">
+          <ion-select-option *ngFor="let c of anomalies" value="{{ c.id }}">{{ c.code }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-select label="Papiers retiré" labelPlacement="floating" placeholder="Selectionner Papiers retiré ici ..." [multiple]="true" [(ngModel)]="papiers_retirer">
+          <ion-select-option *ngFor="let c of papiers" value="{{ c.id }}" selected="true">{{ c.papier }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-button fill="clear" (click)="openCalendar()" class="text-color">
+          <ion-icon slot="icon-only" name="calendar-outline" color="primary" size="small" class="text-color"></ion-icon>
+          Date de récupération : {{ date_recuperation | date: 'dd/MM/yyyy' }}
+        </ion-button>
+        <ion-datetime-button datetime="datetime" id="fake-click" class="text-color"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true" [isOpen]="showCalendar" (didDismiss)="cancelCalendar()">
+          <ng-template>
+            <ion-datetime
+              id="datetime"
+              presentation="date-month-year"
+              [showDefaultButtons]="true"
+              doneText="Confirm"
+              cancelText="Cancel"
+              [(ngModel)]="date_recuperation"
+            ></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+
+      <ion-item class="text-color">
+        <ion-button fill="clear" (click)="openCalendarFin()" class="text-color">
+          <ion-icon slot="icon-only" name="calendar-outline" color="primary" size="small" class="text-color"></ion-icon>
+          Date limite de récupération : {{ date_fin_recuperation | date: 'dd/MM/yyyy' }}
+        </ion-button>
+        <ion-datetime-button datetime="datetime" id="fake-click" class="text-color"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true" [isOpen]="showCalendarFin" (didDismiss)="cancelCalendarFin()">
+          <ng-template>
+            <ion-datetime
+              id="datetime"
+              presentation="date-month-year"
+              [showDefaultButtons]="true"
+              doneText="Confirm"
+              cancelText="Cancel"
+              [(ngModel)]="date_fin_recuperation"
+            ></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+      <ion-item>
+        <ion-checkbox justify="start" [(ngModel)]="mise_en_fourriere">Mise en Fourrière</ion-checkbox>
+      </ion-item>
+    </ion-list>
+
+    <br>
+
+    <div text-center margin-top>
+      <ion-button expand="block" color="secondary" (click)="sendRegulatisationClick()" size="large">
+        Régulariser
+      </ion-button>
+    </div>
+    
+    <ion-item></ion-item>
+    <ion-item></ion-item>
   </ion-content>
 </div>
