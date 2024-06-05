@@ -57,6 +57,7 @@ export class LoginPage implements OnInit {
           this.globalData.setIdUser(this.access_level);
           this.globalData.setIpAddress(this.adresse);
           this.globalData.setUserAccessLevel(this.access_level);
+          //this.router.navigate(['/login']);
           this.router.navigate(['/home']);
         }
         //this.setLogin();

@@ -7,37 +7,37 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    <ion-menu-toggle *ngIf="estUtilisateur()">
+    <ion-menu-toggle>
       <ion-item detail="false" button routerLink="/home">
         <ion-icon slot="end" name="home" class="icon_button"></ion-icon>
         <ion-label>Acceuil</ion-label>
       </ion-item>
     </ion-menu-toggle>
-    <ion-menu-toggle *ngIf="estUtilisateur()">
+    <ion-menu-toggle>
       <ion-item detail="false" button routerLink="/consultation">
         <ion-icon slot="end" name="construct-outline" class="icon_button"></ion-icon>
         <ion-label>Consultation véhicule</ion-label>
       </ion-item>
     </ion-menu-toggle>
-    <ion-menu-toggle *ngIf="estControleur()">
+    <ion-menu-toggle>
       <ion-item detail="false" button routerLink="/inopine">
         <ion-icon slot="end" name="hand-left-outline" class="icon_button"></ion-icon>
         <ion-label>Controle inopiné</ion-label>
       </ion-item>
     </ion-menu-toggle>
-    <ion-menu-toggle *ngIf="estControleur()">
+    <ion-menu-toggle>
       <ion-item detail="false" button routerLink="/contre">
         <ion-icon slot="end" name="medkit-outline" class="icon_button"></ion-icon>
         <ion-label>Contre inopiné</ion-label>
       </ion-item>
     </ion-menu-toggle>
-    <ion-menu-toggle *ngIf="estUtilisateur()">
+    <ion-menu-toggle>
       <ion-item detail="false" button routerLink="/qrcode">
         <ion-icon slot="end" name="qr-code-outline" class="icon_button"></ion-icon>
         <ion-label>Scan QR-Code</ion-label>
       </ion-item>
     </ion-menu-toggle>
-    <ion-menu-toggle *ngIf="estUtilisateur()">
+    <ion-menu-toggle>
       <ion-item detail="false" button routerLink="/apropos">
         <ion-icon slot="end" name="accessibility-outline" class="icon_button"></ion-icon>
         <ion-label>A propos</ion-label>
