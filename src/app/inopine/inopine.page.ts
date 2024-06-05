@@ -1,4 +1,4 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { count, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -12,13 +12,15 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms'; // Pour ngModel
 import { IonicModule, Platform } from '@ionic/angular';
 import { App } from '@capacitor/app';
+import * as $ from 'jquery';
+import 'select2';
 
 @Component({
   selector: 'app-inopine',
   templateUrl: './inopine.page.html',
   styleUrls: ['./inopine.page.scss'],
 })
-export class InopinePage implements OnInit {
+export class InopinePage implements OnInit, AfterViewInit {
 
 
   anomalies: any;
@@ -55,6 +57,27 @@ export class InopinePage implements OnInit {
       this.router.navigate(['/login']);
     } */
   }
+
+  ngAfterViewInit() {
+    // Initialiser select2 après que la vue soit initialisée
+    /* ($('#select2-anomalie') as any).select2({
+      placeholder: 'Selectionner Anomalies constater ici ...',
+      allowClear: true
+    }); */
+    //this.initializeSelect2();
+  }
+
+  /* initializeSelect2() {
+    const intervalId = setInterval(() => {
+      if ($('#select2-anomalie').length) {
+        ($('#select2-anomalie') as any).select2({
+          placeholder: 'Selectionner Anomalies constater ici ...',
+          allowClear: true
+        });
+        clearInterval(intervalId);
+      }
+    }, 100);
+  } */
 
 
   ngOnInit() {
@@ -162,7 +185,7 @@ export class InopinePage implements OnInit {
 
   public getInformation(): Observable<any> {
     // return this.http.get("./assets/data/papiers.json");
-    return this.http.get(this.adresse + "recuperation_info?immatriculation=" + this.immatriculation);
+    return this.http.get(this.adresse + "recuperation/info?immatriculation=" + this.immatriculation);
   }
   openCalendar() {
     this.showCalendar = true;

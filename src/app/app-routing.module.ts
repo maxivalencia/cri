@@ -55,6 +55,10 @@ const routes: Routes = [
     path: 'footer',
     loadChildren: () => import('./footer/footer.module').then( m => m.FooterPageModule)
   },
+  {
+    path: 'photocontre',
+    loadChildren: () => import('./photocontre/photocontre.module').then( m => m.PhotocontrePageModule)
+  },
 ];
 
 @NgModule({

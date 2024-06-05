@@ -28,7 +28,10 @@
 
     <ion-list>
       <ion-item>
-        <ion-input label="Immatriculation" labelPlacement="floating" placeholder="Entrer Immatriculation ici ..." [(ngModel)]="immatriculation" (ngModelChange)="changeImmatriculation()"></ion-input>
+        <ion-input label="Immatriculation" labelPlacement="floating" placeholder="Entrer Immatriculation ici ..." [(ngModel)]="immatriculation"></ion-input>
+        <ion-button class="header_button" color="primary" (click)="changeImmatriculation()" icon-only float-right>
+          <ion-icon name="search-outline"></ion-icon>
+        </ion-button>
       </ion-item>
       <ion-item>
         <ion-input label="Nom Chauffeur" labelPlacement="floating" placeholder="Entrer Nom Chauffeur ici ..." [(ngModel)]="nom_chauffeur"></ion-input>
@@ -49,9 +52,12 @@
         <ion-input label="Lieu de Contrôle" labelPlacement="floating" placeholder="Entrer Lieu de Controle ici ..." [(ngModel)]="lieu_de_controle"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-select label="Anomalies constaté" labelPlacement="floating" placeholder="Selectionner Anomalies constater ici ..." [multiple]="true" [(ngModel)]="anomalies_constater">
+        <ion-select id="select2-anomalie" label="Anomalies constaté" labelPlacement="floating" placeholder="Selectionner Anomalies constater ici ..." [multiple]="true" [(ngModel)]="anomalies_constater">
           <ion-select-option *ngFor="let c of anomalies" value="{{ c.id }}">{{ c.code }}</ion-select-option>
         </ion-select>
+        <!-- <select id="select2-anomalie" label="Anomalies constaté" multiple="multiple" style="width: 100%" [(ngModel)]="anomalies_constater">
+          <option *ngFor="let option of anomalies" value={{ option.id }}>{{ option.code }}</option>
+        </select> -->
       </ion-item>
       <ion-item>
         <ion-select label="Papiers retiré" labelPlacement="floating" placeholder="Selectionner Papiers retiré ici ..." [multiple]="true" [(ngModel)]="papiers_retirer">

@@ -23,12 +23,12 @@ interface LocalFile {
 }
 const IMAGE_DIR = "cri-stored-images";
 @Component({
-  selector: 'app-photo',
-  templateUrl: './photo.page.html',
-  styleUrls: ['./photo.page.scss'],
+  selector: 'app-photocontre',
+  templateUrl: './photocontre.page.html',
+  styleUrls: ['./photocontre.page.scss'],
 })
 //@Injectable()
-export class PhotoPage implements OnInit {
+export class PhotocontrePage implements OnInit {
 
   imageSource : any;
   id_controle : number = 0;
@@ -53,26 +53,20 @@ export class PhotoPage implements OnInit {
     private router: Router,
     private platform: Platform,
     private loadingCtrl: LoadingController,
-    private storage: Storage
-
-  ) {
-    /* if(this.globalData.getIdUser() == 0){
-      this.router.navigate(['/login']);
-    } */
-    /* this.id_controle = 1;
-    this.nombre_photo = 1;
-    this.liste_photo = ["face"]; */
-    this.id_controle = this.globalData.getIdControle();
-    this.nombre_photo = this.globalData.getNombrePhoto()==1?0:this.globalData.getNombrePhoto();
-    this.liste_photo = this.globalData.getListePhoto();
-    this.adresse = this.globalData.getIpAddress();
-    this.photo_titre = this.liste_photo[0];
-    this.loadFiles();
-    for(let i = 0; i < this.images.length - 1; i++){
-      this.deleteImage(this.images[i]); // Supprimer l'image après l'upload
-      delay(1000);
-    }
-  }
+    private storage: Storage) {
+      /* if(this.globalData.getIdUser() == 0){
+        this.router.navigate(['/login']);
+      } */
+      this.id_controle = this.globalData.getIdControle();
+      this.nombre_photo = this.globalData.getNombrePhoto()==1?0:this.globalData.getNombrePhoto();
+      this.liste_photo = this.globalData.getListePhoto();
+      this.adresse = this.globalData.getIpAddress();
+      this.photo_titre = this.liste_photo[0];
+      this.loadFiles();
+      for(let i = 0; i < this.images.length - 1; i++){
+        this.deleteImage(this.images[i]); // Supprimer l'image après l'upload
+        delay(1000);
+      }}
 
   ngOnInit() {
     this.loadFiles();
@@ -81,15 +75,6 @@ export class PhotoPage implements OnInit {
       delay(1000);
     }
   }
-
-  /* takePicture = async () => {
-    const photo = await Camera.getPhoto({
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Camera,
-      quality: 100,
-      allowEditing: false,
-    });
-  }; */
 
   // Eto no manomboka ilay fonction vaovao
   async selectImage(): Promise<void> {
@@ -247,7 +232,7 @@ export class PhotoPage implements OnInit {
     } */
     try {
       if(this.nombre_photo <= 0){
-        this.router.navigate(['/inopine']);
+        this.router.navigate(['/contre']);
       }
       await this.selectImage();
       await delay(1000);
@@ -276,137 +261,19 @@ export class PhotoPage implements OnInit {
           this.photo_titre = this.liste_photo[this.globalData.getNombrePhoto() - this.nombre_photo];
           this.photo_name = this.liste_photo[this.nombre_photo - 1];
           if(this.photo_name == ""){
-            this.router.navigate(['/inopine']);
+            this.router.navigate(['/contre']);
           }
-          //this.sendPhoto(this.photo_name);
-          /* this.photo_data = "?photo=" + this.imageSource;
-          this.photo_data += "&controle_id=" + this.id_controle;
-          this.photo_data += "&photo_name=" + this.photo_name;
-          this.http.get(this.adresse + "upload_photo" + this.photo_data); */
           this.nombre_photo--;
         //}
       }
       if(this.nombre_photo <= 0){
-        this.router.navigate(['/inopine']);
+        this.router.navigate(['/contre']);
       }
       this.photo_titre = this.photo_name;
     } catch (error) {
       console.error("Error taking photo:", error);
     }
   }
-
-  /* async selectImage(){
-    const image = await Camera.getPhoto({
-      quality : 100,
-      allowEditing : false,
-      resultType : CameraResultType.Uri,
-      source : CameraSource.Camera
-    });
-    if(image){
-      this.saveImage(image);
-    }
-  }
-  async saveImage(photo: Photo){
-    const base64Data = await this.readAsBase64Image(photo);
-    const fileName = new Date().getTime() + '.jpeg';
-    const savedFile = await Filesystem.writeFile({
-      directory : Directory.Data,
-      path : `${IMAGE_DIR}/${fileName}`,
-      data : base64Data
-    });
-  }
-  async readAsBase64Image(photo: Photo){
-    if(this.platform.is('hybrid')){
-      const file = await Filesystem.readFile({
-        path : photo.path as string
-      });
-      return file.data;
-    }
-    else {
-      const response = await fetch(photo.webPath as string);
-      const blob = await response.blob();
-      return await this.convertBlobToBase64Image(blob) as string;
-    }
-  }
-  convertBlobToBase64Image = (blob : Blob) => new Promise((resolve, reject) => {
-    const reader = new FileReader;
-    reader.onerror = reject;
-    reader.onload = () => {
-      resolve(reader.result);
-    };
-    reader.readAsDataURL(blob);
-  });
-  async loadFiles(){
-    this.images = [];
-    const loading = await this.loadingCtrl.create({
-      message : 'Chargement des données ...',
-    });
-    await loading.present();
-    Filesystem.readdir({
-      directory : Directory.Data,
-      path : IMAGE_DIR
-    }).then(result => {
-      this.loadFileData(result.files);
-    }, async err => {
-      await Filesystem.mkdir({
-        directory : Directory.Data,
-        path : IMAGE_DIR
-      });
-    }).then(_ => {
-      loading.dismiss();
-    })
-  }
-  async loadFileData(fileNames : any[]){
-    for(let f of fileNames){
-      const filePath = `${IMAGE_DIR}/${f}`;
-      const readFile = await Filesystem.readFile({
-        directory : Directory.Data,
-        path : filePath
-      });
-      this.images.push({
-        name : f,
-        path : filePath,
-        data : `data:image/jpeg:base64,${readFile.data}`
-      });
-    }
-  }
-  async deleteImage(file : LocalFile){
-    await Filesystem.deleteFile({
-      directory : Directory.Data,
-      path : file.path
-    });
-    this.loadFiles();
-  }
-  async startUpload(file : LocalFile){
-    const response = await fetch(file.data);
-    const blob = await response.blob();
-    const formData = new FormData;
-    formData.append('file', blob, file.name);
-    formData.append('controle_id', this.id_controle.toString());
-    formData.append('photo_name', file.name);
-    this.uploadData(formData);
-  }
-  async uploadData(formData : FormData){
-    const loading = await this.loadingCtrl.create({
-      message : 'Uploading image ...'
-    });
-    await loading.present();
-    const url = this.adresse + "upload_photo";
-    this.http.post(url, formData).pipe(
-      finalize(() => {
-        loading.dismiss();
-      })
-    ).subscribe(res => {
-      console.log(res);
-    })
-  }
-
-  async prendrePhoto(){
-    await this.selectImage();
-    await this.loadFiles();
-    await this.startUpload(this.images[0]);
-    await this.deleteImage(this.images[0]);
-  } */
 
   // Eto no mifarana ilay fonction vaovao
 
@@ -419,13 +286,6 @@ export class PhotoPage implements OnInit {
       saveToGallery : true,
     });
 
-    // Save the picture and add it to photo collection
-    // const savedImageFile = await this.savePicture(image);
-    //this.photos.unshift(savedImageFile);
-
-    //this.imageSource = 'data:image/jpeg;base64' + image.base64String;
-    //this.imageSource = 'data:image/jpeg;base64' + this.readAsBase64Image(image);
-    //this.imageSource = image;
     this.imageSource = 'data:image/jpeg;base64,' + this.readAsBase64Image(image);
     console.log(this.readAsBase64Image(image));
     if(this.id_controle != 0 && this.nombre_photo > 0){
@@ -434,10 +294,6 @@ export class PhotoPage implements OnInit {
         this.photo_titre = this.liste_photo[this.globalData.getNombrePhoto() - this.nombre_photo];
         this.photo_name = this.liste_photo[this.nombre_photo - 1];
         this.sendPhoto(this.photo_name);
-        /* this.photo_data = "?photo=" + this.imageSource;
-        this.photo_data += "&controle_id=" + this.id_controle;
-        this.photo_data += "&photo_name=" + this.photo_name;
-        this.http.get(this.adresse + "upload_photo" + this.photo_data); */
         this.nombre_photo--;
       //}
       if(this.nombre_photo <= 0){
@@ -451,29 +307,6 @@ export class PhotoPage implements OnInit {
 
     //console.log(this.imageSource)
   };
-
-  /* private async savePicture(photo: Photo) {
-    // Convert photo to base64 format, required by Filesystem API to save
-    // const base64Data = await this.readAsBase64(photo);
-    //const base64Data = 'data:image/jpeg;base64,' + photo;
-    const base64Data = 'data:image/jpeg;base64,' + this.readAsBase64(photo);
-
-
-    // Write the file to the data directory
-    const fileName = Date.now() + '.jpeg';
-    const savedFile = await Filesystem.writeFile({
-      path: fileName,
-      data: base64Data,
-      directory: Directory.Data
-    });
-
-    // Use webPath to display the new image instead of base64 since it's
-    // already loaded into memory
-    return {
-      filepath: fileName,
-      webviewPath: photo.webPath
-    };
-  } */
 
   dataURItoBlob(dataURI: string): Blob {
     //if (!dataURI || !dataURI.includes(',')) {
@@ -559,20 +392,6 @@ export class PhotoPage implements OnInit {
     return this.http.request(req); */
   }
 
-  /* public prendrePhoto(){
-    if(this.id_controle != 0 && this.nombre_photo > 0 && this.nombre_photo == this.liste_photo.length){
-      while(this.nombre_photo > 0){
-        this.takePicture;
-        this.photo_name = this.liste_photo[this.nombre_photo - 1];
-        this.sendPhoto(this.photo_name);
-        this.nombre_photo--;
-      }
-      //if(this.nombre_photo <= 0){
-      //  this.router.navigate(['/inopine']);
-      //}
-    }
-  } */
-
   public deconnecterClick(){
     this.globalData.setIdUser(0);
     this.globalData.setIdControle(0);
@@ -583,4 +402,5 @@ export class PhotoPage implements OnInit {
     //this.platform.exitApp();
     App.exitApp();
   }
+
 }
