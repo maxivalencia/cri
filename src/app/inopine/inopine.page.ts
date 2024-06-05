@@ -53,7 +53,7 @@ export class InopinePage implements OnInit, AfterViewInit {
     private router: Router,
     public platform: Platform
   ) {
-    /* if(this.globalData.getIdUser() == 0){
+    /* if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 3){
       this.router.navigate(['/login']);
     } */
   }
@@ -200,4 +200,25 @@ export class InopinePage implements OnInit, AfterViewInit {
     this.showCalendarFin = false;
   }
 
+  ionViewWillEnter(){
+    this.cleanData();
+  }
+
+  cleanData(){
+    this.immatriculation = "";
+    this.immatriculation = "";
+    this.nom_chauffeur = "";
+    this.contact_chauffeur = "";
+    this.feuille_de_controle = "";
+    this.proprietaire = "";
+    this.contact_proprietaire = "";
+    this.lieu_de_controle = "";
+    this.anomalies_constater = 0;
+    this.papiers_retirer = 0;
+    this.date_recuperation = new Date().toISOString();
+    this.date_fin_recuperation = new Date().toISOString();
+    this.mise_en_fourriere = false;
+
+    this.controle_data = "";
+  }
 }

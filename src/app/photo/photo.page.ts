@@ -56,7 +56,7 @@ export class PhotoPage implements OnInit {
     private storage: Storage
 
   ) {
-    /* if(this.globalData.getIdUser() == 0){
+    /* if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 3){
       this.router.navigate(['/login']);
     } */
     /* this.id_controle = 1;

@@ -52,7 +52,7 @@ export class HomePage implements OnInit {
     private router: Router,
     public platform: Platform
   ) {
-    /* if(this.globalData.getIdUser() == 0){
+    /* if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 4){
       this.router.navigate(['/login']);
     } */
   }

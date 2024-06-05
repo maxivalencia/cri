@@ -56,7 +56,7 @@ export class ContrePage implements OnInit {
     public globalData: GlobalData,
     private storage: Storage
   ) {
-    /* if(this.globalData.getIdUser() == 0){
+    /* if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 3){
       this.router.navigate(['/login']);
     } */
   }
@@ -109,18 +109,19 @@ export class ContrePage implements OnInit {
       this.photo_liste = this.photo.split("-");
       const anm = "FACE-" + this.anomalies_constater;
       this.anomalie_liste = anm.split("-");
-      //if(this.papier_reguler == "Oui"){
+      if(!this.papier_reguler){
         this.visibility_content = "show";
         this.visibility_message = "";
-      /* }else{
+      }else{
         this.visibility_content = "";
         this.visibility_message = "show";
-      } */
+      }
       return this.resultat;
     } catch (error){
-      console.error('Erreur rencontrer : ', error);
+      this.visibility_message = "show";
       return null;
-    }}
+    }
+  }
 
   public getAddress(): Observable<any> {
     return this.http.get("assets/data/adresse.txt", {responseType: 'text'});
@@ -147,5 +148,15 @@ export class ContrePage implements OnInit {
   }
   cancelCalendarFin() {
     this.showCalendarFin = false;
+  }
+
+  ionViewWillEnter(){
+    this.cleanData();
+  }
+
+  cleanData(){
+    this.immatriculation = "";
+    this.visibility_content = "";
+    this.visibility_message = "";
   }
 }

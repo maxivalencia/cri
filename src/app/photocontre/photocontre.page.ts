@@ -15,6 +15,7 @@ import { File } from '@ionic-native/file'
 import { FileInfo } from '@capacitor/filesystem';
 import { App } from '@capacitor/app';
 import { Storage } from '@ionic/storage-angular'; // Import Storage
+import { Observable } from 'rxjs';
 
 interface LocalFile {
   name : string;
@@ -54,7 +55,7 @@ export class PhotocontrePage implements OnInit {
     private platform: Platform,
     private loadingCtrl: LoadingController,
     private storage: Storage) {
-      /* if(this.globalData.getIdUser() == 0){
+      /* if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 3){
         this.router.navigate(['/login']);
       } */
       this.id_controle = this.globalData.getIdControle();
@@ -232,6 +233,7 @@ export class PhotocontrePage implements OnInit {
     } */
     try {
       if(this.nombre_photo <= 0){
+        this.validerContre();
         this.router.navigate(['/contre']);
       }
       await this.selectImage();
@@ -267,6 +269,7 @@ export class PhotocontrePage implements OnInit {
         //}
       }
       if(this.nombre_photo <= 0){
+        this.validerContre();
         this.router.navigate(['/contre']);
       }
       this.photo_titre = this.photo_name;
@@ -403,4 +406,14 @@ export class PhotocontrePage implements OnInit {
     App.exitApp();
   }
 
+  public getAddress(): Observable<any> {
+    return this.http.get("assets/data/adresse.txt", {responseType: 'text'});
+  }
+
+  async validerContre(){
+    const adresse : any = await this.getAddress().toPromise();
+    this.adresse = adresse.trim();
+    this.globalData.setIpAddress(this.adresse + '/cri/');
+    const resultat = await this.http.get(this.adresse + "/cri/regulatisation/contre?user_id=" + this.globalData.getIdUser() +"&controle_id=" + this.globalData.getIdControle()).toPromise();
+  }
 }

@@ -26,13 +26,13 @@ export class ConsultationPage implements OnInit {
     public globalData: GlobalData,
     private storage: Storage
   ) {
-    /* if(this.globalData.getIdUser() == 0){
+    /* if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 4){
       this.router.navigate(['/login']);
     } */
   }
 
   ngOnInit() {
-    let test = 0;
+    /* this.cleanData(); */
   }
 
   public deconnecterClick(){
@@ -45,13 +45,13 @@ export class ConsultationPage implements OnInit {
     //this.platform.exitApp();
     App.exitApp();
   }
-  
+
   public getAddressQr(): Observable<any> {
     return this.http.get("assets/data/adresseqr.txt", {responseType: 'text'});
   }
 
   async getResultRechercheVisite() {
-    // return this.http.get("./assets/data/anomalies.json");    
+    // return this.http.get("./assets/data/anomalies.json");
     try {
       const adresse : any = await this.getAddressQr().toPromise();
       this.adresse = adresse.trim();
@@ -76,4 +76,13 @@ export class ConsultationPage implements OnInit {
     this.segment_visite = ev.detail.value;
   }
 
+  ionViewWillEnter(){
+    this.cleanData();
+  }
+
+  cleanData(){
+    this.resultat = "";
+    this.immatriculation = "";
+    this.content_visite_visibility = "";
+  }
 }

@@ -23,13 +23,14 @@ export class LoginPage implements OnInit {
   auth : any;
   code : any;
   id_user : any;
+  access_level : any;
 
   constructor(public http: HttpClient,
     private router: Router,
     public globalData: GlobalData,
     private storage: Storage
   ) {
-    if(this.globalData.getIdUser() > 0){
+    if(this.globalData.getIdUser() > 0 && this.globalData.getUserAccessLevel() <= 4){
       this.router.navigate(['/home']);
     }
   }
@@ -52,8 +53,10 @@ export class LoginPage implements OnInit {
         this.message_connection = auth["message"];
         if(auth["code"] == 200){
           this.id_user = auth["id_user"];
-          this.globalData.setIdUser(this.id_user);
+          this.access_level = auth["access_level"];
+          this.globalData.setIdUser(this.access_level);
           this.globalData.setIpAddress(this.adresse);
+          this.globalData.setUserAccessLevel(this.access_level);
           this.router.navigate(['/home']);
         }
         //this.setLogin();

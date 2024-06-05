@@ -155,7 +155,7 @@ export class QrcodePage implements OnInit, OnDestroy {
     public globalData: GlobalData,
     private storage: Storage
   ) {
-    /* if(this.globalData.getIdUser() == 0){
+    /* if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 4){
       this.router.navigate(['/login']);
     } */
     /* this.prepare(); */
@@ -164,6 +164,10 @@ export class QrcodePage implements OnInit, OnDestroy {
 
   ngOnInit(){
     console.log("Initialisation page scan qr-code");
+    this.content_message_visibility = "";
+    this.content_visite_visibility = "";
+    this.content_reception_visibility = "";
+    this.content_constatation_visibility = "";
   }
 
   prepare = () => {
@@ -449,7 +453,7 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.ptac_note_descriptive = this.qrResultConstatation["ptac_note_descriptive"];
           this.date_premiere_circulation_note_descriptive = this.qrResultConstatation["date_premiere_circulation_note_descriptive"];
           this.nombre_place_assis_note_descriptive = this.qrResultConstatation["nombre_place_assis_note_descriptive"];
-          
+
           this.content_message_visibility = "";
           this.content_visite_visibility = "";
           this.content_reception_visibility = "";
@@ -483,5 +487,17 @@ export class QrcodePage implements OnInit, OnDestroy {
 
   sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  ionViewWillEnter(){
+    this.cleanData();
+  }
+
+  cleanData(){
+    this.immatriculation = "";
+    this.content_message_visibility = "";
+    this.content_visite_visibility = "";
+    this.content_reception_visibility = "";
+    this.content_constatation_visibility = "";
   }
 }
