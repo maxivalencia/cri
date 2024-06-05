@@ -13,6 +13,8 @@ import { App } from '@capacitor/app';
 })
 export class MenuPage implements OnInit {
 
+  access_level = 10;
+
   constructor(public http: HttpClient,
     private router: Router,
     public globalData: GlobalData,
@@ -21,6 +23,15 @@ export class MenuPage implements OnInit {
 
   ngOnInit() {
     console.log('Initiation page login');
+    this.access_level = this.globalData.getUserAccessLevel();
+  }
+
+  estUtilisateur(): boolean {
+    return this.access_level <= 4;
+  }
+
+  estControleur(): boolean {
+    return this.access_level <= 3;
   }
 
   public deconnecterClick(){

@@ -56,9 +56,9 @@ export class RecapitulationcontrePage implements OnInit {
     public globalData: GlobalData,
     private storage: Storage
   ) {
-    /* if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 3){
+    if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 3){
       this.router.navigate(['/login']);
-    } */
+    }
   }
 
   ngOnInit() {
@@ -128,6 +128,10 @@ export class RecapitulationcontrePage implements OnInit {
     this.router.navigate(['/login']);
     //this.platform.exitApp();
     App.exitApp();
+  }
+
+  ionViewWillEnter(){
+    this.getRecapitulation();
   }
 
 }

@@ -5,7 +5,7 @@ import { Injectable, Directive } from '@angular/core';
 })
 export class GlobalData {
   private id_user: number = 0;
-  private user_access_level: number = 0;
+  private user_access_level: number = 10;
   private id_controle: number = 0;
   private ip_address: string = "";
 

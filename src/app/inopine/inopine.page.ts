@@ -53,9 +53,9 @@ export class InopinePage implements OnInit, AfterViewInit {
     private router: Router,
     public platform: Platform
   ) {
-    /* if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 3){
+    if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 3){
       this.router.navigate(['/login']);
-    } */
+    }
   }
 
   ngAfterViewInit() {

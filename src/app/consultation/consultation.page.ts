@@ -26,9 +26,9 @@ export class ConsultationPage implements OnInit {
     public globalData: GlobalData,
     private storage: Storage
   ) {
-    /* if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 4){
+    if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 4){
       this.router.navigate(['/login']);
-    } */
+    }
   }
 
   ngOnInit() {

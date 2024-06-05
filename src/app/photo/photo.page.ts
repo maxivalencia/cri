@@ -56,9 +56,9 @@ export class PhotoPage implements OnInit {
     private storage: Storage
 
   ) {
-    /* if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 3){
+    if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 3){
       this.router.navigate(['/login']);
-    } */
+    }
     /* this.id_controle = 1;
     this.nombre_photo = 1;
     this.liste_photo = ["face"]; */
@@ -247,7 +247,7 @@ export class PhotoPage implements OnInit {
     } */
     try {
       if(this.nombre_photo <= 0){
-        this.router.navigate(['/inopine']);
+        this.router.navigate(['/recapitulationinopine']);
       }
       await this.selectImage();
       await delay(1000);
@@ -276,7 +276,7 @@ export class PhotoPage implements OnInit {
           this.photo_titre = this.liste_photo[this.globalData.getNombrePhoto() - this.nombre_photo];
           this.photo_name = this.liste_photo[this.nombre_photo - 1];
           if(this.photo_name == ""){
-            this.router.navigate(['/inopine']);
+            this.router.navigate(['/recapitulationinopine']);
           }
           //this.sendPhoto(this.photo_name);
           /* this.photo_data = "?photo=" + this.imageSource;
@@ -287,7 +287,7 @@ export class PhotoPage implements OnInit {
         //}
       }
       if(this.nombre_photo <= 0){
-        this.router.navigate(['/inopine']);
+        this.router.navigate(['/recapitulationinopine']);
       }
       this.photo_titre = this.photo_name;
     } catch (error) {

@@ -22,6 +22,8 @@ import { App } from '@capacitor/app';
 /* @Injectable() */
 export class HomePage implements OnInit {
 
+  access_level = 10;
+
   anomalies: any;
   papiers: any;
   // adresse: string = "http://192.168.12.251:2057/liste/";
@@ -52,13 +54,14 @@ export class HomePage implements OnInit {
     private router: Router,
     public platform: Platform
   ) {
-    /* if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 4){
+    if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 4){
       this.router.navigate(['/login']);
-    } */
+    }
   }
 
 
   ngOnInit() {
+    this.access_level = this.globalData.getUserAccessLevel();
     console.log('Début initialisation page home');
     this.getAddress().subscribe((adresse : any) => {
       this.adresse = adresse.trim() + "/cri/";
@@ -176,5 +179,13 @@ export class HomePage implements OnInit {
   }
   cancelCalendarFin() {
     this.showCalendarFin = false;
+  }
+
+  estUtilisateur(): boolean {
+    return this.access_level <= 4;
+  }
+
+  estControleur(): boolean {
+    return this.access_level <= 3;
   }
 }

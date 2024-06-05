@@ -55,9 +55,9 @@ export class PhotocontrePage implements OnInit {
     private platform: Platform,
     private loadingCtrl: LoadingController,
     private storage: Storage) {
-      /* if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 3){
+      if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 3){
         this.router.navigate(['/login']);
-      } */
+      }
       this.id_controle = this.globalData.getIdControle();
       this.nombre_photo = this.globalData.getNombrePhoto()==1?0:this.globalData.getNombrePhoto();
       this.liste_photo = this.globalData.getListePhoto();
@@ -234,7 +234,7 @@ export class PhotocontrePage implements OnInit {
     try {
       if(this.nombre_photo <= 0){
         this.validerContre();
-        this.router.navigate(['/contre']);
+        this.router.navigate(['/recapitulationcontre']);
       }
       await this.selectImage();
       await delay(1000);
@@ -263,14 +263,14 @@ export class PhotocontrePage implements OnInit {
           this.photo_titre = this.liste_photo[this.globalData.getNombrePhoto() - this.nombre_photo];
           this.photo_name = this.liste_photo[this.nombre_photo - 1];
           if(this.photo_name == ""){
-            this.router.navigate(['/contre']);
+            this.router.navigate(['/recapitulationcontre']);
           }
           this.nombre_photo--;
         //}
       }
       if(this.nombre_photo <= 0){
         this.validerContre();
-        this.router.navigate(['/contre']);
+        this.router.navigate(['/recapitulationcontre']);
       }
       this.photo_titre = this.photo_name;
     } catch (error) {

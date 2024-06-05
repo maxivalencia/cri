@@ -56,9 +56,9 @@ export class ContrePage implements OnInit {
     public globalData: GlobalData,
     private storage: Storage
   ) {
-    /* if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 3){
+    if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 3){
       this.router.navigate(['/login']);
-    } */
+    }
   }
 
   ngOnInit() {
@@ -102,7 +102,7 @@ export class ContrePage implements OnInit {
       this.date_controle = this.resultat["date_controle"];
       this.date_recuperation = this.resultat["date_recuperation"];
       this.date_limite = this.resultat["date_limite"];
-      this.mise_en_fourriere = this.resultat["mise_en_fourriere"];
+      this.mise_en_fourriere = this.resultat["mise_en_fourriere"]==true?"Oui":"Non";
       this.photo = this.resultat["photo"];
       this.verificateur = this.resultat["verificateur"];
       this.centre = this.resultat["centre"];
