@@ -7,16 +7,11 @@
       <ion-title class="ion-no-border" no-border>
         <p class="header-style" class="ion-no-border" no-border>
           <ion-row class="ion-no-border text-centre" no-border>
-            <ion-col text-left class="ion-no-border" no-border>
-              <img class="header_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-left>
-            </ion-col>
             <ion-col text-center class="ion-no-border text-centre" no-border>
-              <p color="azure" class="text-color text-header">CONTROLE<br>INOPINE</p>
+              <p color="azure" class="text-color text-header">I-TSIRIKA</p>
             </ion-col>
             <ion-col text-right class="ion-no-border header_button" no-border>
-              <ion-button class="header_button" color="primary" (click)="deconnecterClick()" icon-only float-right>
-                <ion-icon name="exit-outline"></ion-icon>
-              </ion-button>
+              <img class="header_logo_right" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-right>
             </ion-col>
           </ion-row>
         </p>
@@ -47,7 +42,11 @@
         <ion-icon slot="end" name="accessibility-outline" class="icon_button"></ion-icon>
         <ion-label>A propos</ion-label>
       </ion-item>
-      <ion-item detail="false" button  (click)="deconnecterClick()">
+      <ion-item detail="false" button (click)="deconnecterClick()" *ngIf="estUtilisateur()">
+        <ion-icon slot="end" name="warning" class="icon_button"></ion-icon>
+        <ion-label>Déconnecter l'utilisateur</ion-label>
+      </ion-item>
+      <ion-item detail="false" button (click)="quitterClick()">
         <ion-icon slot="end" name="exit-outline" class="icon_button"></ion-icon>
         <ion-label>Quitter l'application</ion-label>
       </ion-item>

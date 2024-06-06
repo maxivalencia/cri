@@ -16,6 +16,15 @@ export class GlobalData {
   private visite: any;
   private reception: any;
   private constatation: any;
+  private show_menu: boolean = true;
+
+  setShowMenu(show_menu:boolean) {
+    this.show_menu = show_menu;
+  }
+
+  getShowMenu():boolean{
+    return this.show_menu;
+  }
 
   setIdUser(id_user:number) {
     this.id_user = id_user;

@@ -29,6 +29,7 @@ export class QrcodePage implements OnInit, OnDestroy {
   public segment_visite: string = "visite";
   public segment_reception: string = "reception";
   public segment_constatation: string = "constatation";
+  show_menu = true;
 
   // information visite
   numero_controle = "";
@@ -155,8 +156,8 @@ export class QrcodePage implements OnInit, OnDestroy {
     public globalData: GlobalData,
     private storage: Storage
   ) {
-    if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 4){
-      this.router.navigate(['/login']);
+    if(this.globalData.getIdUser() <= 0 || this.globalData.getUserAccessLevel() > 4){
+      this.router.navigate(['/home']);
     }
     /* this.prepare(); */
     this.bodyElement = document.querySelector('body');
@@ -243,6 +244,7 @@ export class QrcodePage implements OnInit, OnDestroy {
     this.globalData.setIpAddress("");
     this.globalData.setNombrePhoto(0);
     this.globalData.setListePhoto([]);
+    this.globalData.setUserAccessLevel(10);
     this.router.navigate(['/login']);
     //this.platform.exitApp();
     App.exitApp();
@@ -491,6 +493,7 @@ export class QrcodePage implements OnInit, OnDestroy {
 
   ionViewWillEnter(){
     this.cleanData();
+    this.globalData.setShowMenu(this.show_menu);
   }
 
   cleanData(){

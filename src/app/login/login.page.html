@@ -1,30 +1,30 @@
 <div class="ion-page" id="main-content">
-  <ion-header [translucent]="true" class="ion-no-border" no-border>
-    <ion-toolbar class="ion-no-border" no-border>
-      <ion-buttons slot="start" class="text-color">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title class="ion-no-border" no-border>
-        <p class="header-style" class="ion-no-border" no-border>
-          <ion-row class="ion-no-border ion-align-items-center" no-border>
-            <ion-col text-left class="ion-no-border header-logo" no-border>
-              <img class="header_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-left>
-            </ion-col>
-            <ion-col text-center class="ion-no-border text-centre" no-border>
-              <p class="text-color">LOGIN<br />i-Tsirika</p>
-            </ion-col>
-            <ion-col text-right class="ion-no-border header_button" no-border>
-              <ion-button class="header_button" color="primary" (click)="deconnecterClick()" icon-only float-right>
-                <ion-icon name="exit-outline"></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </p>
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <ion-content [fullscreen]="true">
+    <ion-header [translucent]="true" class="ion-no-border" no-border>
+      <ion-toolbar class="ion-no-border" no-border>
+        <ion-buttons slot="start" class="text-color">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title class="ion-no-border" no-border>
+          <p class="header-style" class="ion-no-border" no-border>
+            <ion-row class="ion-no-border ion-align-items-center" no-border>
+              <ion-col text-left class="ion-no-border header-logo" no-border>
+                <img class="header_logo_left" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-left>
+              </ion-col>
+              <ion-col text-center class="ion-no-border text-centre" no-border>
+                <p class="text-color">LOGIN<br />i-Tsirika</p>
+              </ion-col>
+              <ion-col text-right class="ion-no-border header_button" no-border>
+                <ion-button class="header_button" color="primary" (click)="deconnecterClick()" icon-only float-right>
+                  <ion-icon name="exit-outline"></ion-icon>
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </p>
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+
     <br>
     <img class="login_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr">
     <h4 text-center margin-top class="login-style">Insérer votre identification ici</h4>
@@ -48,7 +48,7 @@
 
     <br>
     <div class="message">{{ message_connection }}</div>
-    
+
     <ion-item></ion-item>
     <ion-item></ion-item>
   </ion-content>

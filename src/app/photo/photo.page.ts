@@ -46,6 +46,7 @@ export class PhotoPage implements OnInit {
   //photos : Photo;
 
   images : LocalFile[] = [];
+  show_menu = true;
 
   constructor(
     public http: HttpClient,
@@ -56,8 +57,8 @@ export class PhotoPage implements OnInit {
     private storage: Storage
 
   ) {
-    if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 3){
-      this.router.navigate(['/login']);
+    if(this.globalData.getIdUser() <= 0 || this.globalData.getUserAccessLevel() > 3){
+      this.router.navigate(['/home']);
     }
     /* this.id_controle = 1;
     this.nombre_photo = 1;
@@ -579,8 +580,13 @@ export class PhotoPage implements OnInit {
     this.globalData.setIpAddress("");
     this.globalData.setNombrePhoto(0);
     this.globalData.setListePhoto([]);
+    this.globalData.setUserAccessLevel(10);
     this.router.navigate(['/login']);
     //this.platform.exitApp();
     App.exitApp();
+  }
+
+  ionViewWillEnter(){
+    this.globalData.setShowMenu(this.show_menu);
   }
 }

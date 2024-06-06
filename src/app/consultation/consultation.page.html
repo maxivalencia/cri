@@ -7,16 +7,11 @@
       <ion-title class="ion-no-border" no-border>
         <p class="header-style" class="ion-no-border" no-border>
           <ion-row class="ion-no-border text-centre" no-border>
-            <ion-col text-left class="ion-no-border" no-border>
-              <img class="header_logo" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-left>
-            </ion-col>
             <ion-col text-center class="ion-no-border text-centre" no-border>
               <p color="azure" class="text-color text-header">CONSULTER<br>VISITE</p>
             </ion-col>
             <ion-col text-right class="ion-no-border header_button" no-border>
-              <ion-button class="header_button" color="primary" (click)="deconnecterClick()" icon-only float-right>
-                <ion-icon name="exit-outline"></ion-icon>
-              </ion-button>
+              <img class="header_logo_right" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-right>
             </ion-col>
           </ion-row>
         </p>
@@ -31,7 +26,7 @@
         <ion-icon name="search-outline"></ion-icon>
       </ion-button>
     </ion-item>
-      
+
     <div *ngIf="content_visite_visibility">
       <div *ngFor="let result of resultat">
         <ion-segment (ionChange)="visiteTabChanged($event)" value="visite">
@@ -247,7 +242,7 @@
         </ion-list>
       </div>
     </div>
-    
+
     <ion-item></ion-item>
     <ion-item></ion-item>
   </ion-content>

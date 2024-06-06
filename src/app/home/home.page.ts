@@ -22,7 +22,7 @@ import { App } from '@capacitor/app';
 /* @Injectable() */
 export class HomePage implements OnInit {
 
-  access_level = 10;
+  access_level : number = 10;
 
   anomalies: any;
   papiers: any;
@@ -47,6 +47,7 @@ export class HomePage implements OnInit {
 
   showCalendar = false;
   showCalendarFin = false;
+  show_menu = true;
 
   constructor(
     public http: HttpClient,
@@ -54,9 +55,10 @@ export class HomePage implements OnInit {
     private router: Router,
     public platform: Platform
   ) {
-    if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 4){
+    if(this.globalData.getIdUser() <= 0 || this.globalData.getUserAccessLevel() > 4){
       this.router.navigate(['/login']);
     }
+    this.access_level = this.globalData.getUserAccessLevel();
   }
 
 
@@ -143,12 +145,13 @@ export class HomePage implements OnInit {
     });
   }
 
-  public deconnecterClick(){
+  public quitterClick(){
     this.globalData.setIdUser(0);
     this.globalData.setIdControle(0);
     this.globalData.setIpAddress("");
     this.globalData.setNombrePhoto(0);
     this.globalData.setListePhoto([]);
+    this.globalData.setUserAccessLevel(10);
     this.router.navigate(['/login']);
     //this.platform.exitApp();
     App.exitApp();
@@ -187,5 +190,23 @@ export class HomePage implements OnInit {
 
   estControleur(): boolean {
     return this.access_level <= 3;
+  }
+
+  ionViewWillEnter(){
+    this.access_level = this.globalData.getUserAccessLevel()
+    this.globalData.setShowMenu(this.show_menu);
+    /* console.log(this.globalData.getUserAccessLevel());
+    this.access_level = 0;
+    console.log(this.access_level); */
+  }
+
+  public deconnecterClick(){
+    this.globalData.setIdUser(0);
+    this.globalData.setIdControle(0);
+    this.globalData.setIpAddress("");
+    this.globalData.setNombrePhoto(0);
+    this.globalData.setListePhoto([]);
+    this.globalData.setUserAccessLevel(10);
+    this.router.navigate(['/login']);
   }
 }

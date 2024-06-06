@@ -46,6 +46,7 @@ export class InopinePage implements OnInit, AfterViewInit {
 
   showCalendar = false;
   showCalendarFin = false;
+  show_menu = true;
 
   constructor(
     public http: HttpClient,
@@ -53,8 +54,8 @@ export class InopinePage implements OnInit, AfterViewInit {
     private router: Router,
     public platform: Platform
   ) {
-    if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 3){
-      this.router.navigate(['/login']);
+    if(this.globalData.getIdUser() <= 0 || this.globalData.getUserAccessLevel() > 3){
+      this.router.navigate(['/home']);
     }
   }
 
@@ -168,6 +169,7 @@ export class InopinePage implements OnInit, AfterViewInit {
     this.globalData.setIpAddress("");
     this.globalData.setNombrePhoto(0);
     this.globalData.setListePhoto([]);
+    this.globalData.setUserAccessLevel(10);
     this.router.navigate(['/login']);
     //this.platform.exitApp();
     App.exitApp();
@@ -202,6 +204,7 @@ export class InopinePage implements OnInit, AfterViewInit {
 
   ionViewWillEnter(){
     this.cleanData();
+    this.globalData.setShowMenu(this.show_menu);
   }
 
   cleanData(){

@@ -47,6 +47,7 @@ export class PhotocontrePage implements OnInit {
   //photos : Photo;
 
   images : LocalFile[] = [];
+  show_menu = true;
 
   constructor(
     public http: HttpClient,
@@ -55,8 +56,8 @@ export class PhotocontrePage implements OnInit {
     private platform: Platform,
     private loadingCtrl: LoadingController,
     private storage: Storage) {
-      if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 3){
-        this.router.navigate(['/login']);
+      if(this.globalData.getIdUser() <= 0 || this.globalData.getUserAccessLevel() > 3){
+        this.router.navigate(['/home']);
       }
       this.id_controle = this.globalData.getIdControle();
       this.nombre_photo = this.globalData.getNombrePhoto()==1?0:this.globalData.getNombrePhoto();
@@ -401,6 +402,7 @@ export class PhotocontrePage implements OnInit {
     this.globalData.setIpAddress("");
     this.globalData.setNombrePhoto(0);
     this.globalData.setListePhoto([]);
+    this.globalData.setUserAccessLevel(10);
     this.router.navigate(['/login']);
     //this.platform.exitApp();
     App.exitApp();
@@ -415,5 +417,9 @@ export class PhotocontrePage implements OnInit {
     this.adresse = adresse.trim();
     this.globalData.setIpAddress(this.adresse + '/cri/');
     const resultat = await this.http.get(this.adresse + "/cri/regulatisation/contre?user_id=" + this.globalData.getIdUser() +"&controle_id=" + this.globalData.getIdControle()).toPromise();
+  }
+
+  ionViewWillEnter(){
+    this.globalData.setShowMenu(this.show_menu);
   }
 }

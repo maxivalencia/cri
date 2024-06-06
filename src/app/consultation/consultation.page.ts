@@ -19,6 +19,7 @@ export class ConsultationPage implements OnInit {
   resultat : any;
   content_visite_visibility = "";
   public segment_visite: string = "visite";
+  show_menu = true;
 
   constructor(
     public http: HttpClient,
@@ -26,8 +27,8 @@ export class ConsultationPage implements OnInit {
     public globalData: GlobalData,
     private storage: Storage
   ) {
-    if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 4){
-      this.router.navigate(['/login']);
+    if(this.globalData.getIdUser() <= 0 || this.globalData.getUserAccessLevel() > 4){
+      this.router.navigate(['/home']);
     }
   }
 
@@ -41,6 +42,7 @@ export class ConsultationPage implements OnInit {
     this.globalData.setIpAddress("");
     this.globalData.setNombrePhoto(0);
     this.globalData.setListePhoto([]);
+    this.globalData.setUserAccessLevel(10);
     this.router.navigate(['/login']);
     //this.platform.exitApp();
     App.exitApp();
@@ -78,6 +80,7 @@ export class ConsultationPage implements OnInit {
 
   ionViewWillEnter(){
     this.cleanData();
+    this.globalData.setShowMenu(this.show_menu);
   }
 
   cleanData(){

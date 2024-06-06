@@ -49,6 +49,7 @@ export class ContrePage implements OnInit {
   image_url = "https://dgsrmada.com:2057/uploads/photo/";
   photo_liste : any;
   anomalie_liste : any;
+  show_menu = true;
 
   constructor(
     public http: HttpClient,
@@ -56,8 +57,8 @@ export class ContrePage implements OnInit {
     public globalData: GlobalData,
     private storage: Storage
   ) {
-    if(this.globalData.getIdUser() == 0 && this.globalData.getUserAccessLevel() <= 3){
-      this.router.navigate(['/login']);
+    if(this.globalData.getIdUser() <= 0 || this.globalData.getUserAccessLevel() > 3){
+      this.router.navigate(['/home']);
     }
   }
 
@@ -133,6 +134,7 @@ export class ContrePage implements OnInit {
     this.globalData.setIpAddress("");
     this.globalData.setNombrePhoto(0);
     this.globalData.setListePhoto([]);
+    this.globalData.setUserAccessLevel(10);
     this.router.navigate(['/login']);
     //this.platform.exitApp();
     App.exitApp();
@@ -152,6 +154,7 @@ export class ContrePage implements OnInit {
 
   ionViewWillEnter(){
     this.cleanData();
+    this.globalData.setShowMenu(this.show_menu);
   }
 
   cleanData(){

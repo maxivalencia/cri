@@ -23,7 +23,7 @@ apksigner sign --ks "dgsrmada.jks" --ks-key-alias dgsr-alias --in "F:\ionic\cri\
 apksigner verify -verbose "F:\ionic\cri\android\app\build\outputs\apk\debug\i-Tsirika.apk"
 
 
-zipalign -p -f -v 4 "L:\ionic\cri\android\app\build\outputs\apk\debug\app-debug.apk" "L:\ionic\cri\android\app\build\outputs\apk\debug\app-debug_zipaligned.apk"
+C:\android\build-tools\34.0.0\zipalign -p -f -v 4 "L:\ionic\cri\android\app\build\outputs\apk\debug\app-debug.apk" "L:\ionic\cri\android\app\build\outputs\apk\debug\app-debug_zipaligned.apk"
 apksigner sign --ks "dgsrmada.jks" --ks-key-alias dgsr-alias --in "L:\ionic\cri\android\app\build\outputs\apk\debug\app-debug_zipaligned.apk" --out "L:\ionic\cri\android\app\build\outputs\apk\debug\i-Tsirika.apk"
 apksigner verify -verbose "L:\ionic\cri\android\app\build\outputs\apk\debug\i-Tsirika.apk"
 
