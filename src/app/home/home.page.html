@@ -1,53 +1,52 @@
 <div class="ion-page" id="main-content">
-  <ion-header [translucent]="true" class="ion-no-border" no-border>
-    <ion-toolbar class="ion-no-border" no-border>
-      <ion-buttons slot="start" class="text-color">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title class="ion-no-border" no-border>
-        <p class="header-style" class="ion-no-border" no-border>
-          <ion-row class="ion-no-border text-centre" no-border>
-            <ion-col text-center class="ion-no-border text-centre" no-border>
-              <p color="azure" class="text-color text-header">I-TSIRIKA</p>
-            </ion-col>
-            <ion-col text-right class="ion-no-border header_button" no-border>
-              <img class="header_logo_right" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-right>
-            </ion-col>
-          </ion-row>
-        </p>
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <ion-content [fullscreen]="true">
+    <ion-header [translucent]="true" class="ion-no-border" no-border>
+      <ion-toolbar class="ion-no-border" no-border>
+        <ion-buttons slot="start" class="text-color">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title class="ion-no-border" no-border>
+          <p class="header-style" class="ion-no-border" no-border>
+            <ion-row class="ion-no-border text-centre" no-border>
+              <ion-col text-center class="ion-no-border text-centre" no-border>
+                <p color="azure" class="text-color text-header">i-Tsirika</p>
+              </ion-col>
+              <ion-col text-right class="ion-no-border header_button" no-border>
+                <img class="header_logo_right" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-right>
+              </ion-col>
+            </ion-row>
+          </p>
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
 
     <ion-list>
       <ion-item detail="false" button routerLink="/consultation" *ngIf="estUtilisateur()">
-        <ion-icon slot="end" name="construct-outline" class="icon_button"></ion-icon>
+        <ion-icon slot="end" name="construct-outline" class="icon_button" color="primary"></ion-icon>
         <ion-label>Consultation véhicule</ion-label>
       </ion-item>
       <ion-item detail="false" button routerLink="/inopine" *ngIf="estControleur()">
-        <ion-icon slot="end" name="hand-left-outline" class="icon_button"></ion-icon>
+        <ion-icon slot="end" name="hand-left-outline" class="icon_button" color="secondary"></ion-icon>
         <ion-label>Controle inopiné</ion-label>
       </ion-item>
       <ion-item detail="false" button routerLink="/contre" *ngIf="estControleur()">
-        <ion-icon slot="end" name="medkit-outline" class="icon_button"></ion-icon>
+        <ion-icon slot="end" name="medkit-outline" class="icon_button" color="tertiary"></ion-icon>
         <ion-label>Contre inopiné</ion-label>
       </ion-item>
       <ion-item detail="false" button routerLink="/qrcode" *ngIf="estUtilisateur()">
-        <ion-icon slot="end" name="qr-code-outline" class="icon_button"></ion-icon>
+        <ion-icon slot="end" name="qr-code-outline" class="icon_button" color="dark"></ion-icon>
         <ion-label>Scan QR-Code</ion-label>
       </ion-item>
       <ion-item detail="false" button routerLink="/apropos" *ngIf="estUtilisateur()">
-        <ion-icon slot="end" name="accessibility-outline" class="icon_button"></ion-icon>
+        <ion-icon slot="end" name="accessibility-outline" class="icon_button" color="medium"></ion-icon>
         <ion-label>A propos</ion-label>
       </ion-item>
       <ion-item detail="false" button (click)="deconnecterClick()" *ngIf="estUtilisateur()">
-        <ion-icon slot="end" name="warning" class="icon_button"></ion-icon>
+        <ion-icon slot="end" name="warning" class="icon_button" color="warning"></ion-icon>
         <ion-label>Déconnecter l'utilisateur</ion-label>
       </ion-item>
       <ion-item detail="false" button (click)="quitterClick()">
-        <ion-icon slot="end" name="exit-outline" class="icon_button"></ion-icon>
+        <ion-icon slot="end" name="exit-outline" class="icon_button" color="danger"></ion-icon>
         <ion-label>Quitter l'application</ion-label>
       </ion-item>
     </ion-list>

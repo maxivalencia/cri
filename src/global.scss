@@ -26,11 +26,11 @@
 @import "@ionic/angular/css/flex-utils.css";
 
 :root {
-  --ion-background-color: #000000;
-  --ion-text-color: #ffffff;
+  --ion-background-color: rgb(100, 100, 100);
+  --ion-text-color: rgb(100, 100, 100);
 
-  --ion-color-primary: #ffffff;
-  --ion-color-primary-contrast: #000000;
+  --ion-color-primary: rgb(100, 100, 100);
+  --ion-color-primary-contrast: rgb(100, 100, 100);
 }
 
 body {
@@ -78,7 +78,13 @@ body.qr-code {
 .header_logo_left {
   font-size: 50px;
   text-align: left;
+  --text-align: left;
   align-content: left;
+  align-items: left;
+  --align-items: left;
+  --text-align: left;
+  --align-content: left;
+  --align : "left";
   display: block;
   width: 50px;
   height: 50px;
@@ -93,7 +99,13 @@ body.qr-code {
 .header_logo_right {
   font-size: 50px;
   text-align: right;
+  --text-align: right;
   align-content: right;
+  align-items: right;
+  --align-items: right;
+  --text-align: right;
+  --align-content: right;
+  --align : "right";
   display: block;
   width: 50px;
   height: 50px;
@@ -155,6 +167,18 @@ body.qr-code {
   text-align: center;
   align-items: center;
   justify-content: center;
+}
+
+.text-left{
+  text-align: left;
+  align-items: left;
+  justify-content: left;
+}
+
+.text-right{
+  text-align: right;
+  align-items: right;
+  justify-content: right;
 }
 
 .login_logo {
@@ -275,10 +299,6 @@ ion-footer {
   --color: var(--ion-text-color);
   background: var(--ion-background-color);
   --background: var(--ion-background-color);
-}
-
-ion-header::after {
-  border: none !important;
 }
 
 .menu_logo {
@@ -417,10 +437,22 @@ ion-menu{
 
 .visite-background-inapte {
   --background: red; /* Changer la couleur de fond personnalisée ici */
-  --colot: black;
+  --color: black;
 }
 
 .visite-background-apte {
   --background: green; /* Changer la couleur de fond personnalisée ici */
-  --colot: black;
+  --color: black;
 }
+
+/* Appliquer le style personnalisé ici */
+ion-input .label-text {
+  color: rgb(62, 112, 219) !important;
+}
+
+/* ion-content {
+  --background : rgb(100, 100, 100);
+  background: rgb(100, 100, 100);
+  background-color: rgb(100, 100, 100);
+  --background-color:rgb(100, 100, 100);
+} */

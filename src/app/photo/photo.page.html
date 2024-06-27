@@ -1,27 +1,26 @@
 <div class="ion-page" id="main-content">
-  <ion-header [translucent]="true" class="ion-no-border" no-border>
-    <ion-toolbar class="ion-no-border" no-border>
-      <ion-buttons slot="start" class="text-color">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title class="ion-no-border" no-border>
-        <p class="header-style" class="ion-no-border" no-border>
-          <ion-row class="ion-no-border" no-border>
-            <ion-col text-center class="ion-no-border text-centre" no-border>
-              <p color="azure" class="text-color text-header">PHOTOS<br>
-              ANOMALIES<br>
-              CONSTATER<br></p>
-            </ion-col>
-            <ion-col text-right class="ion-no-border" no-border>
-              <img class="header_logo_right" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-right>
-            </ion-col>
-          </ion-row>
-        </p>
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <ion-content [fullscreen]="true">
+    <ion-header [translucent]="true" class="ion-no-border" no-border>
+      <ion-toolbar class="ion-no-border" no-border>
+        <ion-buttons slot="start" class="text-color">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title class="ion-no-border" no-border>
+          <p class="header-style" class="ion-no-border" no-border>
+            <ion-row class="ion-no-border" no-border>
+              <ion-col text-center class="ion-no-border text-centre" no-border>
+                <p color="azure" class="text-color text-header">PHOTOS<br>
+                ANOMALIES<br>
+                CONSTATER<br></p>
+              </ion-col>
+              <ion-col text-right class="ion-no-border" no-border>
+                <img class="header_logo_right" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-right>
+              </ion-col>
+            </ion-row>
+          </p>
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
     <br />
 
     <div class="titre_photo">Photo à prendre sur le véhicule :<br />{{ photo_titre }}</div>
