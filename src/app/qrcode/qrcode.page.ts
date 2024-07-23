@@ -22,6 +22,10 @@ export class QrcodePage implements OnInit, OnDestroy {
   content_visite_visibility = "";
   content_reception_visibility = "";
   content_constatation_visibility = "";
+  content_authenticite_visibility = "";
+  content_speciale_visibility = "";
+  content_caracteristique_visibility = "";
+  content_vente_visibility = "";
   adresse = "";
   qrResultVisite : any;
   qrResultReception : any;
@@ -29,6 +33,10 @@ export class QrcodePage implements OnInit, OnDestroy {
   public segment_visite: string = "visite";
   public segment_reception: string = "reception";
   public segment_constatation: string = "constatation";
+  public segment_authenticite: string = "authenticite";
+  public segment_speciale: string = "speciale";
+  public segment_caracteristique: string = "caracteristique";
+  public segment_vente: string = "vente";
   show_menu = true;
 
   // information visite
@@ -46,6 +54,11 @@ export class QrcodePage implements OnInit, OnDestroy {
   anomalie = "";
   imprimer = "";
   isVisiteApte: boolean = false;
+  // autre information pour les autres services
+  option_vitre_fumee = "";
+  validite_vitre_fumee= "";
+  itineraire_speciale = "";
+  validite_speciale = "";
   // information véhicule
   immatriculation = "";
   proprietaire = "";
@@ -333,6 +346,10 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.content_visite_visibility = this.qrResult["operation"];
           this.content_reception_visibility = "";
           this.content_constatation_visibility = "";
+          this.content_authenticite_visibility = "";
+          this.content_speciale_visibility = "";
+          this.content_caracteristique_visibility = "";
+          this.content_vente_visibility = "";
           break;
         }
         case "RT": {
@@ -373,6 +390,10 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.content_visite_visibility = "";
           this.content_reception_visibility = this.qrResult["operation"];
           this.content_constatation_visibility = "";
+          this.content_authenticite_visibility = "";
+          this.content_speciale_visibility = "";
+          this.content_caracteristique_visibility = "";
+          this.content_vente_visibility = "";
           break;
         }
         case "CAD": {
@@ -460,6 +481,202 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.content_visite_visibility = "";
           this.content_reception_visibility = "";
           this.content_constatation_visibility = this.qrResult["operation"];
+          this.content_authenticite_visibility = "";
+          this.content_speciale_visibility = "";
+          this.content_caracteristique_visibility = "";
+          this.content_vente_visibility = "";
+          break;
+        }
+        case "AVF": {
+          const qrResultVisite: any = await this.getResultQrVisite().toPromise();
+          this.globalData.setVisite(qrResultVisite);
+          this.qrResultVisite = this.globalData.getVisite()[0];
+          // information autre service
+          this.numero_controle =  await this.qrResultVisite["numero_controle"];
+          this.centre = this.qrResultVisite["centre"];
+          this.secretaire = this.qrResultVisite["secretaire"];
+          this.verificateur = this.qrResultVisite["verificateur"];
+          this.date_visite = this.qrResultVisite["date_visite"];
+          this.date_expiration = this.qrResultVisite["date_expiration"];
+          this.utilisation = this.qrResultVisite["utilisation"];
+          this.option_vitre_fumee = this.qrResultVisite["option_vitre_fumee"];
+          this.validite_vitre_fumee= this.qrResultVisite["validite"];
+          // information véhicule
+          this.immatriculation = this.qrResultVisite["immatriculation"];
+          this.carrosserie = this.qrResultVisite["carrosserie"];
+          this.marque = this.qrResultVisite["marque"];
+          this.cylindre = this.qrResultVisite["cylindre"];
+          this.nombre_place_assises = this.qrResultVisite["nombre_place_assis"];
+          this.nombre_place_debout = this.qrResultVisite["nombre_place_debout"];
+          this.genre = this.qrResultVisite["genre"];
+          this.energie = this.qrResultVisite["source_energie"];
+          this.puissance = this.qrResultVisite["puissance"];
+          this.numero_de_serie = this.qrResultVisite["numero_serie"];
+          this.numero_moteur = this.qrResultVisite["numero_moteur"];
+          this.ptac = this.qrResultVisite["poids_total_a_charge"];
+          this.cu = this.qrResultVisite["charge_utile"];
+          this.pav = this.qrResultVisite["poids_a_vide"];
+          // information propriétaire
+          this.proprietaire = this.qrResultVisite["nom"] + ' ' + this.qrResultVisite["prenom"];
+          this.commune = this.qrResultVisite["commune"];
+          this.adresse_proprietaire = this.qrResultVisite["adresse"];
+          this.telephone = this.qrResultVisite["telephone"];
+          this.profession = this.qrResultVisite["profession"];
+          this.imprimer = this.qrResultVisite["imprimer"];
+
+          this.isVisiteApte = this.aptitude=='Apte'?true:false;
+
+          this.content_message_visibility = "";
+          this.content_visite_visibility = "";
+          this.content_reception_visibility = "";
+          this.content_constatation_visibility = "";
+          this.content_authenticite_visibility = this.qrResult["operation"];
+          this.content_speciale_visibility = "";
+          this.content_caracteristique_visibility = "";
+          this.content_vente_visibility = "";
+          break;
+        }
+        case "VTS": {
+          const qrResultVisite: any = await this.getResultQrVisite().toPromise();
+          this.globalData.setVisite(qrResultVisite);
+          this.qrResultVisite = this.globalData.getVisite()[0];
+          // information autre service
+          this.numero_controle =  await this.qrResultVisite["numero_controle"];
+          this.centre = this.qrResultVisite["centre"];
+          this.secretaire = this.qrResultVisite["secretaire"];
+          this.verificateur = this.qrResultVisite["verificateur"];
+          this.date_visite = this.qrResultVisite["date_visite"];
+          this.date_expiration = this.qrResultVisite["date_expiration"];
+          this.utilisation = this.qrResultVisite["utilisation"];
+          this.itineraire_speciale = this.qrResultVisite["itineraire"];
+          this.validite_speciale = this.qrResultVisite["validite"];
+          // information véhicule
+          this.immatriculation = this.qrResultVisite["immatriculation"];
+          this.carrosserie = this.qrResultVisite["carrosserie"];
+          this.marque = this.qrResultVisite["marque"];
+          this.cylindre = this.qrResultVisite["cylindre"];
+          this.nombre_place_assises = this.qrResultVisite["nombre_place_assis"];
+          this.nombre_place_debout = this.qrResultVisite["nombre_place_debout"];
+          this.genre = this.qrResultVisite["genre"];
+          this.energie = this.qrResultVisite["source_energie"];
+          this.puissance = this.qrResultVisite["puissance"];
+          this.numero_de_serie = this.qrResultVisite["numero_serie"];
+          this.numero_moteur = this.qrResultVisite["numero_moteur"];
+          this.ptac = this.qrResultVisite["poids_total_a_charge"];
+          this.cu = this.qrResultVisite["charge_utile"];
+          this.pav = this.qrResultVisite["poids_a_vide"];
+          // information propriétaire
+          this.proprietaire = this.qrResultVisite["nom"] + ' ' + this.qrResultVisite["prenom"];
+          this.commune = this.qrResultVisite["commune"];
+          this.adresse_proprietaire = this.qrResultVisite["adresse"];
+          this.telephone = this.qrResultVisite["telephone"];
+          this.profession = this.qrResultVisite["profession"];
+          this.imprimer = this.qrResultVisite["imprimer"];
+
+          this.isVisiteApte = this.aptitude=='Apte'?true:false;
+
+          this.content_message_visibility = "";
+          this.content_visite_visibility = "";
+          this.content_reception_visibility = "";
+          this.content_constatation_visibility = "";
+          this.content_authenticite_visibility = "";
+          this.content_speciale_visibility = this.qrResult["operation"];
+          this.content_caracteristique_visibility = "";
+          this.content_vente_visibility = "";
+          break;
+        }
+        case "CAR": {
+          const qrResultVisite: any = await this.getResultQrVisite().toPromise();
+          this.globalData.setVisite(qrResultVisite);
+          this.qrResultVisite = this.globalData.getVisite()[0];
+          // information autre service
+          this.numero_controle =  await this.qrResultVisite["numero_controle"];
+          this.centre = this.qrResultVisite["centre"];
+          this.secretaire = this.qrResultVisite["secretaire"];
+          this.verificateur = this.qrResultVisite["verificateur"];
+          this.date_visite = this.qrResultVisite["date_visite"];
+          this.date_expiration = this.qrResultVisite["date_expiration"];
+          this.utilisation = this.qrResultVisite["utilisation"];
+          // information véhicule
+          this.immatriculation = this.qrResultVisite["immatriculation"];
+          this.carrosserie = this.qrResultVisite["carrosserie"];
+          this.marque = this.qrResultVisite["marque"];
+          this.cylindre = this.qrResultVisite["cylindre"];
+          this.nombre_place_assises = this.qrResultVisite["nombre_place_assis"];
+          this.nombre_place_debout = this.qrResultVisite["nombre_place_debout"];
+          this.genre = this.qrResultVisite["genre"];
+          this.energie = this.qrResultVisite["source_energie"];
+          this.puissance = this.qrResultVisite["puissance"];
+          this.numero_de_serie = this.qrResultVisite["numero_serie"];
+          this.numero_moteur = this.qrResultVisite["numero_moteur"];
+          this.ptac = this.qrResultVisite["poids_total_a_charge"];
+          this.cu = this.qrResultVisite["charge_utile"];
+          this.pav = this.qrResultVisite["poids_a_vide"];
+          // information propriétaire
+          this.proprietaire = this.qrResultVisite["nom"] + ' ' + this.qrResultVisite["prenom"];
+          this.commune = this.qrResultVisite["commune"];
+          this.adresse_proprietaire = this.qrResultVisite["adresse"];
+          this.telephone = this.qrResultVisite["telephone"];
+          this.profession = this.qrResultVisite["profession"];
+          this.imprimer = this.qrResultVisite["imprimer"];
+
+          this.isVisiteApte = this.aptitude=='Apte'?true:false;
+
+          this.content_message_visibility = "";
+          this.content_visite_visibility = "";
+          this.content_reception_visibility = "";
+          this.content_constatation_visibility = "";
+          this.content_authenticite_visibility = "";
+          this.content_speciale_visibility = "";
+          this.content_caracteristique_visibility = this.qrResult["operation"];
+          this.content_vente_visibility = "";
+          break;
+        }
+        case "VS": {
+          const qrResultVisite: any = await this.getResultQrVisite().toPromise();
+          this.globalData.setVisite(qrResultVisite);
+          this.qrResultVisite = this.globalData.getVisite()[0];
+          // information autre service
+          this.numero_controle =  await this.qrResultVisite["numero_controle"];
+          this.centre = this.qrResultVisite["centre"];
+          this.secretaire = this.qrResultVisite["secretaire"];
+          this.verificateur = this.qrResultVisite["verificateur"];
+          this.date_visite = this.qrResultVisite["date_visite"];
+          this.date_expiration = this.qrResultVisite["date_expiration"];
+          this.utilisation = this.qrResultVisite["utilisation"];
+          // information véhicule
+          this.immatriculation = this.qrResultVisite["immatriculation"];
+          this.carrosserie = this.qrResultVisite["carrosserie"];
+          this.marque = this.qrResultVisite["marque"];
+          this.cylindre = this.qrResultVisite["cylindre"];
+          this.nombre_place_assises = this.qrResultVisite["nombre_place_assis"];
+          this.nombre_place_debout = this.qrResultVisite["nombre_place_debout"];
+          this.genre = this.qrResultVisite["genre"];
+          this.energie = this.qrResultVisite["source_energie"];
+          this.puissance = this.qrResultVisite["puissance"];
+          this.numero_de_serie = this.qrResultVisite["numero_serie"];
+          this.numero_moteur = this.qrResultVisite["numero_moteur"];
+          this.ptac = this.qrResultVisite["poids_total_a_charge"];
+          this.cu = this.qrResultVisite["charge_utile"];
+          this.pav = this.qrResultVisite["poids_a_vide"];
+          // information propriétaire
+          this.proprietaire = this.qrResultVisite["nom"] + ' ' + this.qrResultVisite["prenom"];
+          this.commune = this.qrResultVisite["commune"];
+          this.adresse_proprietaire = this.qrResultVisite["adresse"];
+          this.telephone = this.qrResultVisite["telephone"];
+          this.profession = this.qrResultVisite["profession"];
+          this.imprimer = this.qrResultVisite["imprimer"];
+
+          this.isVisiteApte = this.aptitude=='Apte'?true:false;
+
+          this.content_message_visibility = "";
+          this.content_visite_visibility = "";
+          this.content_reception_visibility = "";
+          this.content_constatation_visibility = "";
+          this.content_authenticite_visibility = "";
+          this.content_speciale_visibility = "";
+          this.content_caracteristique_visibility = "";
+          this.content_vente_visibility = this.qrResult["operation"];
           break;
         }
         default: {

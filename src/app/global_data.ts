@@ -16,6 +16,10 @@ export class GlobalData {
   private visite: any;
   private reception: any;
   private constatation: any;
+  private authenticite: any;
+  private visite_technique_speciale: any;
+  private caracteristique: any;
+  private vente_speciale: any;
   private show_menu: boolean = true;
 
   setShowMenu(show_menu:boolean) {
@@ -104,5 +108,37 @@ export class GlobalData {
 
   getTypeOperation():string{
       return this.type_operation;
+  }
+
+  setAuthenticite(authenticite:any) {
+    this.authenticite = authenticite;
+  }
+
+  getAuthenticite():any{
+      return this.authenticite;
+  }
+
+  setVisiteTechniqueSpeciale(visite_technique_speciale:any) {
+    this.visite_technique_speciale = visite_technique_speciale;
+  }
+
+  getVisiteTechniqueSpeciale():any{
+      return this.visite_technique_speciale;
+  }
+
+  setCaracteristique(caracteristique:any) {
+    this.caracteristique = caracteristique;
+  }
+
+  getCaracteristique():any{
+      return this.caracteristique;
+  }
+
+  setVenteSpeciale(vente_speciale:any) {
+    this.vente_speciale = vente_speciale;
+  }
+
+  getVenteSpeciale():any{
+      return this.vente_speciale;
   }
 }
