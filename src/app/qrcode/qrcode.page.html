@@ -888,6 +888,770 @@
       </ion-list>
     </div>
 
+    <div *ngIf="content_authenticite_visibility">
+      <ion-segment (ionChange)="authenticiteTabChanged($event)" value="authenticite">
+        <ion-segment-button value="authenticite">
+          <ion-label>
+            Authenticite
+          </ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="vehicule">
+          <ion-label>
+            Véhicule
+          </ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="proprietaire">
+          <ion-label>
+            Propriétaire
+          </ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      <!-- affichage information authenticite vitre fumee -->
+      <ion-list *ngIf="segment_authenticite === 'authenticite'">
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Numéro d'immatriculation : </ion-text><br>
+            {{ immatriculation }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Numéro de controle : </ion-text><br>
+            {{ numero_controle }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Imprimer technique associer : </ion-text><br>
+            {{ imprimer }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Centre : </ion-text><br>
+            {{ centre }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Vérificateur : </ion-text><br>
+            {{ verificateur }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Sécretaire : </ion-text><br>
+            {{ secretaire }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Date de contrôle : </ion-text><br>
+            {{ date_visite }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Utilisation : </ion-text><br>
+            {{ utilisation }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Option vitre fumée : </ion-text><br>
+            {{ option_vitre_fumee }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Validité : </ion-text><br>
+            {{ validite_vitre_fumee }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <!-- affichage information véhicule -->
+      <ion-list *ngIf="segment_authenticite === 'vehicule'">
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Numéro dans la série du type : </ion-text><br>
+            {{ numero_de_serie }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Numéro moteur : </ion-text><br>
+            {{ numero_moteur }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Puissance : </ion-text><br>
+            {{ puissance }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Cylindre</ion-text><br>
+            {{ cylindre }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Source d'énergie : </ion-text><br>
+            {{ energie }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Genre : </ion-text><br>
+            {{ genre }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Marque : </ion-text><br>
+            {{ marque }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Carrossérie : </ion-text><br>
+            {{ carrosserie }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Nombre de place assise : </ion-text><br>
+            {{ nombre_place_assises }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Nombre de place debout : </ion-text><br>
+            {{ nombre_place_debout }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Poids à vide : </ion-text><br>
+            {{ pav }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Charge utile : </ion-text><br>
+            {{ cu }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Poids total à charge : </ion-text><br>
+            {{ ptac }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <!-- affichage information propriétaire -->
+      <ion-list *ngIf="segment_authenticite === 'proprietaire'">
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Nom : </ion-text><br>
+            {{ proprietaire }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Adresse : </ion-text><br>
+            {{ adresse_proprietaire }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Téléphone : </ion-text><br>
+            {{ telephone }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Profession : </ion-text><br>
+            {{ profession }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Commune : </ion-text><br>
+            {{ commune }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div *ngIf="content_speciale_visibility">
+      <ion-segment (ionChange)="specialTabChanged($event)" value="speciale">
+        <ion-segment-button value="speciale">
+          <ion-label>
+            Spéciale
+          </ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="vehicule">
+          <ion-label>
+            Véhicule
+          </ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="proprietaire">
+          <ion-label>
+            Propriétaire
+          </ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      <!-- affichage information visite technique spéciale -->
+      <ion-list *ngIf="segment_speciale === 'speciale'">
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Numéro d'immatriculation : </ion-text><br>
+            {{ immatriculation }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Numéro de controle : </ion-text><br>
+            {{ numero_controle }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Imprimer technique associer : </ion-text><br>
+            {{ imprimer }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Centre : </ion-text><br>
+            {{ centre }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Vérificateur : </ion-text><br>
+            {{ verificateur }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Sécretaire : </ion-text><br>
+            {{ secretaire }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Date de controle : </ion-text><br>
+            {{ date_visite }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Utilisation : </ion-text><br>
+            {{ utilisation }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Itinéraire : </ion-text><br>
+            {{ itineraire_speciale }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Validité : </ion-text><br>
+            {{ validite_speciale }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <!-- affichage information véhicule -->
+      <ion-list *ngIf="segment_speciale === 'vehicule'">
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Numéro dans la série du type : </ion-text><br>
+            {{ numero_de_serie }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Numéro moteur : </ion-text><br>
+            {{ numero_moteur }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Puissance : </ion-text><br>
+            {{ puissance }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Cylindre</ion-text><br>
+            {{ cylindre }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Source d'énergie : </ion-text><br>
+            {{ energie }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Genre : </ion-text><br>
+            {{ genre }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Marque : </ion-text><br>
+            {{ marque }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Carrossérie : </ion-text><br>
+            {{ carrosserie }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Nombre de place assise : </ion-text><br>
+            {{ nombre_place_assises }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Nombre de place debout : </ion-text><br>
+            {{ nombre_place_debout }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Poids à vide : </ion-text><br>
+            {{ pav }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Charge utile : </ion-text><br>
+            {{ cu }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Poids total à charge : </ion-text><br>
+            {{ ptac }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <!-- affichage information propriétaire -->
+      <ion-list *ngIf="segment_speciale === 'proprietaire'">
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Nom : </ion-text><br>
+            {{ proprietaire }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Adresse : </ion-text><br>
+            {{ adresse_proprietaire }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Téléphone : </ion-text><br>
+            {{ telephone }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Profession : </ion-text><br>
+            {{ profession }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Commune : </ion-text><br>
+            {{ commune }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div *ngIf="content_caracteristique_visibility">
+      <ion-segment (ionChange)="caracteristiqueTabChanged($event)" value="caracteristique">
+        <ion-segment-button value="caracteristique">
+          <ion-label>
+            Caractéristique
+          </ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="vehicule">
+          <ion-label>
+            Véhicule
+          </ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="proprietaire">
+          <ion-label>
+            Propriétaire
+          </ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      <!-- affichage information caractéristique -->
+      <ion-list *ngIf="segment_caracteristique === 'caracteristique'">
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Numéro d'immatriculation : </ion-text><br>
+            {{ immatriculation }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Numéro de controle : </ion-text><br>
+            {{ numero_controle }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Imprimer technique associer : </ion-text><br>
+            {{ imprimer }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Centre : </ion-text><br>
+            {{ centre }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Vérificateur : </ion-text><br>
+            {{ verificateur }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Sécretaire : </ion-text><br>
+            {{ secretaire }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Date de visite : </ion-text><br>
+            {{ date_visite }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Utilisation : </ion-text><br>
+            {{ utilisation }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <!-- affichage information véhicule -->
+      <ion-list *ngIf="segment_caracteristique === 'vehicule'">
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Numéro dans la série du type : </ion-text><br>
+            {{ numero_de_serie }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Numéro moteur : </ion-text><br>
+            {{ numero_moteur }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Puissance : </ion-text><br>
+            {{ puissance }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Cylindre</ion-text><br>
+            {{ cylindre }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Source d'énergie : </ion-text><br>
+            {{ energie }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Genre : </ion-text><br>
+            {{ genre }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Marque : </ion-text><br>
+            {{ marque }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Carrossérie : </ion-text><br>
+            {{ carrosserie }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Nombre de place assise : </ion-text><br>
+            {{ nombre_place_assises }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Nombre de place debout : </ion-text><br>
+            {{ nombre_place_debout }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Poids à vide : </ion-text><br>
+            {{ pav }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Charge utile : </ion-text><br>
+            {{ cu }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Poids total à charge : </ion-text><br>
+            {{ ptac }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <!-- affichage information propriétaire -->
+      <ion-list *ngIf="segment_caracteristique === 'proprietaire'">
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Nom : </ion-text><br>
+            {{ proprietaire }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Adresse : </ion-text><br>
+            {{ adresse_proprietaire }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Téléphone : </ion-text><br>
+            {{ telephone }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Profession : </ion-text><br>
+            {{ profession }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Commune : </ion-text><br>
+            {{ commune }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div *ngIf="content_vente_visibility">
+      <ion-segment (ionChange)="venteTabChanged($event)" value="vente">
+        <ion-segment-button value="vente">
+          <ion-label>
+            Vente
+          </ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="vehicule">
+          <ion-label>
+            Véhicule
+          </ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="proprietaire">
+          <ion-label>
+            Propriétaire
+          </ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      <!-- affichage information vente spéciale -->
+      <ion-list *ngIf="segment_vente === 'vente'">
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Numéro d'immatriculation : </ion-text><br>
+            {{ immatriculation }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Numéro de controle : </ion-text><br>
+            {{ numero_controle }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Imprimer technique associer : </ion-text><br>
+            {{ imprimer }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Centre : </ion-text><br>
+            {{ centre }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Vérificateur : </ion-text><br>
+            {{ verificateur }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Sécretaire : </ion-text><br>
+            {{ secretaire }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Date de visite : </ion-text><br>
+            {{ date_visite }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Utilisation : </ion-text><br>
+            {{ utilisation }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <!-- affichage information véhicule -->
+      <ion-list *ngIf="segment_vente === 'vehicule'">
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Numéro dans la série du type : </ion-text><br>
+            {{ numero_de_serie }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Numéro moteur : </ion-text><br>
+            {{ numero_moteur }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Puissance : </ion-text><br>
+            {{ puissance }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Cylindre</ion-text><br>
+            {{ cylindre }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Source d'énergie : </ion-text><br>
+            {{ energie }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Genre : </ion-text><br>
+            {{ genre }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Marque : </ion-text><br>
+            {{ marque }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Carrossérie : </ion-text><br>
+            {{ carrosserie }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Nombre de place assise : </ion-text><br>
+            {{ nombre_place_assises }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Nombre de place debout : </ion-text><br>
+            {{ nombre_place_debout }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Poids à vide : </ion-text><br>
+            {{ pav }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Charge utile : </ion-text><br>
+            {{ cu }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Poids total à charge : </ion-text><br>
+            {{ ptac }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <!-- affichage information propriétaire -->
+      <ion-list *ngIf="segment_vente === 'proprietaire'">
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Nom : </ion-text><br>
+            {{ proprietaire }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Adresse : </ion-text><br>
+            {{ adresse_proprietaire }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Téléphone : </ion-text><br>
+            {{ telephone }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Profession : </ion-text><br>
+            {{ profession }}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <ion-text color="primary">Commune : </ion-text><br>
+            {{ commune }}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
     <div *ngIf="content_message_visibility">
       <ion-list>
         <ion-item>

@@ -287,6 +287,26 @@ export class QrcodePage implements OnInit, OnDestroy {
     return this.http.get(this.adresse + "/ct/identification/constatation?numero=" + this.qrResult["identification"]);
   }
 
+  public getResultQrAuthenticite(): Observable<any> {
+    // return this.http.get("./assets/data/anomalies.json");
+    return this.http.get(this.adresse + "/ct/identification/authenticite/vitre/fumee?numero=" + this.qrResult["identification"]);
+  }
+
+  public getResultQrSpeciale(): Observable<any> {
+    // return this.http.get("./assets/data/anomalies.json");
+    return this.http.get(this.adresse + "/ct/identification/visite/technique/speciale?numero=" + this.qrResult["identification"]);
+  }
+
+  public getResultQrCaracteristique(): Observable<any> {
+    // return this.http.get("./assets/data/anomalies.json");
+    return this.http.get(this.adresse + "/ct/identification/caracteristique?numero=" + this.qrResult["identification"]);
+  }
+
+  public getResultQrVente(): Observable<any> {
+    // return this.http.get("./assets/data/anomalies.json");
+    return this.http.get(this.adresse + "/ct/identification/vente/speciale?numero=" + this.qrResult["identification"]);
+  }
+
   testClick(){
     this.scannedResult = "MHZYbHFHR2ct";
     this.getResultQrScanned();
@@ -497,7 +517,7 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.secretaire = this.qrResultVisite["secretaire"];
           this.verificateur = this.qrResultVisite["verificateur"];
           this.date_visite = this.qrResultVisite["date_visite"];
-          this.date_expiration = this.qrResultVisite["date_expiration"];
+          this.validite_vitre_fumee = this.qrResultVisite["date_expiration"];
           this.utilisation = this.qrResultVisite["utilisation"];
           this.option_vitre_fumee = this.qrResultVisite["option_vitre_fumee"];
           this.validite_vitre_fumee= this.qrResultVisite["validite"];
@@ -684,6 +704,10 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.content_visite_visibility = "";
           this.content_reception_visibility = "";
           this.content_constatation_visibility = "";
+          this.content_authenticite_visibility = "";
+          this.content_speciale_visibility = "";
+          this.content_caracteristique_visibility = "";
+          this.content_vente_visibility = "";
           break;
         }
       }
@@ -704,6 +728,22 @@ export class QrcodePage implements OnInit, OnDestroy {
     this.segment_constatation = ev.detail.value;
   }
 
+  authenticiteTabChanged(ev: any) {
+    this.segment_authenticite = ev.detail.value;
+  }
+
+  specialTabChanged(ev: any) {
+    this.segment_speciale = ev.detail.value;
+  }
+
+  caracteristiqueTabChanged(ev: any) {
+    this.segment_caracteristique = ev.detail.value;
+  }
+
+  venteTabChanged(ev: any) {
+    this.segment_vente = ev.detail.value;
+  }
+
   sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
@@ -719,5 +759,9 @@ export class QrcodePage implements OnInit, OnDestroy {
     this.content_visite_visibility = "";
     this.content_reception_visibility = "";
     this.content_constatation_visibility = "";
+    this.content_authenticite_visibility = "";
+    this.content_speciale_visibility = "";
+    this.content_caracteristique_visibility = "";
+    this.content_vente_visibility = "";
   }
 }

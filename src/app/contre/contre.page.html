@@ -19,7 +19,7 @@
         </ion-title>
       </ion-toolbar>
     </ion-header>
-  
+
     <ion-item>
       <ion-input label="Immatriculation" labelPlacement="floating" placeholder="Entrer Immatriculation ici ..." [(ngModel)]="immatriculation"></ion-input>
       <ion-button class="header_button" color="primary" (click)="rechercherClick()" icon-only float-right>
@@ -120,7 +120,8 @@
       <br>
 
       <div text-center margin-top>
-        <ion-button expand="block" color="secondary" (click)="sendRegulatisationClick()" size="large">
+        <!-- <ion-button expand="block" color="secondary" (click)="sendRegulatisationClick()" size="large"> -->
+        <ion-button expand="block" fill="outline" color="secondary" class="custom-button" (click)="sendRegulatisationClick()" size="large">
           Régulariser
         </ion-button>
       </div>
