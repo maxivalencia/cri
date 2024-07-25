@@ -99,8 +99,8 @@ export class RecapitulationinopinePage implements OnInit {
       const anm = "FACE-" + this.anomalies_constater;
       this.anomalie_liste = anm.split("-");
       //if(this.papier_reguler == "Oui"){
-        this.visibility_content = "show";
-        this.visibility_message = "";
+      this.visibility_content = "show";
+      this.visibility_message = "";
       /* }else{
         this.visibility_content = "";
         this.visibility_message = "show";
@@ -117,7 +117,30 @@ export class RecapitulationinopinePage implements OnInit {
   }
 
   public terminer(){
-    this.router.navigate(['/login']);
+    this.id = "";
+    this.immatriculation = "";
+    this.nom_chauffeur = "";
+    this.contact_chauffeur = "";
+    this.feuille_de_controle = "";
+    this.proprietaire = "";
+    this.contact_proprietaire = "";
+    this.lieu_de_controle = "";
+    this.anomalies_constater = "";
+    this.papiers_retirer = "";
+    this.papier_reguler = "";
+    this.date_controle = "";
+    this.date_recuperation = "";
+    this.date_limite = "";
+    this.mise_en_fourriere = "";
+    this.photo = "";
+    this.verificateur = "";
+    this.centre = "";
+    this.photo_liste = "";
+    this.anomalie_liste = "";
+    this.visibility_content = "";
+    this.visibility_message = "";
+    //this.router.navigate(['/login']);
+    this.router.navigate(['/inopine']);
   }
 
   public deconnecterClick(){
