@@ -189,7 +189,7 @@ export class QrcodePage implements OnInit, OnDestroy {
 
   async presentLoading() {
     this.loading = await this.loadingController.create({
-      message: 'Connexion en cours...',
+      message: 'Analyse de votre QR-Code en cours...',
       duration: 5000 // durée maximale de l'animation en millisecondes
     });
     await this.loading.present();
