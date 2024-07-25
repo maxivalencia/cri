@@ -6,6 +6,7 @@ import{ GlobalData } from '../global_data';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Storage } from '@ionic/storage-angular';
 import { App } from '@capacitor/app';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-consultation',
@@ -13,7 +14,7 @@ import { App } from '@capacitor/app';
   styleUrls: ['./consultation.page.scss'],
 })
 export class ConsultationPage implements OnInit {
-
+  loading: HTMLIonLoadingElement | null = null;
   immatriculation: string = "";
   adresse = "";
   resultat : any;
@@ -25,7 +26,8 @@ export class ConsultationPage implements OnInit {
     public http: HttpClient,
     private router: Router,
     public globalData: GlobalData,
-    private storage: Storage
+    private storage: Storage,
+    private loadingController: LoadingController
   ) {
     if(this.globalData.getIdUser() <= 0 || this.globalData.getUserAccessLevel() > 4){
       this.router.navigate(['/home']);
@@ -34,6 +36,20 @@ export class ConsultationPage implements OnInit {
 
   ngOnInit() {
     /* this.cleanData(); */
+  }
+
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Connexion en cours...',
+      duration: 5000 // durée maximale de l'animation en millisecondes
+    });
+    await this.loading.present();
+  }
+
+  async dismissLoading() {
+    if (this.loading) {
+      await this.loading.dismiss();
+    }
   }
 
   public deconnecterClick(){
@@ -53,6 +69,7 @@ export class ConsultationPage implements OnInit {
   }
 
   async getResultRechercheVisite() {
+    this.presentLoading();
     // return this.http.get("./assets/data/anomalies.json");
     try {
       const adresse : any = await this.getAddressQr().toPromise();
@@ -62,16 +79,20 @@ export class ConsultationPage implements OnInit {
       //return this.http.get(this.adresse + "/ct/service/mobile/recherche?IMM=" + this.immatriculation);
       //return this.http.get(this.adresse + "/ct/identification/visite?numero=" + this.qrResult["identification"]);
       this.content_visite_visibility = this.resultat ? "show" : "";
+      this.dismissLoading();
       return this.resultat;
     } catch (error){
       console.error('Erreur rencontrer : ', error);
+      this.dismissLoading();
       return null;
     }
   }
 
   public rechercherClick(){
+    //this.presentLoading();
     const resultat = this.getResultRechercheVisite();
     console.log(resultat);
+    //this.dismissLoading();
   }
 
   visiteTabChanged(ev: any) {

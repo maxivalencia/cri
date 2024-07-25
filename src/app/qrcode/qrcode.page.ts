@@ -7,6 +7,7 @@ import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Storage } from '@ionic/storage-angular';
 import { App } from '@capacitor/app';
 import { BarcodeScanner, SupportedFormat } from '@capacitor-community/barcode-scanner';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-qrcode',
@@ -14,6 +15,7 @@ import { BarcodeScanner, SupportedFormat } from '@capacitor-community/barcode-sc
   styleUrls: ['./qrcode.page.scss'],
 })
 export class QrcodePage implements OnInit, OnDestroy {
+  loading: HTMLIonLoadingElement | null = null;
   scannedResult : any;
   qrResult : any;
   bodyElement : HTMLElement | null;
@@ -167,7 +169,8 @@ export class QrcodePage implements OnInit, OnDestroy {
     public http: HttpClient,
     private router: Router,
     public globalData: GlobalData,
-    private storage: Storage
+    private storage: Storage,
+    private loadingController: LoadingController
   ) {
     if(this.globalData.getIdUser() <= 0 || this.globalData.getUserAccessLevel() > 4){
       this.router.navigate(['/home']);
@@ -182,6 +185,20 @@ export class QrcodePage implements OnInit, OnDestroy {
     this.content_visite_visibility = "";
     this.content_reception_visibility = "";
     this.content_constatation_visibility = "";
+  }
+
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Connexion en cours...',
+      duration: 5000 // durée maximale de l'animation en millisecondes
+    });
+    await this.loading.present();
+  }
+
+  async dismissLoading() {
+    if (this.loading) {
+      await this.loading.dismiss();
+    }
   }
 
   prepare = () => {
@@ -313,6 +330,7 @@ export class QrcodePage implements OnInit, OnDestroy {
   }
 
   async getResultQrScanned() {
+    this.presentLoading();
     try {
       const adresse : any = await this.getAddressQr().toPromise();
       this.adresse = adresse.trim();
@@ -370,6 +388,7 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.content_speciale_visibility = "";
           this.content_caracteristique_visibility = "";
           this.content_vente_visibility = "";
+          this.dismissLoading();
           break;
         }
         case "RT": {
@@ -414,6 +433,7 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.content_speciale_visibility = "";
           this.content_caracteristique_visibility = "";
           this.content_vente_visibility = "";
+          this.dismissLoading();
           break;
         }
         case "CAD": {
@@ -505,6 +525,7 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.content_speciale_visibility = "";
           this.content_caracteristique_visibility = "";
           this.content_vente_visibility = "";
+          this.dismissLoading();
           break;
         }
         case "AVF": {
@@ -554,6 +575,7 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.content_speciale_visibility = "";
           this.content_caracteristique_visibility = "";
           this.content_vente_visibility = "";
+          this.dismissLoading();
           break;
         }
         case "VTS": {
@@ -603,6 +625,7 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.content_speciale_visibility = this.qrResult["operation"];
           this.content_caracteristique_visibility = "";
           this.content_vente_visibility = "";
+          this.dismissLoading();
           break;
         }
         case "CAR": {
@@ -650,6 +673,7 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.content_speciale_visibility = "";
           this.content_caracteristique_visibility = this.qrResult["operation"];
           this.content_vente_visibility = "";
+          this.dismissLoading();
           break;
         }
         case "VS": {
@@ -697,6 +721,7 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.content_speciale_visibility = "";
           this.content_caracteristique_visibility = "";
           this.content_vente_visibility = this.qrResult["operation"];
+          this.dismissLoading();
           break;
         }
         default: {
@@ -708,11 +733,14 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.content_speciale_visibility = "";
           this.content_caracteristique_visibility = "";
           this.content_vente_visibility = "";
+          this.dismissLoading();
           break;
         }
       }
+      this.dismissLoading();
     } catch (error){
       console.error('Erreur rencontrer : ', error);
+      this.dismissLoading();
     }
   }
 

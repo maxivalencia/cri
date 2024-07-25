@@ -14,6 +14,7 @@ import { IonicModule, Platform } from '@ionic/angular';
 import { App } from '@capacitor/app';
 import * as $ from 'jquery';
 import 'select2';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-inopine',
@@ -22,7 +23,7 @@ import 'select2';
 })
 export class InopinePage implements OnInit, AfterViewInit {
 
-
+  loading: HTMLIonLoadingElement | null = null;
   anomalies: any;
   papiers: any;
   // adresse: string = "http://192.168.12.251:2057/liste/";
@@ -52,7 +53,8 @@ export class InopinePage implements OnInit, AfterViewInit {
     public http: HttpClient,
     public globalData: GlobalData,
     private router: Router,
-    public platform: Platform
+    public platform: Platform,
+    private loadingController: LoadingController
   ) {
     if(this.globalData.getIdUser() <= 0 || this.globalData.getUserAccessLevel() > 3){
       this.router.navigate(['/home']);
@@ -105,6 +107,20 @@ export class InopinePage implements OnInit, AfterViewInit {
         //this.papiers_retirer = [this.papiers.length];
       });
     });
+  }
+
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Connexion en cours...',
+      duration: 5000 // durée maximale de l'animation en millisecondes
+    });
+    await this.loading.present();
+  }
+
+  async dismissLoading() {
+    if (this.loading) {
+      await this.loading.dismiss();
+    }
   }
 
   public getAnomaliesJSON(): Observable<any> {
@@ -176,12 +192,18 @@ export class InopinePage implements OnInit, AfterViewInit {
   }
 
   public changeImmatriculation(){
+    this.presentLoading();
     this.getInformation().subscribe(information => {
       this.nom_chauffeur = information["nom_chauffeur"];
       this.contact_chauffeur = information["contact_chauffeur"];
       this.proprietaire = information["nom_proprietaire"];
       this.contact_proprietaire = information["contact_proprietaire"];
       //this.papiers_retirer = [this.papiers.length];
+      this.dismissLoading();
+    },
+    error => {
+      console.error(error);
+      this.dismissLoading();
     });
   }
 

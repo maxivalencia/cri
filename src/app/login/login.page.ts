@@ -8,6 +8,7 @@ import { Storage } from '@ionic/storage-angular';
 import { App } from '@capacitor/app';
 import { AlertController } from '@ionic/angular';
 import { Network as CapacitorNetwork } from '@capacitor/network';
+import { LoadingController } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
 const { Network } = Plugins;
 
@@ -19,6 +20,7 @@ const { Network } = Plugins;
 /* @Injectable() */
 export class LoginPage implements OnInit {
 
+  loading: HTMLIonLoadingElement | null = null;
   username : string = "";
   password : string = "";
   message_connection : string = "";
@@ -39,7 +41,8 @@ export class LoginPage implements OnInit {
     private router: Router,
     public globalData: GlobalData,
     private storage: Storage,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private loadingController: LoadingController
   ) {
     if(this.globalData.getIdUser() > 0 && this.globalData.getUserAccessLevel() <= 4){
       this.router.navigate(['/home']);
@@ -69,7 +72,22 @@ export class LoginPage implements OnInit {
     //await this.checkInternetConnection()
   }
 
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Connexion en cours...',
+      duration: 5000 // durée maximale de l'animation en millisecondes
+    });
+    await this.loading.present();
+  }
+
+  async dismissLoading() {
+    if (this.loading) {
+      await this.loading.dismiss();
+    }
+  }
+
   signIn() {
+    this.presentLoading();
     //console.log("En attente du service d'authentification ...!")
     //var _this = this;
     //if(this.status){
@@ -92,7 +110,14 @@ export class LoginPage implements OnInit {
           this.deleteData();
           this.storeData();
           this.password = "";
+          this.dismissLoading();
+        }, error => {
+          console.error(error);
+          this.dismissLoading();
         });
+      }, error => {
+        console.error(error);
+        this.dismissLoading();
       })
     //}
   }

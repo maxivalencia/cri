@@ -6,6 +6,7 @@ import{ GlobalData } from '../global_data';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Storage } from '@ionic/storage-angular';
 import { App } from '@capacitor/app';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-contre',
@@ -14,6 +15,7 @@ import { App } from '@capacitor/app';
 })
 export class ContrePage implements OnInit {
 
+  loading: HTMLIonLoadingElement | null = null;
   anomalies: any;
   papiers: any;
   // adresse: string = "http://192.168.12.251:2057/liste/";
@@ -55,7 +57,8 @@ export class ContrePage implements OnInit {
     public http: HttpClient,
     private router: Router,
     public globalData: GlobalData,
-    private storage: Storage
+    private storage: Storage,
+    private loadingController: LoadingController
   ) {
     if(this.globalData.getIdUser() <= 0 || this.globalData.getUserAccessLevel() > 3){
       this.router.navigate(['/home']);
@@ -70,6 +73,20 @@ export class ContrePage implements OnInit {
     }); */
   }
 
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Connexion en cours...',
+      duration: 5000 // durée maximale de l'animation en millisecondes
+    });
+    await this.loading.present();
+  }
+
+  async dismissLoading() {
+    if (this.loading) {
+      await this.loading.dismiss();
+    }
+  }
+
   public sendRegulatisationClick() {
     /* console.log(this.photo_liste);
     console.log(this.anomalie_liste); */
@@ -80,6 +97,7 @@ export class ContrePage implements OnInit {
   }
 
   async rechercherClick(){
+    this.presentLoading();
     // return this.http.get("./assets/data/anomalies.json");
     try {
       const adresse : any = await this.getAddress().toPromise();
@@ -117,9 +135,11 @@ export class ContrePage implements OnInit {
         this.visibility_content = "";
         this.visibility_message = "show";
       }
+      this.dismissLoading();
       return this.resultat;
     } catch (error){
       this.visibility_message = "show";
+      this.dismissLoading();
       return null;
     }
   }
