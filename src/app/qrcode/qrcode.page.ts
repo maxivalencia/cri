@@ -65,6 +65,7 @@ export class QrcodePage implements OnInit, OnDestroy {
   validite_vitre_fumee= "";
   itineraire_speciale = "";
   validite_speciale = "";
+  depart_speciale = "";
   // information véhicule
   immatriculation = "";
   proprietaire = "";
@@ -535,7 +536,7 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.centre = this.qrResultAuthenticite["centre"];
           this.secretaire = this.qrResultAuthenticite["secretaire"];
           this.verificateur = this.qrResultAuthenticite["verificateur"];
-          this.date_visite = this.qrResultAuthenticite["date_visite"];
+          this.date_visite = this.qrResultAuthenticite["date_controle"];
           this.validite_vitre_fumee = this.qrResultAuthenticite["date_expiration"];
           this.utilisation = this.qrResultAuthenticite["utilisation"];
           this.option_vitre_fumee = this.qrResultAuthenticite["option_vitre_fumee"];
@@ -583,10 +584,11 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.centre = this.qrResultSpeciale["centre"];
           this.secretaire = this.qrResultSpeciale["secretaire"];
           this.verificateur = this.qrResultSpeciale["verificateur"];
-          this.date_visite = this.qrResultSpeciale["date_visite"];
+          this.date_visite = this.qrResultSpeciale["date_controle"];
           this.date_expiration = this.qrResultSpeciale["date_expiration"];
           this.utilisation = this.qrResultSpeciale["utilisation"];
           this.itineraire_speciale = this.qrResultSpeciale["itineraire"];
+          this.depart_speciale = this.qrResultSpeciale["depart"];
           this.validite_speciale = this.qrResultSpeciale["validite"];
           // information véhicule
           this.immatriculation = this.qrResultSpeciale["immatriculation"];
@@ -631,7 +633,7 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.centre = this.qrResultCaracteristique["centre"];
           this.secretaire = this.qrResultCaracteristique["secretaire"];
           this.verificateur = this.qrResultCaracteristique["verificateur"];
-          this.date_visite = this.qrResultCaracteristique["date_visite"];
+          this.date_visite = this.qrResultCaracteristique["date_controle"];
           this.date_expiration = this.qrResultCaracteristique["date_expiration"];
           this.utilisation = this.qrResultCaracteristique["utilisation"];
           // information véhicule
@@ -677,7 +679,7 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.centre = this.qrResultVente["centre"];
           this.secretaire = this.qrResultVente["secretaire"];
           this.verificateur = this.qrResultVente["verificateur"];
-          this.date_visite = this.qrResultVente["date_visite"];
+          this.date_visite = this.qrResultVente["date_controle"];
           this.date_expiration = this.qrResultVente["date_expiration"];
           this.utilisation = this.qrResultVente["utilisation"];
           // information véhicule
