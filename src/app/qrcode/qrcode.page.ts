@@ -1,6 +1,6 @@
 import { Component, OnInit, Injectable, Directive, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import{ GlobalData } from '../global_data';
 import { Filesystem, Directory } from '@capacitor/filesystem';
@@ -32,6 +32,10 @@ export class QrcodePage implements OnInit, OnDestroy {
   qrResultVisite : any;
   qrResultReception : any;
   qrResultConstatation : any;
+  qrResultAuthenticite : any;
+  qrResultSpeciale : any;
+  qrResultCaracteristique : any;
+  qrResultVente : any;
   public segment_visite: string = "visite";
   public segment_reception: string = "reception";
   public segment_constatation: string = "constatation";
@@ -290,42 +294,35 @@ export class QrcodePage implements OnInit, OnDestroy {
   }
 
   public getResultQrVisite(): Observable<any> {
-    // return this.http.get("./assets/data/anomalies.json");
     return this.http.get(this.adresse + "/ct/identification/visite?numero=" + this.qrResult["identification"]);
   }
 
   public getResultQrReception(): Observable<any> {
-    // return this.http.get("./assets/data/anomalies.json");
     return this.http.get(this.adresse + "/ct/identification/reception?numero=" + this.qrResult["identification"]);
   }
 
   public getResultQrConstatation(): Observable<any> {
-    // return this.http.get("./assets/data/anomalies.json");
     return this.http.get(this.adresse + "/ct/identification/constatation?numero=" + this.qrResult["identification"]);
   }
 
   public getResultQrAuthenticite(): Observable<any> {
-    // return this.http.get("./assets/data/anomalies.json");
     return this.http.get(this.adresse + "/ct/identification/authenticite/vitre/fumee?numero=" + this.qrResult["identification"]);
   }
 
   public getResultQrSpeciale(): Observable<any> {
-    // return this.http.get("./assets/data/anomalies.json");
     return this.http.get(this.adresse + "/ct/identification/visite/technique/speciale?numero=" + this.qrResult["identification"]);
   }
 
   public getResultQrCaracteristique(): Observable<any> {
-    // return this.http.get("./assets/data/anomalies.json");
     return this.http.get(this.adresse + "/ct/identification/caracteristique?numero=" + this.qrResult["identification"]);
   }
 
   public getResultQrVente(): Observable<any> {
-    // return this.http.get("./assets/data/anomalies.json");
     return this.http.get(this.adresse + "/ct/identification/vente/speciale?numero=" + this.qrResult["identification"]);
   }
 
   testClick(){
-    this.scannedResult = "MHZYbHFHR2ct";
+    this.scannedResult = "d01scWJMTDRxVg==";
     this.getResultQrScanned();
   }
 
@@ -336,6 +333,7 @@ export class QrcodePage implements OnInit, OnDestroy {
       this.adresse = adresse.trim();
       const qrResult: any = await this.getResultQr().toPromise();
       this.qrResult = qrResult;
+      console.log("type opération : " + this.qrResult["operation"]);
       this.globalData.setTypeOperation(this.qrResult["operation"]);
 
       switch(this.globalData.getTypeOperation()) {
@@ -376,7 +374,7 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.adresse_proprietaire = this.qrResultVisite["adresse"];
           this.telephone = this.qrResultVisite["telephone"];
           this.profession = this.qrResultVisite["profession"];
-          this.imprimer = this.qrResultVisite["imprimer"];
+          this.imprimer = this.qrResultVisite["imprime"];
 
           this.isVisiteApte = this.aptitude=='Apte'?true:false;
 
@@ -423,7 +421,7 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.numero_moteur = this.qrResultReception["numero_moteur"];
           this.type = this.qrResultReception["type"];
           this.poids_total_a_charge = this.qrResultReception["poids_total_a_charge"];
-          this.imprimer = this.qrResultReception["imprimer"];
+          this.imprimer = this.qrResultReception["imprime"];
 
           this.content_message_visibility = "";
           this.content_visite_visibility = "";
@@ -458,7 +456,7 @@ export class QrcodePage implements OnInit, OnDestroy {
           this.date_constatation = this.qrResultConstatation["date"];
           this.conformite = this.qrResultConstatation["conformite"];
           this.observation = this.qrResultConstatation["observation"];
-          this.imprimer = this.qrResultConstatation["imprimer"];
+          this.imprimer = this.qrResultConstatation["imprime"];
           //constatation carte grise
           this.carrosserie_carte_grise = this.qrResultConstatation["carrosserie_carte_grise"];
           this.type_carte_grise = this.qrResultConstatation["type_carte_grise"];
@@ -529,43 +527,41 @@ export class QrcodePage implements OnInit, OnDestroy {
           break;
         }
         case "AVF": {
-          const qrResultVisite: any = await this.getResultQrVisite().toPromise();
-          this.globalData.setVisite(qrResultVisite);
-          this.qrResultVisite = this.globalData.getVisite()[0];
+          const qrResultAuthenticite: any = await this.getResultQrAuthenticite().toPromise();
+          this.globalData.setAuthenticite(qrResultAuthenticite);
+          this.qrResultAuthenticite = this.globalData.getAuthenticite()[0];
           // information autre service
-          this.numero_controle =  await this.qrResultVisite["numero_controle"];
-          this.centre = this.qrResultVisite["centre"];
-          this.secretaire = this.qrResultVisite["secretaire"];
-          this.verificateur = this.qrResultVisite["verificateur"];
-          this.date_visite = this.qrResultVisite["date_visite"];
-          this.validite_vitre_fumee = this.qrResultVisite["date_expiration"];
-          this.utilisation = this.qrResultVisite["utilisation"];
-          this.option_vitre_fumee = this.qrResultVisite["option_vitre_fumee"];
-          this.validite_vitre_fumee= this.qrResultVisite["validite"];
+          this.numero_controle =  await this.qrResultAuthenticite["numero_controle"];
+          this.centre = this.qrResultAuthenticite["centre"];
+          this.secretaire = this.qrResultAuthenticite["secretaire"];
+          this.verificateur = this.qrResultAuthenticite["verificateur"];
+          this.date_visite = this.qrResultAuthenticite["date_visite"];
+          this.validite_vitre_fumee = this.qrResultAuthenticite["date_expiration"];
+          this.utilisation = this.qrResultAuthenticite["utilisation"];
+          this.option_vitre_fumee = this.qrResultAuthenticite["option_vitre_fumee"];
+          this.validite_vitre_fumee= this.qrResultAuthenticite["validite"];
           // information véhicule
-          this.immatriculation = this.qrResultVisite["immatriculation"];
-          this.carrosserie = this.qrResultVisite["carrosserie"];
-          this.marque = this.qrResultVisite["marque"];
-          this.cylindre = this.qrResultVisite["cylindre"];
-          this.nombre_place_assises = this.qrResultVisite["nombre_place_assis"];
-          this.nombre_place_debout = this.qrResultVisite["nombre_place_debout"];
-          this.genre = this.qrResultVisite["genre"];
-          this.energie = this.qrResultVisite["source_energie"];
-          this.puissance = this.qrResultVisite["puissance"];
-          this.numero_de_serie = this.qrResultVisite["numero_serie"];
-          this.numero_moteur = this.qrResultVisite["numero_moteur"];
-          this.ptac = this.qrResultVisite["poids_total_a_charge"];
-          this.cu = this.qrResultVisite["charge_utile"];
-          this.pav = this.qrResultVisite["poids_a_vide"];
+          this.immatriculation = this.qrResultAuthenticite["immatriculation"];
+          this.carrosserie = this.qrResultAuthenticite["carrosserie"];
+          this.marque = this.qrResultAuthenticite["marque"];
+          this.cylindre = this.qrResultAuthenticite["cylindre"];
+          this.nombre_place_assises = this.qrResultAuthenticite["nombre_place_assis"];
+          this.nombre_place_debout = this.qrResultAuthenticite["nombre_place_debout"];
+          this.genre = this.qrResultAuthenticite["genre"];
+          this.energie = this.qrResultAuthenticite["source_energie"];
+          this.puissance = this.qrResultAuthenticite["puissance"];
+          this.numero_de_serie = this.qrResultAuthenticite["numero_serie"];
+          this.numero_moteur = this.qrResultAuthenticite["numero_moteur"];
+          this.ptac = this.qrResultAuthenticite["poids_total_a_charge"];
+          this.cu = this.qrResultAuthenticite["charge_utile"];
+          this.pav = this.qrResultAuthenticite["poids_a_vide"];
           // information propriétaire
-          this.proprietaire = this.qrResultVisite["nom"] + ' ' + this.qrResultVisite["prenom"];
-          this.commune = this.qrResultVisite["commune"];
-          this.adresse_proprietaire = this.qrResultVisite["adresse"];
-          this.telephone = this.qrResultVisite["telephone"];
-          this.profession = this.qrResultVisite["profession"];
-          this.imprimer = this.qrResultVisite["imprimer"];
-
-          this.isVisiteApte = this.aptitude=='Apte'?true:false;
+          this.proprietaire = this.qrResultAuthenticite["nom"] + ' ' + this.qrResultAuthenticite["prenom"];
+          this.commune = this.qrResultAuthenticite["commune"];
+          this.adresse_proprietaire = this.qrResultAuthenticite["adresse"];
+          this.telephone = this.qrResultAuthenticite["telephone"];
+          this.profession = this.qrResultAuthenticite["profession"];
+          this.imprimer = this.qrResultAuthenticite["imprime"];
 
           this.content_message_visibility = "";
           this.content_visite_visibility = "";
@@ -579,43 +575,41 @@ export class QrcodePage implements OnInit, OnDestroy {
           break;
         }
         case "VTS": {
-          const qrResultVisite: any = await this.getResultQrVisite().toPromise();
-          this.globalData.setVisite(qrResultVisite);
-          this.qrResultVisite = this.globalData.getVisite()[0];
+          const qrResultSpeciale: any = await this.getResultQrSpeciale().toPromise();
+          this.globalData.setVisiteTechniqueSpeciale(qrResultSpeciale);
+          this.qrResultSpeciale = this.globalData.getVisiteTechniqueSpeciale()[0];
           // information autre service
-          this.numero_controle =  await this.qrResultVisite["numero_controle"];
-          this.centre = this.qrResultVisite["centre"];
-          this.secretaire = this.qrResultVisite["secretaire"];
-          this.verificateur = this.qrResultVisite["verificateur"];
-          this.date_visite = this.qrResultVisite["date_visite"];
-          this.date_expiration = this.qrResultVisite["date_expiration"];
-          this.utilisation = this.qrResultVisite["utilisation"];
-          this.itineraire_speciale = this.qrResultVisite["itineraire"];
-          this.validite_speciale = this.qrResultVisite["validite"];
+          this.numero_controle =  await this.qrResultSpeciale["numero_controle"];
+          this.centre = this.qrResultSpeciale["centre"];
+          this.secretaire = this.qrResultSpeciale["secretaire"];
+          this.verificateur = this.qrResultSpeciale["verificateur"];
+          this.date_visite = this.qrResultSpeciale["date_visite"];
+          this.date_expiration = this.qrResultSpeciale["date_expiration"];
+          this.utilisation = this.qrResultSpeciale["utilisation"];
+          this.itineraire_speciale = this.qrResultSpeciale["itineraire"];
+          this.validite_speciale = this.qrResultSpeciale["validite"];
           // information véhicule
-          this.immatriculation = this.qrResultVisite["immatriculation"];
-          this.carrosserie = this.qrResultVisite["carrosserie"];
-          this.marque = this.qrResultVisite["marque"];
-          this.cylindre = this.qrResultVisite["cylindre"];
-          this.nombre_place_assises = this.qrResultVisite["nombre_place_assis"];
-          this.nombre_place_debout = this.qrResultVisite["nombre_place_debout"];
-          this.genre = this.qrResultVisite["genre"];
-          this.energie = this.qrResultVisite["source_energie"];
-          this.puissance = this.qrResultVisite["puissance"];
-          this.numero_de_serie = this.qrResultVisite["numero_serie"];
-          this.numero_moteur = this.qrResultVisite["numero_moteur"];
-          this.ptac = this.qrResultVisite["poids_total_a_charge"];
-          this.cu = this.qrResultVisite["charge_utile"];
-          this.pav = this.qrResultVisite["poids_a_vide"];
+          this.immatriculation = this.qrResultSpeciale["immatriculation"];
+          this.carrosserie = this.qrResultSpeciale["carrosserie"];
+          this.marque = this.qrResultSpeciale["marque"];
+          this.cylindre = this.qrResultSpeciale["cylindre"];
+          this.nombre_place_assises = this.qrResultSpeciale["nombre_place_assis"];
+          this.nombre_place_debout = this.qrResultSpeciale["nombre_place_debout"];
+          this.genre = this.qrResultSpeciale["genre"];
+          this.energie = this.qrResultSpeciale["source_energie"];
+          this.puissance = this.qrResultSpeciale["puissance"];
+          this.numero_de_serie = this.qrResultSpeciale["numero_serie"];
+          this.numero_moteur = this.qrResultSpeciale["numero_moteur"];
+          this.ptac = this.qrResultSpeciale["poids_total_a_charge"];
+          this.cu = this.qrResultSpeciale["charge_utile"];
+          this.pav = this.qrResultSpeciale["poids_a_vide"];
           // information propriétaire
-          this.proprietaire = this.qrResultVisite["nom"] + ' ' + this.qrResultVisite["prenom"];
-          this.commune = this.qrResultVisite["commune"];
-          this.adresse_proprietaire = this.qrResultVisite["adresse"];
-          this.telephone = this.qrResultVisite["telephone"];
-          this.profession = this.qrResultVisite["profession"];
-          this.imprimer = this.qrResultVisite["imprimer"];
-
-          this.isVisiteApte = this.aptitude=='Apte'?true:false;
+          this.proprietaire = this.qrResultSpeciale["nom"] + ' ' + this.qrResultSpeciale["prenom"];
+          this.commune = this.qrResultSpeciale["commune"];
+          this.adresse_proprietaire = this.qrResultSpeciale["adresse"];
+          this.telephone = this.qrResultSpeciale["telephone"];
+          this.profession = this.qrResultSpeciale["profession"];
+          this.imprimer = this.qrResultSpeciale["imprime"];
 
           this.content_message_visibility = "";
           this.content_visite_visibility = "";
@@ -629,41 +623,39 @@ export class QrcodePage implements OnInit, OnDestroy {
           break;
         }
         case "CAR": {
-          const qrResultVisite: any = await this.getResultQrVisite().toPromise();
-          this.globalData.setVisite(qrResultVisite);
-          this.qrResultVisite = this.globalData.getVisite()[0];
+          const qrResultCaracteristique: any = await this.getResultQrCaracteristique().toPromise();
+          this.globalData.setCaracteristique(qrResultCaracteristique);
+          this.qrResultCaracteristique = this.globalData.getCaracteristique()[0];
           // information autre service
-          this.numero_controle =  await this.qrResultVisite["numero_controle"];
-          this.centre = this.qrResultVisite["centre"];
-          this.secretaire = this.qrResultVisite["secretaire"];
-          this.verificateur = this.qrResultVisite["verificateur"];
-          this.date_visite = this.qrResultVisite["date_visite"];
-          this.date_expiration = this.qrResultVisite["date_expiration"];
-          this.utilisation = this.qrResultVisite["utilisation"];
+          this.numero_controle =  await this.qrResultCaracteristique["numero_controle"];
+          this.centre = this.qrResultCaracteristique["centre"];
+          this.secretaire = this.qrResultCaracteristique["secretaire"];
+          this.verificateur = this.qrResultCaracteristique["verificateur"];
+          this.date_visite = this.qrResultCaracteristique["date_visite"];
+          this.date_expiration = this.qrResultCaracteristique["date_expiration"];
+          this.utilisation = this.qrResultCaracteristique["utilisation"];
           // information véhicule
-          this.immatriculation = this.qrResultVisite["immatriculation"];
-          this.carrosserie = this.qrResultVisite["carrosserie"];
-          this.marque = this.qrResultVisite["marque"];
-          this.cylindre = this.qrResultVisite["cylindre"];
-          this.nombre_place_assises = this.qrResultVisite["nombre_place_assis"];
-          this.nombre_place_debout = this.qrResultVisite["nombre_place_debout"];
-          this.genre = this.qrResultVisite["genre"];
-          this.energie = this.qrResultVisite["source_energie"];
-          this.puissance = this.qrResultVisite["puissance"];
-          this.numero_de_serie = this.qrResultVisite["numero_serie"];
-          this.numero_moteur = this.qrResultVisite["numero_moteur"];
-          this.ptac = this.qrResultVisite["poids_total_a_charge"];
-          this.cu = this.qrResultVisite["charge_utile"];
-          this.pav = this.qrResultVisite["poids_a_vide"];
+          this.immatriculation = this.qrResultCaracteristique["immatriculation"];
+          this.carrosserie = this.qrResultCaracteristique["carrosserie"];
+          this.marque = this.qrResultCaracteristique["marque"];
+          this.cylindre = this.qrResultCaracteristique["cylindre"];
+          this.nombre_place_assises = this.qrResultCaracteristique["nombre_place_assis"];
+          this.nombre_place_debout = this.qrResultCaracteristique["nombre_place_debout"];
+          this.genre = this.qrResultCaracteristique["genre"];
+          this.energie = this.qrResultCaracteristique["source_energie"];
+          this.puissance = this.qrResultCaracteristique["puissance"];
+          this.numero_de_serie = this.qrResultCaracteristique["numero_serie"];
+          this.numero_moteur = this.qrResultCaracteristique["numero_moteur"];
+          this.ptac = this.qrResultCaracteristique["poids_total_a_charge"];
+          this.cu = this.qrResultCaracteristique["charge_utile"];
+          this.pav = this.qrResultCaracteristique["poids_a_vide"];
           // information propriétaire
-          this.proprietaire = this.qrResultVisite["nom"] + ' ' + this.qrResultVisite["prenom"];
-          this.commune = this.qrResultVisite["commune"];
-          this.adresse_proprietaire = this.qrResultVisite["adresse"];
-          this.telephone = this.qrResultVisite["telephone"];
-          this.profession = this.qrResultVisite["profession"];
-          this.imprimer = this.qrResultVisite["imprimer"];
-
-          this.isVisiteApte = this.aptitude=='Apte'?true:false;
+          this.proprietaire = this.qrResultCaracteristique["nom"] + ' ' + this.qrResultCaracteristique["prenom"];
+          this.commune = this.qrResultCaracteristique["commune"];
+          this.adresse_proprietaire = this.qrResultCaracteristique["adresse"];
+          this.telephone = this.qrResultCaracteristique["telephone"];
+          this.profession = this.qrResultCaracteristique["profession"];
+          this.imprimer = this.qrResultCaracteristique["imprime"];
 
           this.content_message_visibility = "";
           this.content_visite_visibility = "";
@@ -677,41 +669,39 @@ export class QrcodePage implements OnInit, OnDestroy {
           break;
         }
         case "VS": {
-          const qrResultVisite: any = await this.getResultQrVisite().toPromise();
-          this.globalData.setVisite(qrResultVisite);
-          this.qrResultVisite = this.globalData.getVisite()[0];
+          const qrResultVente: any = await this.getResultQrVente().toPromise();
+          this.globalData.setVenteSpeciale(qrResultVente);
+          this.qrResultVente = this.globalData.getVenteSpeciale()[0];
           // information autre service
-          this.numero_controle =  await this.qrResultVisite["numero_controle"];
-          this.centre = this.qrResultVisite["centre"];
-          this.secretaire = this.qrResultVisite["secretaire"];
-          this.verificateur = this.qrResultVisite["verificateur"];
-          this.date_visite = this.qrResultVisite["date_visite"];
-          this.date_expiration = this.qrResultVisite["date_expiration"];
-          this.utilisation = this.qrResultVisite["utilisation"];
+          this.numero_controle =  await this.qrResultVente["numero_controle"];
+          this.centre = this.qrResultVente["centre"];
+          this.secretaire = this.qrResultVente["secretaire"];
+          this.verificateur = this.qrResultVente["verificateur"];
+          this.date_visite = this.qrResultVente["date_visite"];
+          this.date_expiration = this.qrResultVente["date_expiration"];
+          this.utilisation = this.qrResultVente["utilisation"];
           // information véhicule
-          this.immatriculation = this.qrResultVisite["immatriculation"];
-          this.carrosserie = this.qrResultVisite["carrosserie"];
-          this.marque = this.qrResultVisite["marque"];
-          this.cylindre = this.qrResultVisite["cylindre"];
-          this.nombre_place_assises = this.qrResultVisite["nombre_place_assis"];
-          this.nombre_place_debout = this.qrResultVisite["nombre_place_debout"];
-          this.genre = this.qrResultVisite["genre"];
-          this.energie = this.qrResultVisite["source_energie"];
-          this.puissance = this.qrResultVisite["puissance"];
-          this.numero_de_serie = this.qrResultVisite["numero_serie"];
-          this.numero_moteur = this.qrResultVisite["numero_moteur"];
-          this.ptac = this.qrResultVisite["poids_total_a_charge"];
-          this.cu = this.qrResultVisite["charge_utile"];
-          this.pav = this.qrResultVisite["poids_a_vide"];
+          this.immatriculation = this.qrResultVente["immatriculation"];
+          this.carrosserie = this.qrResultVente["carrosserie"];
+          this.marque = this.qrResultVente["marque"];
+          this.cylindre = this.qrResultVente["cylindre"];
+          this.nombre_place_assises = this.qrResultVente["nombre_place_assis"];
+          this.nombre_place_debout = this.qrResultVente["nombre_place_debout"];
+          this.genre = this.qrResultVente["genre"];
+          this.energie = this.qrResultVente["source_energie"];
+          this.puissance = this.qrResultVente["puissance"];
+          this.numero_de_serie = this.qrResultVente["numero_serie"];
+          this.numero_moteur = this.qrResultVente["numero_moteur"];
+          this.ptac = this.qrResultVente["poids_total_a_charge"];
+          this.cu = this.qrResultVente["charge_utile"];
+          this.pav = this.qrResultVente["poids_a_vide"];
           // information propriétaire
-          this.proprietaire = this.qrResultVisite["nom"] + ' ' + this.qrResultVisite["prenom"];
-          this.commune = this.qrResultVisite["commune"];
-          this.adresse_proprietaire = this.qrResultVisite["adresse"];
-          this.telephone = this.qrResultVisite["telephone"];
-          this.profession = this.qrResultVisite["profession"];
-          this.imprimer = this.qrResultVisite["imprimer"];
-
-          this.isVisiteApte = this.aptitude=='Apte'?true:false;
+          this.proprietaire = this.qrResultVente["nom"] + ' ' + this.qrResultVente["prenom"];
+          this.commune = this.qrResultVente["commune"];
+          this.adresse_proprietaire = this.qrResultVente["adresse"];
+          this.telephone = this.qrResultVente["telephone"];
+          this.profession = this.qrResultVente["profession"];
+          this.imprimer = this.qrResultVente["imprime"];
 
           this.content_message_visibility = "";
           this.content_visite_visibility = "";
