@@ -328,7 +328,8 @@ export class QrcodePage implements OnInit, OnDestroy {
 
   testClick(){
     // this.scannedResult = "d01scWJMTDRxVg==";
-    this.scannedResult = "d01scTRHZmItYg==";
+    //this.scannedResult = "d01scTRHZmItYg==";
+    this.scannedResult = "dnlscTQ0Sw==";
     this.getResultQrScanned();
   }
 

@@ -47,6 +47,7 @@ export class LoginPage implements OnInit {
     if(this.globalData.getIdUser() > 0 && this.globalData.getUserAccessLevel() <= 4){
       this.router.navigate(['/home']);
     }
+    this.retrieveData();
   }
 
   setOpen(isOpen: boolean) {
