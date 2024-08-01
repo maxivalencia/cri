@@ -230,6 +230,10 @@ export class QrcodePage implements OnInit, OnDestroy {
     this.content_visite_visibility = "";
     this.content_reception_visibility = "";
     this.content_constatation_visibility = "";
+    this.content_authenticite_visibility = "";
+    this.content_speciale_visibility = "";
+    this.content_caracteristique_visibility = "";
+    this.content_vente_visibility = "";
     try {
       const permission = await this.checkPermission();
       if(!permission) {
@@ -323,7 +327,8 @@ export class QrcodePage implements OnInit, OnDestroy {
   }
 
   testClick(){
-    this.scannedResult = "d01scWJMTDRxVg==";
+    // this.scannedResult = "d01scWJMTDRxVg==";
+    this.scannedResult = "d01scTRHZmItYg==";
     this.getResultQrScanned();
   }
 
