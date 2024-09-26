@@ -17,7 +17,8 @@ export class MenuPage implements OnInit {
   access_level = 10;
   show_menu = "";
 
-  constructor(public http: HttpClient,
+  constructor(
+    public http: HttpClient,
     private router: Router,
     public globalData: GlobalData,
     private storage: Storage

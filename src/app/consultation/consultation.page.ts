@@ -19,8 +19,11 @@ export class ConsultationPage implements OnInit {
   adresse = "";
   resultat : any;
   content_visite_visibility = "";
+  message_visibility = "";
+  message = "le numéro que vous avez entré n'existe pas";
   public segment_visite: string = "visite";
   show_menu = true;
+  nb_res: boolean = false;
 
   constructor(
     public http: HttpClient,
@@ -79,9 +82,18 @@ export class ConsultationPage implements OnInit {
       //return this.http.get(this.adresse + "/ct/service/mobile/recherche?IMM=" + this.immatriculation);
       //return this.http.get(this.adresse + "/ct/identification/visite?numero=" + this.qrResult["identification"]);
       this.content_visite_visibility = this.resultat ? "show" : "";
+      this.message_visibility = "";
+      if(this.content_visite_visibility == "" && !this.nb_res){
+        this.message_visibility = "show";
+        this.message = "le numéro que vous avez entré n'existe pas";
+      }
       this.dismissLoading();
+      this.nb_res = true;
       return this.resultat;
     } catch (error){
+      this.message_visibility = "show";
+      this.message = "une erreur s'est produite";
+      this.nb_res = false;
       console.error('Erreur rencontrer : ', error);
       this.dismissLoading();
       return null;
@@ -102,6 +114,7 @@ export class ConsultationPage implements OnInit {
   ionViewWillEnter(){
     this.cleanData();
     this.globalData.setShowMenu(this.show_menu);
+    this.nb_res = false;
   }
 
   cleanData(){

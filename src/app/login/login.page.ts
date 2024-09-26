@@ -60,6 +60,7 @@ export class LoginPage implements OnInit {
       subHeader: "Vous n'avez pas de connexion internet",
       message: this.message_connection,
       buttons: ['Ok'],
+      cssClass: 'custom-alert' // Classe personnalisée ajoutée
     });
 
     await alert.present();

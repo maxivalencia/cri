@@ -1,4 +1,60 @@
 <div class="ion-page" id="main-content">
+  <ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-button>
+          <ion-icon name="person-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Authentification</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="deconnecterClick()">
+          <ion-icon name="exit-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content color="azure">
+    <ion-card class="">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4"></ion-col>
+            <ion-col size="4">
+              <img class="center" src="../../assets/image/logo_dgsr.png" width="20" alt="logo_dgsr">
+            </ion-col>
+            <ion-col size="4"></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" class="ion-text-center">Insérer votre identifiant ici</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <label>
+                <ion-input label="Nom d'utilisateur : " labelPlacement="floating" placeholder="Entrer votre nom d'utilisateur ici ..." [(ngModel)]="username" clearInput="true" ></ion-input>
+              </label>
+
+              <label>
+                <ion-input type="password" label="Mot de passe : " labelPlacement="floating" placeholder="Entrer votre mot de passe ici ..." [(ngModel)]="password" clearInput="true" >
+                  <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+                </ion-input>
+              </label>
+
+              <label>
+                <ion-button expand="block" color="primary" (click)="signIn()">
+                  Se connecter
+                </ion-button>
+              </label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+</div>
+
+<!-- <div class="ion-page" id="main-content">
   <ion-content [fullscreen]="true">
     <ion-header [translucent]="true" class="ion-no-border" no-border>
       <ion-toolbar class="ion-no-border" no-border>
@@ -52,13 +108,5 @@
     <ion-item></ion-item>
     <ion-item></ion-item>
 
-    <!-- <ion-alert
-      [isOpen]="isAlertOpen"
-      header="Pas de connexion"
-      message="{{ message_connection }}"
-      [buttons]="alertButtons"
-      (didDismiss)="setOpen(false)"
-    ></ion-alert> -->
-
   </ion-content>
-</div>
+</div> -->

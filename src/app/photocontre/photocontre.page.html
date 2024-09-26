@@ -1,38 +1,47 @@
 <div class="ion-page" id="main-content">
-  <ion-content [fullscreen]="true">
-    <ion-header [translucent]="true" class="ion-no-border" no-border>
-      <ion-toolbar class="ion-no-border" no-border>
-        <ion-buttons slot="start" class="text-color">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title class="ion-no-border" no-border>
-          <p class="header-style" class="ion-no-border" no-border>
-            <ion-row class="ion-no-border" no-border>
-              <ion-col text-center class="ion-no-border text-centre" no-border>
-                <p color="azure" class="text-color text-header">PHOTOS<br>
+  <!-- <ion-header [translucent]="true" class="ion-no-border" no-border>
+    <ion-toolbar class="ion-no-border" no-border>
+      <ion-buttons slot="start" class="text-color">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title class="ion-no-border" no-border>
+        <p class="header-style" class="ion-no-border" no-border>
+          <ion-row class="ion-no-border" no-border>
+            <ion-col text-center class="ion-no-border text-centre" no-border>
+              <p color="azure" class="text-color text-header">PHOTOS<br>
                 ANOMALIES<br>
                 REGULARISER<br></p>
               </ion-col>
               <ion-col text-right class="ion-no-border" no-border>
                 <img class="header_logo_right" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-right>
-              </ion-col>
-            </ion-row>
-          </p>
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <br />
-
+            </ion-col>
+          </ion-row>
+        </p>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+  <ion-header [translucent]="true" class="ion-no-border" no-border>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title class="ion-text-center">Photos</ion-title>
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon name="camera-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+    
+  <ion-content [fullscreen]="true">
     <div class="titre_photo">Reprendre la photo en image sur le véhicule :<br />{{ photo_titre }}</div>
 
     <br />
 
-    <div text-center margin-top>
-      <!-- <ion-button expand="block" color="secondary" (click)="takePicture()" size="large">Prendre photo</ion-button> -->
-      <ion-button expand="block" color="secondary" (click)="prendrePhoto()" size="large"><ion-icon name="reverse-camera"></ion-icon> Prendre photo</ion-button>
-    </div>
-
-    <ion-item></ion-item>
-    <ion-item></ion-item>
+    <ion-button expand="block" color="primary" (click)="prendrePhoto()">
+      <ion-icon name="reverse-camera"></ion-icon>
+      Prendre photo
+    </ion-button>
   </ion-content>
 </div>

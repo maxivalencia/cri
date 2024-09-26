@@ -1,7 +1,13 @@
 {
-  "name": "i-Tsirika",
+  "name": "i-tsirika",
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular"
+  "type": "angular",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "https://dgsrmada.com:2055"
+    }
+  ]
 }

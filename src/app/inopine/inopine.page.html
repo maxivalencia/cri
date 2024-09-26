@@ -1,117 +1,102 @@
 <div class="ion-page" id="main-content">
+  <ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title class="ion-text-center">Contrôle inopiné</ion-title>
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon name="hand-left-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
   <ion-content [fullscreen]="true">
-    <ion-header [translucent]="true" class="ion-no-border" no-border>
-      <ion-toolbar class="ion-no-border" no-border>
-        <ion-buttons slot="start" class="text-color">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title class="ion-no-border" no-border>
-          <p class="header-style" class="ion-no-border" no-border>
-            <ion-row class="ion-no-border text-centre" no-border>
-              <ion-col text-center class="ion-no-border text-centre" no-border>
-                <p color="azure" class="text-color text-header">CONTROLE<br>INOPINE</p>
-              </ion-col>
-              <ion-col text-right class="ion-no-border header_button" no-border>
-                <img class="header_logo_right" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-right>
-              </ion-col>
-            </ion-row>
-          </p>
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-list>
-      <ion-item>
-        <ion-input label="Immatriculation" labelPlacement="floating" placeholder="Entrer Immatriculation ici ..." [(ngModel)]="immatriculation"></ion-input>
-        <ion-button class="header_button" color="primary" (click)="changeImmatriculation()" icon-only float-right>
-          <ion-icon name="search-outline"></ion-icon>
-        </ion-button>
-      </ion-item>
-      <ion-item>
-        <ion-input label="Nom Chauffeur" labelPlacement="floating" placeholder="Entrer Nom Chauffeur ici ..." [(ngModel)]="nom_chauffeur"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input label="Contact Chauffeur" labelPlacement="floating" placeholder="Entrer Contact Chauffeur ici ..." [(ngModel)]="contact_chauffeur"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input label="Numero Feuille de Contrôle" labelPlacement="floating" placeholder="Entrer Numero Feuille de Controle ici ..." [(ngModel)]="feuille_de_controle"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input label="Nom Propriétaire" labelPlacement="floating" placeholder="Entrer Nom Propriétaire ici ..." [(ngModel)]="proprietaire"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input label="Contact Propriétaire" labelPlacement="floating" placeholder="Entrer Contact Propriétaire ici ..." [(ngModel)]="contact_proprietaire"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input label="Lieu de Contrôle" labelPlacement="floating" placeholder="Entrer Lieu de Controle ici ..." [(ngModel)]="lieu_de_controle"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-select id="select2-anomalie" label="Anomalies constaté" labelPlacement="floating" placeholder="Selectionner Anomalies constater ici ..." [multiple]="true" [(ngModel)]="anomalies_constater">
-          <ion-select-option *ngFor="let c of anomalies" value="{{ c.id }}">{{ c.code }}</ion-select-option>
-        </ion-select>
-        <!-- <select id="select2-anomalie" label="Anomalies constaté" multiple="multiple" style="width: 100%" [(ngModel)]="anomalies_constater">
-          <option *ngFor="let option of anomalies" value={{ option.id }}>{{ option.code }}</option>
-        </select> -->
-      </ion-item>
-      <ion-item>
-        <ion-select label="Papiers retiré" labelPlacement="floating" placeholder="Selectionner Papiers retiré ici ..." [multiple]="true" [(ngModel)]="papiers_retirer">
-          <ion-select-option *ngFor="let c of papiers" value="{{ c.id }}" selected="true">{{ c.papier }}</ion-select-option>
-        </ion-select>
-      </ion-item>
-
-      <ion-item>
-        <ion-button fill="clear" (click)="openCalendar()" class="text-color">
-          <ion-icon slot="icon-only" name="calendar-outline" color="primary" size="small" class="text-color"></ion-icon>
-          Date de récupération : {{ date_recuperation | date: 'dd/MM/yyyy' }}
-        </ion-button>
-        <ion-datetime-button datetime="datetime" id="fake-click" class="text-color"></ion-datetime-button>
-        <ion-modal [keepContentsMounted]="true" [isOpen]="showCalendar" (didDismiss)="cancelCalendar()">
-          <ng-template>
-            <ion-datetime
-              id="datetime"
-              presentation="date-month-year"
-              [showDefaultButtons]="true"
-              doneText="Confirm"
-              cancelText="Cancel"
-              [(ngModel)]="date_recuperation"
-            ></ion-datetime>
-          </ng-template>
-        </ion-modal>
-      </ion-item>
-
-      <ion-item class="text-color">
-        <ion-button fill="clear" (click)="openCalendarFin()" class="text-color">
-          <ion-icon slot="icon-only" name="calendar-outline" color="primary" size="small" class="text-color"></ion-icon>
-          Date limite de récupération : {{ date_fin_recuperation | date: 'dd/MM/yyyy' }}
-        </ion-button>
-        <ion-datetime-button datetime="datetime" id="fake-click" class="text-color"></ion-datetime-button>
-        <ion-modal [keepContentsMounted]="true" [isOpen]="showCalendarFin" (didDismiss)="cancelCalendarFin()">
-          <ng-template>
-            <ion-datetime
-              id="datetime"
-              presentation="date-month-year"
-              [showDefaultButtons]="true"
-              doneText="Confirm"
-              cancelText="Cancel"
-              [(ngModel)]="date_fin_recuperation"
-            ></ion-datetime>
-          </ng-template>
-        </ion-modal>
-      </ion-item>
-      <ion-item>
-        <ion-checkbox justify="start" [(ngModel)]="mise_en_fourriere">Mise en Fourrière</ion-checkbox>
-      </ion-item>
-    </ion-list>
-
-    <br>
-
-    <div text-center margin-top>
-      <!-- <ion-button expand="block" color="secondary" (click)="sendControleClick()" size="large"> -->
-      <ion-button expand="block" fill="outline" color="secondary" class="custom-button" (click)="sendControleClick()" size="large">
-        Valider
-      </ion-button>
-    </div>
-    <ion-item></ion-item>
-    <ion-item></ion-item>
+    <ion-card>
+      <ion-card-content>
+        <ion-list>
+          <ion-item lines="none">
+            <ion-input label="Immatriculation" labelPlacement="floating" placeholder="Entrer Immatriculation ici ..." [(ngModel)]="immatriculation"></ion-input>
+            <ion-button class="header_button small" color="primary" (click)="changeImmatriculation()" icon-only float-right>
+              <ion-icon name="search-outline"></ion-icon>
+            </ion-button>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-input label="Nom chauffeur" labelPlacement="floating" placeholder="Entrer nom chauffeur ici ..." [(ngModel)]="nom_chauffeur"></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-input label="Contact chauffeur" labelPlacement="floating" placeholder="Entrer contact chauffeur ici ..." [(ngModel)]="contact_chauffeur"></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-input label="Numero feuille de contrôle" labelPlacement="floating" placeholder="Entrer numero feuille de controle ici ..." [(ngModel)]="feuille_de_controle"></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-input label="Nom propriétaire" labelPlacement="floating" placeholder="Entrer nom propriétaire ici ..." [(ngModel)]="proprietaire"></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-input label="Contact propriétaire" labelPlacement="floating" placeholder="Entrer contact propriétaire ici ..." [(ngModel)]="contact_proprietaire"></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-input label="Lieu de contrôle" labelPlacement="floating" placeholder="Entrer lieu de controle ici ..." [(ngModel)]="lieu_de_controle"></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-select id="select2-anomalie" label="Anomalies constaté" labelPlacement="floating" placeholder="Selectionner anomalies constater ici ..." [multiple]="true" [(ngModel)]="anomalies_constater">
+              <ion-select-option *ngFor="let c of anomalies" value="{{ c.id }}">{{ c.code }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-select label="Papiers retiré" labelPlacement="floating" placeholder="Selectionner papiers retiré ici ..." [multiple]="true" [(ngModel)]="papiers_retirer">
+              <ion-select-option *ngFor="let c of papiers" value="{{ c.id }}" selected="true">{{ c.papier }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-button fill="clear" (click)="openCalendar()" class="text-color">
+              <ion-icon slot="icon-only" name="calendar-outline" color="primary" size="small" class="text-color"></ion-icon>
+              Date de récupération : {{ date_recuperation | date: 'dd/MM/yyyy' }}
+            </ion-button>
+            <ion-datetime-button datetime="datetime" id="fake-click" class="text-color"></ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true" [isOpen]="showCalendar" (didDismiss)="cancelCalendar()">
+              <ng-template>
+                <ion-datetime
+                  id="datetime"
+                  presentation="date-month-year"
+                  [showDefaultButtons]="true"
+                  doneText="Confirm"
+                  cancelText="Cancel"
+                  [(ngModel)]="date_recuperation"
+                ></ion-datetime>
+              </ng-template>
+            </ion-modal>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-button fill="clear" (click)="openCalendarFin()" class="text-color">
+              <ion-icon slot="icon-only" name="calendar-outline" color="primary" size="small" class="text-color"></ion-icon>
+              Date limite de récupération : {{ date_fin_recuperation | date: 'dd/MM/yyyy' }}
+            </ion-button>
+            <ion-datetime-button datetime="datetime" id="fake-click" class="text-color"></ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true" [isOpen]="showCalendarFin" (didDismiss)="cancelCalendarFin()">
+              <ng-template>
+                <ion-datetime
+                  id="datetime"
+                  presentation="date-month-year"
+                  [showDefaultButtons]="true"
+                  doneText="Confirm"
+                  cancelText="Cancel"
+                  [(ngModel)]="date_fin_recuperation"
+                ></ion-datetime>
+              </ng-template>
+            </ion-modal>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-checkbox justify="start" [(ngModel)]="mise_en_fourriere">Mise en fourrière</ion-checkbox>
+          </ion-item>
+          <ion-button expand="block" color="primary" (click)="sendControleClick()">
+            Valider
+          </ion-button>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
   </ion-content>
 </div>

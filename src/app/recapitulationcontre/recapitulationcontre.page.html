@@ -1,111 +1,106 @@
 <div class="ion-page" id="main-content">
+  <ion-header [translucent]="true" class="ion-no-border" no-border>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title class="ion-text-center">Récapitulation contre inopiné</ion-title>
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon name="medkit-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
   <ion-content [fullscreen]="true">
-    <ion-header [translucent]="true" class="ion-no-border" no-border>
-      <ion-toolbar class="ion-no-border" no-border>
-        <ion-buttons slot="start" class="text-color">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title class="ion-no-border" no-border>
-          <p class="header-style" class="ion-no-border" no-border>
-            <ion-row class="ion-no-border text-centre" no-border>
-              <ion-col text-center class="ion-no-border text-centre" no-border>
-                <p color="azure" class="text-color text-header">RECAPITULATION<br>CONTRE INOPINE</p>
-              </ion-col>
-              <ion-col text-right class="ion-no-border header_button" no-border>
-                <img class="header_logo_right" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-right>
-              </ion-col>
-            </ion-row>
-          </p>
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
     <div>
       <ion-list>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>
             <ion-text color="primary">Immatriculation : </ion-text><br>
             {{ immatriculation }}
           </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>
             <ion-text color="primary">Nom chauffeur : </ion-text><br>
             {{ nom_chauffeur }}
           </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>
             <ion-text color="primary">Contact chaffeur : </ion-text><br>
             {{ contact_chauffeur }}
           </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>
             <ion-text color="primary">Nom propriétaire : </ion-text><br>
             {{ proprietaire }}
           </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>
             <ion-text color="primary">Contact propiétaire : </ion-text><br>
             {{ contact_proprietaire }}
           </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>
             <ion-text color="primary">Lieu de controle : </ion-text><br>
             {{ lieu_de_controle }}
           </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>
             <ion-text color="primary">Date de controle : </ion-text><br>
             {{ date_controle }}
           </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>
             <ion-text color="primary">Numéro feuille de controle : </ion-text><br>
             {{ feuille_de_controle }}
           </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>
             <ion-text color="primary">Anomalie constaté : </ion-text><br>
             {{ anomalies_constater }}
           </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>
             <ion-text color="primary">Papier retiré : </ion-text><br>
             {{ papiers_retirer }}
           </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>
             <ion-text color="primary">Date de récupération : </ion-text><br>
             {{ date_recuperation }}
           </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>
             <ion-text color="primary">Date limite de récupération : </ion-text><br>
             {{ date_limite }}
           </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>
             <ion-text color="primary">Mise en fourrière : </ion-text><br>
             {{ mise_en_fourriere }}
           </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>
             <ion-text color="primary">Vérificateur : </ion-text><br>
             {{ verificateur }}
           </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item lines="none">
           <ion-label>
             <ion-text color="primary">Centre : </ion-text><br>
             {{ centre }}
@@ -118,15 +113,10 @@
 
       <br>
 
-      <div text-center margin-top>
-        <!-- <ion-button expand="block" color="secondary" (click)="terminer()" size="large"> -->
-        <ion-button expand="block" fill="outline" color="secondary" class="custom-button" (click)="terminer()" size="large">
-          Terminer
-        </ion-button>
-      </div>
+      <ion-button expand="block" color="primary" class="custom-button" (click)="terminer()">
+        Terminer
+      </ion-button>
     </div>
 
-    <ion-item></ion-item>
-    <ion-item></ion-item>
   </ion-content>
 </div>

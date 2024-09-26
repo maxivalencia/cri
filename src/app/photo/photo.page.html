@@ -1,38 +1,27 @@
 <div class="ion-page" id="main-content">
+  <ion-header [translucent]="true" class="ion-no-border" no-border>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title class="ion-text-center">Photo</ion-title>
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon name="camera-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
   <ion-content [fullscreen]="true">
-    <ion-header [translucent]="true" class="ion-no-border" no-border>
-      <ion-toolbar class="ion-no-border" no-border>
-        <ion-buttons slot="start" class="text-color">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title class="ion-no-border" no-border>
-          <p class="header-style" class="ion-no-border" no-border>
-            <ion-row class="ion-no-border" no-border>
-              <ion-col text-center class="ion-no-border text-centre" no-border>
-                <p color="azure" class="text-color text-header">PHOTOS<br>
-                ANOMALIES<br>
-                CONSTATER<br></p>
-              </ion-col>
-              <ion-col text-right class="ion-no-border" no-border>
-                <img class="header_logo_right" src="../../assets/image/logo_dgsr.png" alt="logo_dgsr" float-right>
-              </ion-col>
-            </ion-row>
-          </p>
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <br />
-
     <div class="titre_photo">Photo à prendre sur le véhicule :<br />{{ photo_titre }}</div>
 
     <br />
 
-    <div text-center margin-top>
-      <!-- <ion-button expand="block" color="secondary" (click)="takePicture()" size="large">Prendre photo</ion-button> -->
-      <ion-button expand="block" color="secondary" (click)="prendrePhoto()" size="large"><ion-icon name="reverse-camera"></ion-icon> Prendre photo</ion-button>
-    </div>
+    <ion-button expand="block" color="primary" (click)="prendrePhoto()">
+      <ion-icon name="reverse-camera"></ion-icon>
+      Prendre photo
+    </ion-button>
 
-    <ion-item></ion-item>
-    <ion-item></ion-item>
   </ion-content>
 </div>
