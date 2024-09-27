@@ -14,109 +14,112 @@
   </ion-header>
 
   <ion-content [fullscreen]="true">
-    <div>
-      <ion-list>
-        <ion-item lines="none">
-          <ion-label>
-            <ion-text color="primary">Immatriculation : </ion-text><br>
-            {{ immatriculation }}
-          </ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>
-            <ion-text color="primary">Nom chauffeur : </ion-text><br>
-            {{ nom_chauffeur }}
-          </ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>
-            <ion-text color="primary">Contact chaffeur : </ion-text><br>
-            {{ contact_chauffeur }}
-          </ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>
-            <ion-text color="primary">Nom propriétaire : </ion-text><br>
-            {{ proprietaire }}
-          </ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>
-            <ion-text color="primary">Contact propiétaire : </ion-text><br>
-            {{ contact_proprietaire }}
-          </ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>
-            <ion-text color="primary">Lieu de controle : </ion-text><br>
-            {{ lieu_de_controle }}
-          </ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>
-            <ion-text color="primary">Date de controle : </ion-text><br>
-            {{ date_controle }}
-          </ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>
-            <ion-text color="primary">Numéro feuille de controle : </ion-text><br>
-            {{ feuille_de_controle }}
-          </ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>
-            <ion-text color="primary">Anomalie constaté : </ion-text><br>
-            {{ anomalies_constater }}
-          </ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>
-            <ion-text color="primary">Papier retiré : </ion-text><br>
-            {{ papiers_retirer }}
-          </ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>
-            <ion-text color="primary">Date de récupération : </ion-text><br>
-            {{ date_recuperation }}
-          </ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>
-            <ion-text color="primary">Date limite de récupération : </ion-text><br>
-            {{ date_limite }}
-          </ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>
-            <ion-text color="primary">Mise en fourrière : </ion-text><br>
-            {{ mise_en_fourriere }}
-          </ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>
-            <ion-text color="primary">Vérificateur : </ion-text><br>
-            {{ verificateur }}
-          </ion-label>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label>
-            <ion-text color="primary">Centre : </ion-text><br>
-            {{ centre }}
-          </ion-label>
-        </ion-item>
-        <ion-item *ngFor="let sary of photo_liste">
-          <img src="{{ image_url }}{{ sary }}" alt="Description de l'image">
-        </ion-item>
-      </ion-list>
+    <ion-card>
+      <ion-card-content>
+        <div>
+          <ion-list>
+            <ion-item lines="none">
+              <ion-label>
+                <ion-text color="primary">Immatriculation : </ion-text><br>
+                {{ immatriculation }}
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>
+                <ion-text color="primary">Nom chauffeur : </ion-text><br>
+                {{ nom_chauffeur }}
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>
+                <ion-text color="primary">Contact chaffeur : </ion-text><br>
+                {{ contact_chauffeur }}
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>
+                <ion-text color="primary">Nom propriétaire : </ion-text><br>
+                {{ proprietaire }}
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>
+                <ion-text color="primary">Contact propiétaire : </ion-text><br>
+                {{ contact_proprietaire }}
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>
+                <ion-text color="primary">Lieu de controle : </ion-text><br>
+                {{ lieu_de_controle }}
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>
+                <ion-text color="primary">Date de controle : </ion-text><br>
+                {{ date_controle }}
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>
+                <ion-text color="primary">Numéro feuille de controle : </ion-text><br>
+                {{ feuille_de_controle }}
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>
+                <ion-text color="primary">Anomalie constaté : </ion-text><br>
+                {{ anomalies_constater }}
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>
+                <ion-text color="primary">Papier retiré : </ion-text><br>
+                {{ papiers_retirer }}
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>
+                <ion-text color="primary">Date de récupération : </ion-text><br>
+                {{ date_recuperation }}
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>
+                <ion-text color="primary">Date limite de récupération : </ion-text><br>
+                {{ date_limite }}
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>
+                <ion-text color="primary">Mise en fourrière : </ion-text><br>
+                {{ mise_en_fourriere }}
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>
+                <ion-text color="primary">Vérificateur : </ion-text><br>
+                {{ verificateur }}
+              </ion-label>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label>
+                <ion-text color="primary">Centre : </ion-text><br>
+                {{ centre }}
+              </ion-label>
+            </ion-item>
+            <ion-item *ngFor="let sary of photo_liste">
+              <img src="{{ image_url }}{{ sary }}" alt="Description de l'image">
+            </ion-item>
+          </ion-list>
 
-      <br>
+          <br>
 
-      <ion-button expand="block" color="primary" class="custom-button" (click)="terminer()">
-        Terminer
-      </ion-button>
-    </div>
-
+          <ion-button expand="block" color="primary" class="custom-button" (click)="terminer()">
+            Terminer
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
   </ion-content>
 </div>

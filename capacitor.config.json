@@ -1,6 +1,6 @@
 {
-	"appId": "com.iTsirika.app",
-	"appName": "i-Tsirika",
+	"appId": "com.itsirika.app",
+	"appName": "i-tsirika",
 	"webDir": "www",
 	"bundledWebRuntime": false,
 	"android": {
