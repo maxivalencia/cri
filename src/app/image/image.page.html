@@ -18,11 +18,9 @@
       <ion-card-content>
         <ion-list>
           <ion-item>
-            <ion-input labelPlacement="floating" [(ngModel)]="immatriculation" clearInput="true" required="true">
-              <div slot="label">Entrer imm. ou n° de série véhicule ici.</div>
-            </ion-input>
-            <ion-button color="primary" (click)="rechercherClick()" icon-only float-right>
-              <ion-icon name="search-outline"></ion-icon>
+            <ion-button expand="block" class="ion-margin" (click)="scanNow()">
+              <ion-icon slot="start" name="qr-code-outline"></ion-icon>
+              Scan QR-Code
             </ion-button>
           </ion-item>
         </ion-list>

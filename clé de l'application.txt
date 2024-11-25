@@ -18,6 +18,11 @@ ionic cap build android --no-open --prod --release
 ionic cap run android
 npx cap sync android
 npx cap open android
+
+zipalign -p -f -v 4 "E:\angular\cri\cri\android\app\build\outputs\apk\debug\app-debug.apk" "E:\angular\cri\cri\android\app\build\outputs\apk\debug\app-debug_zipaligned.apk"
+apksigner sign --ks "dgsrmada.jks" --ks-key-alias dgsr-alias --in "E:\angular\cri\cri\android\app\build\outputs\apk\debug\app-debug_zipaligned.apk" --out "E:\angular\cri\cri\android\app\build\outputs\apk\debug\i-tsirika.apk"
+apksigner verify -verbose "E:\angular\cri\cri\android\app\build\outputs\apk\debug\i-tsirika.apk"
+
 zipalign -p -f -v 4 "F:\cri\cri\android\app\build\outputs\apk\debug\app-debug.apk" "F:\cri\cri\android\app\build\outputs\apk\debug\app-debug_zipaligned.apk"
 apksigner sign --ks "dgsrmada.jks" --ks-key-alias dgsr-alias --in "F:\cri\cri\android\app\build\outputs\apk\debug\app-debug_zipaligned.apk" --out "F:\cri\cri\android\app\build\outputs\apk\debug\i-tsirika.apk"
 apksigner verify -verbose "F:\cri\cri\android\app\build\outputs\apk\debug\i-tsirika.apk"
