@@ -24,6 +24,18 @@
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>
+        <ion-item detail="false" button routerLink="/qrcode" *ngIf="estUtilisateur()" lines="none">
+          <ion-icon slot="end" name="qr-code-outline" class="icon_button" style="color: white;"></ion-icon>
+          <ion-label>Scan QR-Code</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item detail="false" button routerLink="/image" *ngIf="estUtilisateur()" lines="none">
+          <ion-icon slot="end" name="camera" class="icon_button" style="color: white;"></ion-icon>
+          <ion-label>Scan Immatriculation</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
         <ion-item detail="false" button routerLink="/inopine" *ngIf="estControleur()" lines="none">
           <ion-icon slot="end" name="hand-left-outline" class="icon_button" color="secondary"></ion-icon>
           <ion-label>Controle inopiné</ion-label>
@@ -33,12 +45,6 @@
         <ion-item detail="false" button routerLink="/contre" *ngIf="estControleur()" lines="none">
           <ion-icon slot="end" name="medkit-outline" class="icon_button" color="tertiary"></ion-icon>
           <ion-label>Contre inopiné</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-item detail="false" button routerLink="/qrcode" *ngIf="estUtilisateur()" lines="none">
-          <ion-icon slot="end" name="qr-code-outline" class="icon_button" style="color: white;"></ion-icon>
-          <ion-label>Scan QR-Code</ion-label>
         </ion-item>
       </ion-menu-toggle>
       <ion-menu-toggle>

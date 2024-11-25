@@ -1,0 +1,166 @@
+<div class="ion-page" id="main-content">
+  <ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title class="ion-text-center">Scan immatriculation</ion-title>
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon name="construct-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <ion-card>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-input labelPlacement="floating" [(ngModel)]="immatriculation" clearInput="true" required="true">
+              <div slot="label">Entrer imm. ou n° de série véhicule ici.</div>
+            </ion-input>
+            <ion-button color="primary" (click)="rechercherClick()" icon-only float-right>
+              <ion-icon name="search-outline"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-list>
+
+        <ion-grid>
+          <div *ngIf="content_visite_visibility">
+            <div *ngFor="let result of resultat">
+              <ion-segment (ionChange)="visiteTabChanged($event)" value="visite">
+                <ion-segment-button value="visite">
+                  <ion-label>
+                    Visite
+                  </ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="vehicule">
+                  <ion-label>
+                    Véhicule
+                  </ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="proprietaire">
+                  <ion-label>
+                    Propriétaire
+                  </ion-label>
+                </ion-segment-button>
+              </ion-segment>
+              <ion-list *ngIf="segment_visite === 'visite'">
+                <ion-item lines="none">
+                  <ion-input class="rgts" name="imm" labelPlacement="stacked" label="Immatriculation :" value="{{ result.cg_immatriculation }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="ctr" labelPlacement="floating" label="Centre :" value="{{ result.ctr_nom }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="num_pv" labelPlacement="floating" label="Procès-verbal :" value="{{ result.vst_num_pv }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="list_it" labelPlacement="floating" label="Imprimer technique :" value="{{ result.imprime }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="ctr" labelPlacement="floating" label="Date de visite :" value="{{ result.vst_created | date:'dd/MM/yyyy' }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="date_vt" labelPlacement="floating" label="Date d'expiration :" value="{{ result.vst_date_expiration | date:'dd/MM/yyyy' }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="type_vt" labelPlacement="floating" label="Type de visite :" value="{{ result.vst_is_contre_visite ? 'Première' : 'Contre' }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="apte_vt" labelPlacement="floating" label="Aptitude :" value="{{ result.vst_is_apte ? 'Apte' : 'Inapte' }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="vta_vt" labelPlacement="floating" label="Vérificateur :" value="{{ result.nom_verificateur }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="user_vt" labelPlacement="floating" label="Secrétaire :" value="{{ result.usr_name }}"></ion-input>
+                </ion-item>
+              </ion-list>
+
+              <ion-list *ngIf="segment_visite === 'vehicule'">
+                <ion-item lines="none">
+                  <ion-input name="cgr" label="Date de mise en service :" labelPlacement="stacked" value="{{ result.cg_mise_en_service | date:'dd/MM/yyyy' }}" ></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="nb_plc_assise" label="Nombre de place assise : " labelPlacement="stacked" value="{{ result.cg_nbr_assis }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="nb_plc_debout" label="Nombre de place debout : " labelPlacement="stacked" value="{{ result.cg_nbr_debout }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="marque" label="Marque : " labelPlacement="stacked" value="{{ result.mrq_libelle }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="type" label="Type :" labelPlacement="stacked" value="{{ result.vhc_type }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="nr_serie" label="Numéro de série : " labelPlacement="stacked" value="{{ result.vhc_num_serie }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="num_moteur" label="Numéro moteur : " labelPlacement="stacked" value="{{ result.vhc_num_moteur }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="carrosserie" label="Carrosserie : " labelPlacement="stacked" value="{{ result.crs_libelle }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="genre" label="Genre : " labelPlacement="stacked" value="{{ result.gr_libelle }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="src_enrg" label="Source d'énergie" labelPlacement="stacked" value="{{ result.sre_libelle }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="puissance" label="Puissance : " labelPlacement="stacked" value="{{ result.cg_puissance_admin }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="pav" label="Poids à vide : " labelPlacement="stacked" value="{{ result.vhc_poids_vide }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="cu" label="Charge utile : " labelPlacement="stacked" value="{{ result.vhc_charge_utile }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="ptac" label="Poids total à charge : " labelPlacement="stacked" value="{{ result.vhc_poids_total_charge }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="usg_eff" label="Usage effectif : " labelPlacement="stacked" value="{{ result.usg_libelle }}"></ion-input>
+                </ion-item>
+              </ion-list>
+
+              <ion-list *ngIf="segment_visite === 'proprietaire'">
+                <ion-item lines="none">
+                  <ion-input name="utilis" label="Utilisation : " labelPlacement="stacked" value="{{ result.ut_libelle }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="proprietaire" label="Propriétaire : " labelPlacement="stacked" value="{{ result.cg_nom }} {{ result.cg_prenom}}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="profession" label="Profession : " labelPlacement="stacked" value="{{ result.cg_profession }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="adresse" label="Adresse : " labelPlacement="stacked" value="{{ result.cg_adresse }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input name="cg_phone" label="Téléphone : " labelPlacement="stacked" value="{{ result.cg_phone }}"></ion-input>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-input class="rgts" name="commune" label="Commune : " labelPlacement="stacked" value="{{ result.cg_commune }}"></ion-input>
+                </ion-item>
+              </ion-list>
+            </div>
+          </div>
+          <div *ngIf="!content_visite_visibility">
+            <div *ngIf="nb_res">
+              <ion-list>
+                  <ion-item>
+                    <label>{{ message }}</label>
+                  </ion-item>
+              </ion-list>
+            </div>
+          </div>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+</div>

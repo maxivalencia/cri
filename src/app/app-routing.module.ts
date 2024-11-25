@@ -59,6 +59,10 @@ const routes: Routes = [
     path: 'photocontre',
     loadChildren: () => import('./photocontre/photocontre.module').then( m => m.PhotocontrePageModule)
   },
+  {
+    path: 'image',
+    loadChildren: () => import('./image/image.module').then( m => m.ImagePageModule)
+  },
 ];
 
 @NgModule({
