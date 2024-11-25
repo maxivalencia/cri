@@ -120,36 +120,46 @@ export class ImagePage implements OnInit {
   }
 
   async scanNow() {
-    const photo = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: true,
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Camera,
-    });
+    try {
+      const photo = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: true,
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Camera,
+      });
 
-    const data: TextDetections = await Ocr.detectText({
-      filename: photo.path!,
-    });
+      if (!photo.path) {
+        console.error("Chemin de la photo introuvable.");
+        return;
+      }
 
-    console.log(data);
+      const data: TextDetections = await Ocr.detectText({
+        filename: photo.path,
+      });
 
-    this.textDetections = data.textDetections;
-    console.log(this.textDetections);
+      console.log(data);
 
-    // const regex = /^\d{4}[\s\W_]*[a-zA-Z]{2,3}$/;
-    const regex = /^\d[\s\W_]*\d[\s\W_]*\d[\s\W_]*\d[\s\W_]*[a-zA-Z][\s\W_]*[a-zA-Z][\s\W_]*[a-zA-Z]?$/;
-    for (let detection of data.textDetections) {
-      console.log(detection.text);
-      if (regex.test(detection.text)) {
-        const matches = detection.text.match(/\d|[a-zA-Z]/g);
-        if (matches) {
-          const digits = matches.filter(char => /\d/.test(char)); // Filtre les chiffres
-          const letters = matches.filter(char => /[a-zA-Z]/.test(char)); // Filtre les lettres;
-          this.immatriculation = digits.join('') + letters.join('');
-          const resultat = this.getResultRechercheVisite();
-          console.log(resultat);
+      this.textDetections = data.textDetections;
+
+      const regex = /^\d[\s\W_]*\d[\s\W_]*\d[\s\W_]*\d[\s\W_]*[a-zA-Z][\s\W_]*[a-zA-Z][\s\W_]*[a-zA-Z]?$/;
+      for (let detection of data.textDetections) {
+        console.log(detection.text);
+        if (regex.test(detection.text)) {
+          const matches = detection.text.match(/\d|[a-zA-Z]/g);
+          if (matches) {
+            const digits = matches.filter(char => /\d/.test(char)); // Filtre les chiffres
+            const letters = matches.filter(char => /[a-zA-Z]/.test(char)); // Filtre les lettres
+            this.immatriculation = digits.join('') + letters.join('');
+            console.log("Immatriculation détectée :", this.immatriculation);
+            // Effectuer un appel une seule fois ici
+            const resultat = this.getResultRechercheVisite();
+            console.log(resultat);
+            break; // Optionnel : arrêter après une première correspondance valide
+          }
         }
       }
+    } catch (error) {
+      console.error("Erreur lors du scan :", error);
     }
   }
 
