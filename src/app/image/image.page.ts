@@ -148,7 +148,7 @@ export class ImagePage implements OnInit {
       console.log("Résultat OCR :", data);
 
       this.textDetections = data.textDetections;
-
+      let imm_detected: Boolean = false;
       const regex = /^\d[\s\W_]*\d[\s\W_]*\d[\s\W_]*\d[\s\W_]*[a-zA-Z][\s\W_]*[a-zA-Z][\s\W_]*[a-zA-Z]?$/;
       for (let detection of data.textDetections) {
         console.log("Texte détecté :", detection.text);
@@ -160,11 +160,39 @@ export class ImagePage implements OnInit {
             this.immatriculation = digits.join('') + letters.join('');
             console.log("Immatriculation détectée :", this.immatriculation);
             // Effectuer un appel une seule fois ici
+            imm_detected = true;
             const resultat = this.getResultRechercheVisite();
             console.log("Résultat de la recherche :", resultat);
             break; // Optionnel : arrêter après une première correspondance valide
           }
         }
+      }
+      if(imm_detected == false){
+        const regexDigits = /^\d[\s\W_]*\d[\s\W_]*\d[\s\W_]*\d$/;
+        const regexLetters = /^[a-zA-Z][\s\W_]*[a-zA-Z][\s\W_]*[a-zA-Z]?$/;
+        let texte_precedent: any = "";
+        for (let detection of data.textDetections) {
+          console.log("Texte détecté :", detection.text);
+          if (regexDigits.test(texte_precedent) && regexLetters.test(detection.text)) {
+            const matches = detection.text.match(/\d|[a-zA-Z]/g);
+            if (matches) {
+              const digits = matches.filter(char => /\d/.test(char)); // Filtre les chiffres
+              const letters = matches.filter(char => /[a-zA-Z]/.test(char)); // Filtre les lettres
+              this.immatriculation = digits.join('') + letters.join('');
+              console.log("Immatriculation détectée :", this.immatriculation);
+              // Effectuer un appel une seule fois ici
+              imm_detected = true;
+              const resultat = this.getResultRechercheVisite();
+              console.log("Résultat de la recherche :", resultat);
+              break; // Optionnel : arrêter après une première correspondance valide
+            }
+          }
+          texte_precedent = detection.text;
+        }
+      }
+      if(imm_detected == false) {
+        this.message_visibility = "show";
+        this.message = "le numéro que vous avez scanné n'existe pas";
       }
     } catch (error) {
       console.error("Erreur lors du scan :", error);
