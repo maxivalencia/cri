@@ -123,27 +123,35 @@ export class ImagePage implements OnInit {
     try {
       const photo = await Camera.getPhoto({
         quality: 90,
-        allowEditing: true,
+        allowEditing: false,
         resultType: CameraResultType.Uri,
         source: CameraSource.Camera,
       });
 
-      if (!photo.path) {
+      console.log("Format de l'image :", photo.format || "Inconnu");
+
+      // Affiche l'objet photo pour voir les propriétés disponibles
+      console.log("Photo capturée :", photo);
+
+      // Utilisez la propriété appropriée selon la plateforme
+      //const photoPath = photo.path || photo.webPath || photo.uri;
+      const photoPath = photo.path || photo.webPath;
+      if (!photoPath) {
         console.error("Chemin de la photo introuvable.");
         return;
       }
 
-      const data: TextDetections = await Ocr.detectText({
-        filename: photo.path,
-      });
+      console.log("Chemin de la photo :", photoPath);
 
-      console.log(data);
+      const data: TextDetections = await Ocr.detectText({ filename: photoPath! });
+
+      console.log("Résultat OCR :", data);
 
       this.textDetections = data.textDetections;
 
       const regex = /^\d[\s\W_]*\d[\s\W_]*\d[\s\W_]*\d[\s\W_]*[a-zA-Z][\s\W_]*[a-zA-Z][\s\W_]*[a-zA-Z]?$/;
       for (let detection of data.textDetections) {
-        console.log(detection.text);
+        console.log("Texte détecté :", detection.text);
         if (regex.test(detection.text)) {
           const matches = detection.text.match(/\d|[a-zA-Z]/g);
           if (matches) {
@@ -153,7 +161,7 @@ export class ImagePage implements OnInit {
             console.log("Immatriculation détectée :", this.immatriculation);
             // Effectuer un appel une seule fois ici
             const resultat = this.getResultRechercheVisite();
-            console.log(resultat);
+            console.log("Résultat de la recherche :", resultat);
             break; // Optionnel : arrêter après une première correspondance valide
           }
         }
